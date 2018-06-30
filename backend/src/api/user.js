@@ -28,12 +28,12 @@ router.post('/login', (req, res) => {
         data.username = userInfo.username;
         data.userType = userInfo.type;
         data.userId = userInfo._id;
+        data.email = userInfo.email;
         // setting session
         req.session.userInfo = data;
         // console.log(req.session);
         response(res, 200, 0, '登入成功', data);
-      }
-      else response(res, 200, 1, '帳號或密碼錯誤');
+      } else response(res, 200, 1, '帳號或密碼錯誤');
     });
   }).catch((err) => {
     console.log(err);
@@ -42,13 +42,17 @@ router.post('/login', (req, res) => {
 });
 
 router.post('/register', (req, res) => {
-  const { username, password } = req.body;
+  const { username, password, email } = req.body;
   if (username.length === 0) {
     response(res, 200, 2, '帳號不可為空');
     return;
   }
   if (password.length === 0) {
     response(res, 200, 2, '密碼不可為空');
+    return;
+  }
+  if (email.length === 0) {
+    response(res, 200, 2, '信箱不可為空');
     return;
   }
   UserModel.findOne({ username })
@@ -61,23 +65,25 @@ router.post('/register', (req, res) => {
         const user = new UserModel({
           username,
           password: hashPwd,
+          email,
           type: username === 'admin' ? 'admin' : 'user',
         });
         user.save()
           .then(() => {
             UserModel.findOne({ username })
               .then((userInfo) => {
-                const data = {};
+                /* const data = {};
                 data.username = userInfo.username;
                 data.userType = userInfo.type;
-                data.userId = userInfo._id;
-                response(res, 200, 0, '註冊成功，請使用這組帳密登入', data);
+                data.userId = userInfo._id; */
+                if (userInfo) response(res, 200, 0, '註冊成功，請使用這組帳密登入');
+                else response(res, 200, 2, '註冊失敗');
               });
           });
       });
     }).catch((err) => {
       console.log(err);
-      response(res);
+      response(res, 200, 2, '註冊失敗');
     });
 });
 

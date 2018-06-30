@@ -1,9 +1,9 @@
 import express from 'express';
 import user from './user';
-import article from './article';
+import ramen from './ramen';
 
 const router = express.Router();
 router.use('/user', user);
-router.use('/article', article);
+router.use('/ramen', ramen);
 
 export default router;

@@ -1,7 +1,11 @@
 import userSchema from './userSchema';
-import articleSchema from './articleSchema';
+import ramenSchema from './ramenSchema';
+import imageSchema from './imageSchema';
+import reviewSchema from './reviewSchema';
 
 export default {
   userSchema,
-  articleSchema,
+  ramenSchema,
+  imageSchema,
+  reviewSchema,
 };
