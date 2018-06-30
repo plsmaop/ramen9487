@@ -1,7 +1,6 @@
 import { put, take, call } from 'redux-saga/effects';
 import { get, post } from '../../api';
 import { actionsTypes } from '../globalModule';
-import { actionsTypes as articleActionsTypes } from '../articleModule';
 
 export function* login(username, password) {
   yield put({ type: actionsTypes.FETCH_START });
@@ -120,7 +119,6 @@ export function* logout() {
       const res = yield call(get, '/user/logout');
       if (res && res.code === 0) {
         yield put({ type: actionsTypes.CLEAR_USER_INFO });
-        yield put({ type: articleActionsTypes.CLEAR_DRAFT });
         yield put({
           type: actionsTypes.SET_MESSAGE,
           msgContent: res.message,

@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
 import global from './globalModule';
-import article from './articleModule';
+import ramen from './ramenModule';
 
 export default combineReducers({
   global,
-  article,
+  ramen,
 });

@@ -1,7 +1,6 @@
 import path from 'path';
 import express from 'express';
 import favicon from 'serve-favicon';
-import http from 'http';
 import compression from 'compression';
 import connectHistoryApiFallback from 'connect-history-api-fallback';
 import bodyParser from 'body-parser';
@@ -15,7 +14,6 @@ import dbUrl from './config';
 
 // config
 const backend = express();
-const server = http.Server(backend);
 const port = process.env.PORT || 3001;
 backend.use(compression());
 backend.use(favicon(path.join(__dirname, 'favicon.ico')));
@@ -50,7 +48,7 @@ mongoose.connect(dbUrl, (err) => {
     if (error) {
       console.error('err:', error);
     } else {
-      console.info(`===> api server is running`);
+      console.info('===> api server is running');
     }
   });
 });
