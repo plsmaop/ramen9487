@@ -1,11 +1,33 @@
-import React from 'react';
-import Grid from '@material-ui/core/Grid';
+import React, { Component } from 'react';
+import Menu from './menu';
+import Page from './page';
+import './style.css';
+/* import Grid from '@material-ui/core/Grid';
 import { withStyles, MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import NavBar from '../containers/navBar';
-import Router from './router';
+import Router from './router'; */
 
-const theme = createMuiTheme({
+class App extends Component {
+  render() {
+    return (
+      <div class="ct" id="t1">
+        <div class="ct" id="t2">
+          <div class="ct" id="t3">
+            <div class="ct" id="t4">
+              <Menu/>
+              <Page/>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+}
+
+export default App;
+
+/* const theme = createMuiTheme({
   palette: {
     primary: {
       main: '#212121',
@@ -50,4 +72,6 @@ App.propTypes = {
   classes: PropTypes.objectOf(String).isRequired,
 };
 
-export default withStyles(styles)(App);
+export default withStyles(styles)(App); */
+
+

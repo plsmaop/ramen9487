@@ -1,4 +1,4 @@
-import axios from 'axios';
+/* import axios from 'axios';
 import serverUrl from '../configuration';
 
 const config = {
@@ -15,9 +15,9 @@ const config = {
       return ret;
     },
   ],
-  /* transformResponse: [
+   transformResponse: [
     data => data,
-  ], */
+  ],
   headers: {
     'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
   },
@@ -36,3 +36,4 @@ export const get = url => axios.get(url, config);
 export const post = (url, data) => axios.post(url, data, config);
 export const del = url => axios.delete(url, config);
 export const patch = (url, data) => axios.patch(url, data, config);
+ */

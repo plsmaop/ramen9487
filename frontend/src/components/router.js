@@ -1,4 +1,4 @@
-import React from 'react';
+/* import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Login from '../containers/login';
 import Register from '../containers/register';
@@ -20,3 +20,4 @@ const Router = () => (
 );
 
 export default Router;
+ */
