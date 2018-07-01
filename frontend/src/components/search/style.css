@@ -2,9 +2,30 @@ h4{
   color: tomato;
 }
 
-.addForm-input,
+h5{
+  color: tomato;
+  display: inline-block;
+}
+
+.wrap-h5{
+  width: 5%;
+  display: inline-block;
+  margin-right: 7%;
+}
+
+.addForm-input{
+  width: 90%;
+  padding-top: 1em ;
+  padding-bottom: 1em;
+  line-height: 1.4;
+  background-color: #f9f9f9;
+  border: 1px solid #e5e5e5;
+  border-radius: 3px;
+  transition: all 0.35s ease-in-out;
+}
+
 .addForm-input[type="radio"] + label,
-.addForm-input[type="checkbox"] + label:before,
+/* .addForm-input[type="checkbox"] + label:before, */
 .addForm-select,
 .addForm-select option{
   width: 90%;
@@ -13,6 +34,19 @@ h4{
   background-color: #f9f9f9;
   border: 1px solid #e5e5e5;
   border-radius: 3px;
+  transition: all 0.35s ease-in-out;
+}
+
+.addForm-input[type="checkbox"] + label{
+  text-align: center;
+  display: inline-block;
+  width: 9%;
+  margin-right: 0.1%;
+  border-radius: 3px;
+  padding: 2%;
+  line-height: 1.4;
+  background-color: #f9f9f9;
+  border: 1px solid #e5e5e5;
   transition: all 0.35s ease-in-out;
 }
 
@@ -26,14 +60,22 @@ h4{
 .addForm-input:focus + .input-icon:after {
   border-right-color: tomato;
 }
-.addForm-input[type="radio"] {
+.addForm-input[type="radio"],.addForm-input[type="checkbox"] {
   display: none;
   height:10%;
 }
-.addForm-input[type="radio"] + label,
-.addForm-select {
+.addForm-input[type="radio"] + label {
   display: inline-block;
   width: 30%;
+  text-align: center;
+  border-radius: 0;
+}
+
+.addForm-select{
+  display: inline-block;
+  width: 15%;
+  margin-right: 4%;
+  margin-left: 4%;
   text-align: center;
   border-radius: 0;
 }
@@ -49,6 +91,7 @@ h4{
   padding-right: 0.4em;
 }
 .addForm-input[type="radio"]:checked + label,
+.addForm-input[type="checkbox"]:checked + label,
 .addForm-input:checked + label:before,
 .addForm-select:focus,
 .addForm-select:active {
@@ -56,7 +99,7 @@ h4{
   color: #fff;
   border-color: tomato;
 }
-.addForm-input[type="checkbox"] {
+/* .addForm-input[type="checkbox"] {
   display: none;
 }
 .addForm-input[type="checkbox"] + label {
@@ -83,7 +126,7 @@ h4{
   opacity: 0;
   font-family: FontAwesome;
   content: "\f00c";
-}
+} */
 .addForm-input:checked + label:after {
   opacity: 1;
 }
@@ -108,6 +151,23 @@ h4{
   color: #fff;
 }
 
+.menu{
+  width:40%;
+  display: inline-block;
+  margin-right: 10%;
+}
+
+.menu-dish{
+  width: 100%;
+  padding-left: 18%;
+  display: inline-block;
+}
+
+.menu-price{
+  width: 20%;
+  display: inline-block;
+}
+
 .input-group {
   margin-bottom: 1em;
   zoom: 1;
@@ -124,7 +184,7 @@ h4{
   position: relative;
 }
 .input-group-icon input {
-  padding-left: 4.4em;
+  padding-left: 10%;
 }
 .input-group-icon .input-icon {
   position: absolute;
@@ -149,6 +209,25 @@ h4{
 .input-group-icon .input-icon i {
   transition: all 0.35s ease-in-out;
 }
+
+.addForm-header{
+  max-width: 60%;
+  padding: 1em 3em 2em 3em;
+  margin: 2% auto;
+  background-color: #fff;
+  border-radius: 4.2px;
+  box-shadow: 0px 3px 10px -2px rgba(0, 0, 0, 0.2);
+}
+
+h1{
+  color: tomato;
+}
+
+h3{
+  color: tomato;
+  
+}
+
 .container {
   max-width: 60%;
   padding: 1em 3em 2em 3em;
@@ -171,7 +250,7 @@ h4{
 .col-half {
   padding-right: 10px;
   float: left;
-  width: 49%;
+  width: 48%;
 }
 .col-half:last-of-type {
   padding-right: 0;
@@ -190,3 +269,85 @@ h4{
     padding-right: 0;
   }
 }
+
+.addForm-textarea{
+  width: 97%;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 170%;
+  border-radius: 3px;
+  background-color: #f9f9f9;
+  border: 1px solid #e5e5e5;
+  padding: 1%;
+}
+
+.addForm-textarea:focus{
+  outline: none;
+  
+}
+
+.submit-image-url{
+  display: inline-block;
+  width: 88%;
+}
+
+.submit-images{
+  display: inline-block;
+  height: 150%;
+  width: 10%;
+  border-radius: 3px;
+  background-color: #f9f9f9;
+  border: 1px solid #e5e5e5;
+  padding: 1%;
+}
+
+.submit-images:hover{
+  background:#e9e3e3;
+  transition: all .4s ease-in-out;
+}
+
+.submit-result{
+  width: 17%;
+  height: 30%;
+  margin: 2% auto;
+  color: tomato;
+  font-size: 1.15rem;
+  line-height: 65px;
+  text-transform: uppercase;
+  text-align: center;
+  position: relative;
+  cursor: pointer;
+}
+
+.submit-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.submit-svg rect, .submit-svg path, .submit-svg polyline {
+  fill: none;
+  stroke: tomato;
+  stroke-width: 1;
+}
+
+.submit-result:hover svg rect {
+  stroke: tomato;
+}
+
+.submit-svg rect {
+  stroke-dasharray: 400, 0;
+  -webkit-transition: all 0.8s ease-in-out;
+  -moz-transition: all 0.8s ease-in-out;
+  -ms-transition: all 0.8s ease-in-out;
+  -o-transition: all 0.8s ease-in-out;
+}
+.submit-result:hover svg rect {
+  stroke-width: 3;
+  stroke-dasharray: 35, 245;
+  stroke-dashoffset: 38;
+  -webkit-transition: all 0.8s ease-in-out;
+  -moz-transition: all 0.8s ease-in-out;
+  -ms-transition: all 0.8s ease-in-out;
+  -o-transition: all 0.8s ease-in-out;
+}
+

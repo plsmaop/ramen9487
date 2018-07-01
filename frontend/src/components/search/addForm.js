@@ -1,163 +1,189 @@
 import React, { Component } from 'react';
 import './style.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import MRT from './mrtSelect';
+import BusinessHours from './timeSelect';
 
 export default class AddForm extends Component {
   render(){
     return(
-      <div className="container">
-        <form>
-            <div className="row">
-                <h4>店名</h4>
-                <div className="input-group input-group-icon"><input className="addForm-input" type="text" />
-                  <div className="input-icon"><FontAwesomeIcon icon="store" /></div>
+      <div>
+        <div className="addForm-header">
+          <h1>新增你的推薦拉麵給我們！</h1>
+          <h3>請詳細填寫以下資訊 ...</h3>
+        </div>
+        
+        <div className="container">
+          <form>
+              <div className="row">
+                  <h4>店名</h4>
+                  <div className="input-group input-group-icon"><input className="addForm-input" type="text" />
+                    <div className="input-icon"><FontAwesomeIcon icon="store" /></div>
+                  </div>
+                  <h4>地址</h4>
+                  <div className="input-group input-group-icon"><input className="addForm-input" type="text"/>
+                    <div className="input-icon"><FontAwesomeIcon icon="map-marker-alt" /></div>
+                  </div>
+
+                  <h4>鄰近捷運站 (可複選至多4個)</h4>
+                  <div className="input-group">
+                    <MRT/>
+                    <MRT/>
+                    <MRT/>
+                    <MRT/>
+                  </div>
+                  
+                  <h4>電話</h4>
+                  <div className="input-group input-group-icon"><input className="addForm-input" type="tel" />
+                    <div className="input-icon"><FontAwesomeIcon icon="phone" /></div>
+                  </div>
+                  <h4>粉專/官網連結</h4>
+                  <div className="input-group input-group-icon"><input className="addForm-input" type="url" />
+                    <div className="input-icon"><FontAwesomeIcon icon="paperclip" /></div>
+                  </div>
+              </div>
+
+              <div className="row">
+                  <h4>拉麵分類</h4>
+                  <div className="input-group">
+                    <input className="addForm-input" type="checkbox" name="ramen-kind-豚骨" value="豚骨" id="ramen-kind-豚骨"/><label htmlFor="ramen-kind-豚骨"><span>豚骨</span></label>
+                    <input className="addForm-input" type="checkbox" name="ramen-kind-醬油" value="醬油" id="ramen-kind-醬油" /><label htmlFor="ramen-kind-醬油"> <span>醬油</span></label>
+                    <input className="addForm-input" type="checkbox" name="ramen-kind-味噌" value="味噌" id="ramen-kind-味噌" /><label htmlFor="ramen-kind-味噌"> <span>味噌</span></label>
+                    <input className="addForm-input" type="checkbox" name="ramen-kind-煮干" value="煮干" id="ramen-kind-煮干" /><label htmlFor="ramen-kind-煮干"> <span>煮干</span></label>
+                    <input className="addForm-input" type="checkbox" name="ramen-kind-家系" value="家系" id="ramen-kind-家系" /><label htmlFor="ramen-kind-家系"> <span>家系</span></label>
+                    <input className="addForm-input" type="checkbox" name="ramen-kind-鷄白湯" value="鷄白湯" id="ramen-kind-鷄白湯" /><label htmlFor="ramen-kind-鷄白湯"> <span>鷄白湯</span></label>
+                    <input className="addForm-input" type="checkbox" name="ramen-kind-沾麵" value="沾麵" id="ramen-kind-沾麵" /><label htmlFor="ramen-kind-沾麵"> <span>沾麵</span></label>
+                  </div>
+              </div>
+
+              <div className="row">
+                <h4>營業時間</h4>
+                <div className="col-half">
+                  <div className="wrap-h5"><h5>Mon</h5></div>
+                  <BusinessHours/>
+                  <BusinessHours/>
                 </div>
-                <h4>地址</h4>
-                <div className="input-group input-group-icon"><input className="addForm-input" type="text"/>
-                  <div className="input-icon"><FontAwesomeIcon icon="map-marker-alt" /></div>
+                <div className="col-half">
+                  <div className="wrap-h5"><h5>Tue</h5></div>
+                  <BusinessHours/>
+                  <BusinessHours/>
+                </div>
+                <div className="col-half">
+                  <div className="wrap-h5"><h5>Wed</h5></div>
+                  <BusinessHours/>
+                  <BusinessHours/>
+                </div>
+                <div className="col-half">
+                  <div className="wrap-h5"><h5>Thr</h5></div>
+                  <BusinessHours/>
+                  <BusinessHours/>
+                </div>
+                <div className="col-half">
+                  <div className="wrap-h5"><h5>Fri</h5></div>
+                  <BusinessHours/>
+                  <BusinessHours/>
+                </div>
+                <div className="col-half">
+                  <div className="wrap-h5"><h5>Sat</h5></div>
+                  <BusinessHours/>
+                  <BusinessHours/>
+                </div>
+                <div className="col-half">
+                  <div className="wrap-h5"><h5>Sun</h5></div>
+                  <BusinessHours/>
+                  <BusinessHours/>
+                </div>
+              </div>
+
+              <div className="row">
+                <h4>主要菜單</h4>
+                <div className="input-group input-group-icon menu"><input className="addForm-input menu-dish" type="text" />
+                    <div className="input-icon"><FontAwesomeIcon icon="utensils" /></div>
+                </div>
+                <div className="input-group input-group-icon menu"><input className="addForm-input menu-price" type="number" />
+                  <div className="input-icon"><FontAwesomeIcon icon="dollar-sign" /></div>
                 </div>
 
-                <h4>鄰近捷運站 (可複選至多4個)</h4>
-                <div className="input-group">
-                  <select className="addForm-select">
-                    <optgroup label="淡水信義線">
-                      <option>象山</option>
-                      <option>台北101/世貿</option>
-                      <option>信義安和</option>
-                      <option>大安</option>
-                      <option>大安森林公園</option>
-                      <option>東門</option>
-                      <option>中正紀念堂</option>
-                      <option>台大醫院</option>
-                      <option>台北車站</option>
-                      <option>中山</option>
-                      <option>雙連</option>
-                      <option>民權西路</option>
-                      <option>圓山</option>
-                      <option>劍潭</option>
-                      <option>士林</option>
-                      <option>芝山</option>
-                      <option>明德</option>
-                      <option>石牌</option>
-                      <option>唭哩岸</option>
-                      <option>奇岩</option>
-                      <option>北投</option>
-                      <option>復興崗</option>
-                      <option>忠義</option>
-                      <option>關渡</option>
-                      <option>竹圍</option>
-                      <option>紅樹林</option>
-                      <option>淡水</option>
-                    </optgroup>
-                    <optgroup label="板南線">
-                      <option>南港展覽館</option>
-                      <option>南港</option>
-                      <option>昆陽</option>
-                      <option>後山埤</option>
-                      <option>永春</option>
-                      <option>市政府</option>
-                      <option>國父紀念館</option>
-                      <option>忠孝敦化</option>
-                      <option>忠孝復興</option>
-                      <option>忠孝新生</option>
-                      <option>善導寺</option>
-                      <option>台北車站</option>
-                      <option>西門</option>
-                      <option>龍山寺</option>
-                      <option>江子翠</option>
-                      <option>新埔</option>
-                      <option>板橋</option>
-                      <option>府中</option>
-                      <option>亞東醫院</option>
-                      <option>海山</option>
-                      <option>土城</option>
-                      <option>永寧</option>
-                      <option>頂埔</option>
-                    </optgroup>
-                    <optgroup label="文湖線">
-                      <option>南港展覽館</option>
-                      <option>南港軟體園區</option>
-                      <option>東湖</option>
-                      <option>葫洲</option>
-                      <option>大湖公園</option>
-                      <option>內湖</option>
-                      <option>中正紀念堂</option>
-                      <option>台大醫院</option>
-                      <option>台北車站</option>
-                      <option>中山</option>
-                      <option>雙連</option>
-                      <option>民權西路</option>
-                      <option>圓山</option>
-                      <option>劍潭</option>
-                      <option>士林</option>
-                      <option>芝山</option>
-                      <option>明德</option>
-                      <option>石牌</option>
-                      <option>唭哩岸</option>
-                      <option>奇岩</option>
-                      <option>北投</option>
-                      <option>復興崗</option>
-                      <option>忠義</option>
-                      <option>關渡</option>
-                      <option>竹圍</option>
-                      <option>紅樹林</option>
-                      <option>淡水</option>
-                    </optgroup>
-                  </select>
-                  
+                <div className="input-group input-group-icon menu"><input className="addForm-input menu-dish" type="text" />
+                    <div className="input-icon"><FontAwesomeIcon icon="utensils" /></div>
                 </div>
-                
-                <h4>電話</h4>
-                <div className="input-group input-group-icon"><input className="addForm-input" type="tel" />
-                  <div className="input-icon"><FontAwesomeIcon icon="phone" /></div>
+                <div className="input-group input-group-icon menu"><input className="addForm-input menu-price" type="number" />
+                  <div className="input-icon"><FontAwesomeIcon icon="dollar-sign" /></div>
                 </div>
-                <h4>粉專/官網連結</h4>
-                <div className="input-group input-group-icon"><input className="addForm-input" type="url" />
-                  <div className="input-icon"><FontAwesomeIcon icon="paperclip" /></div>
+
+                <div className="input-group input-group-icon menu"><input className="addForm-input menu-dish" type="text" />
+                    <div className="input-icon"><FontAwesomeIcon icon="utensils" /></div>
                 </div>
-            </div>
-            <div className="row">
-                <div className="col-half">
-                <h4>可預約</h4>
-                    <div className="input-group"><input className="addForm-input" type="radio" name="reservation" value="yes" id="reservation-yes" /><label htmlFor="reservation-yes">Yes</label><input className="addForm-input" type="radio" name="reservation" value="no" id="reservation-no" /><label htmlFor="reservation-no">No</label></div>
+                <div className="input-group input-group-icon menu"><input className="addForm-input menu-price" type="number" />
+                  <div className="input-icon"><FontAwesomeIcon icon="dollar-sign" /></div>
                 </div>
-                <div className="col-half">
-                    <h4>可外帶</h4>
-                    <div className="input-group"><input className="addForm-input" type="radio" name="take-out" value="yes" id="take-out-yes" /><label htmlFor="take-out-yes">Yes</label><input className="addForm-input" type="radio" name="take-out" value="no" id="take-out-no" /><label htmlFor="take-out-no">No</label></div>
+
+                <div className="input-group input-group-icon menu"><input className="addForm-input menu-dish" type="text" />
+                    <div className="input-icon"><FontAwesomeIcon icon="utensils" /></div>
                 </div>
-            </div>
-            <div className="row">
-                <div className="col-half">
-                <h4>可刷卡</h4>
-                    <div className="input-group"><input className="addForm-input" type="radio" name="credit-card" value="yes" id="credit-card-yes" /><label htmlFor="credit-card-yes">Yes</label><input className="addForm-input" type="radio" name="credit-card" value="no" id="credit-card-no" /><label htmlFor="credit-card-no">No</label></div>
+                <div className="input-group input-group-icon menu"><input className="addForm-input menu-price" type="number" />
+                  <div className="input-icon"><FontAwesomeIcon icon="dollar-sign" /></div>
                 </div>
-                <div className="col-half">
-                    <h4>可親子</h4>
-                    <div className="input-group"><input className="addForm-input" type="radio" name="children" value="yes" id="children-yes" /><label htmlFor="children-yes">Yes</label><input className="addForm-input" type="radio" name="children" value="no" id="children-no" /><label htmlFor="children-no">No</label></div>
+
+                <div className="input-group input-group-icon menu"><input className="addForm-input menu-dish" type="text" />
+                    <div className="input-icon"><FontAwesomeIcon icon="utensils" /></div>
                 </div>
-            </div>
-            <div className="row">
-                <h4>Payment Details</h4>
-                <div className="input-group"><input className="addForm-input" type="radio" name="payment-method" value="card" id="payment-method-card" checked="true" /><label htmlFor="payment-method-card"><span><i className="fa fa-cc-visa"></i>Credit Card</span></label><input className="addForm-input" type="radio" name="payment-method" value="paypal"
-                        id="payment-method-paypal" /><label htmlFor="payment-method-paypal"> <span><i className="fa fa-cc-paypal"></i>Paypal</span></label></div>
-                <div className="input-group input-group-icon"><input className="addForm-input" type="text" placeholder="Card Number" />
-                    <div className="input-icon"><i className="fa fa-credit-card"></i></div>
+                <div className="input-group input-group-icon menu"><input className="addForm-input menu-price" type="number" />
+                  <div className="input-icon"><FontAwesomeIcon icon="dollar-sign" /></div>
                 </div>
-                <div className="col-half">
-                    <div className="input-group input-group-icon"><input className="addForm-input" type="text" placeholder="Card CVC" />
-                        <div className="input-icon"><i className="fa fa-user"></i></div>
-                    </div>
+              </div>
+
+              <div className="row">
+                  <div className="col-half">
+                  <h4>可預約</h4>
+                      <div className="input-group"><input className="addForm-input" type="radio" name="reservation" value="yes" id="reservation-yes" /><label htmlFor="reservation-yes">Yes</label><input className="addForm-input" type="radio" name="reservation" value="no" id="reservation-no" /><label htmlFor="reservation-no">No</label></div>
+                  </div>
+                  <div className="col-half">
+                      <h4>可外帶</h4>
+                      <div className="input-group"><input className="addForm-input" type="radio" name="take-out" value="yes" id="take-out-yes" /><label htmlFor="take-out-yes">Yes</label><input className="addForm-input" type="radio" name="take-out" value="no" id="take-out-no" /><label htmlFor="take-out-no">No</label></div>
+                  </div>
+              </div>
+
+              <div className="row">
+                  <div className="col-half">
+                  <h4>可刷卡</h4>
+                      <div className="input-group"><input className="addForm-input" type="radio" name="credit-card" value="yes" id="credit-card-yes" /><label htmlFor="credit-card-yes">Yes</label><input className="addForm-input" type="radio" name="credit-card" value="no" id="credit-card-no" /><label htmlFor="credit-card-no">No</label></div>
+                  </div>
+                  <div className="col-half">
+                      <h4>可親子</h4>
+                      <div className="input-group"><input className="addForm-input" type="radio" name="children" value="yes" id="children-yes" /><label htmlFor="children-yes">Yes</label><input className="addForm-input" type="radio" name="children" value="no" id="children-no" /><label htmlFor="children-no">No</label></div>
+                  </div>
+              </div>
+
+              <div className="row">
+                  <h4>上傳圖片</h4>
+                  <div className="input-group input-group-icon submit-image-url">
+                    <input className="addForm-input submit-image-url" type="text" />
+                  </div>
+                  <button className="submit-images">Upload</button>
+              </div>
+
+              <div className="row">
+                  <h4>備註</h4>
+                  <textarea className="addForm-textarea" rows="10" cols="50"></textarea>
+              </div>
+
+              <div className="row">
+                <div className="submit-result">
+                  Submit
+                  <svg className="submit-svg" width="130" height="65" viewBox="0 0 130 65" xmlns="http://www.w3.org/2000/svg">
+                    <rect x='0' y='0' fill='none' width='130' height='65'/>
+                  </svg>
                 </div>
-                <div className="col-half">
-                    <div className="input-group"><select className="addForm-select"><option>01 Jan</option><option>02 Jan</option></select><select className="addForm-select"><option>2015</option><option>2016</option></select></div>
-                </div>
-            </div>
-            <div className="row">
-                <h4>Terms and Conditions</h4>
-                <div className="input-group"><input type="checkbox" id="terms" /><label htmlFor="terms">I accept the terms and conditions for signing up to this service, and hereby confirm I have read the privacy policy.</label></div>
-            </div>
-        </form>
+              </div>
+          </form>
+      </div>
     </div>
     )
   }
 }
+
+
+/* 
+<div className="input-group"><input type="checkbox" id="terms" /><label htmlFor="terms">I accept the terms and conditions for signing up to this service, and hereby confirm I have read the privacy policy.</label></div>
+*/

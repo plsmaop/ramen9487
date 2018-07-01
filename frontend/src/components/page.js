@@ -19,7 +19,7 @@ export default class Page extends Component{
                     <section className="icon fa fa-rocket"><span className="title">Rocket</span></section>
                 </div>
                 <div className="page" id="p4">
-                    <LoginPanel/>
+                    {/* <LoginPanel/> */}
                 </div> 
             </div>
         )
