@@ -2,19 +2,24 @@ import React, { Component } from 'react';
 import Menu from './menu';
 import Page from './page';
 import './style.css';
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faStore,faMapMarkerAlt,faPhone,faPaperclip } from '@fortawesome/free-solid-svg-icons'
 /* import Grid from '@material-ui/core/Grid';
 import { withStyles, MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import NavBar from '../containers/navBar';
 import Router from './router'; */
 
+library.add(faStore,faMapMarkerAlt, faPhone, faPaperclip)
+
 class App extends Component {
   render() {
     return (
-      <div class="ct" id="t1">
-        <div class="ct" id="t2">
-          <div class="ct" id="t3">
-            <div class="ct" id="t4">
+      <div className="ct" id="t1">
+        <div className="ct" id="t2">
+          <div className="ct" id="t3">
+            <div className="ct" id="t4">
               <Menu/>
               <Page/>
             </div>
