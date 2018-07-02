@@ -34,14 +34,14 @@ export function* postArticle() {
   }
 }
 
-export function* postArticleFlow() {
+/* export function* postArticleFlow() {
   while (true) {
     const request = yield take(ArticleActionsTypes.POST_ARTICLE);
     /* if (request.data.title.length === 0) {
       yield put({ type: globalActionsTypes.SET_MESSAGE, msgContent: '標題不可空白', isReqSuccess: false });
     } else if (request.data.content.length === 0) {
       yield put({ type: globalActionsTypes.SET_MESSAGE, msgContent: '內容不可空白', isReqSuccess: false });
-    } */
+    } 
     if (1) {
       const res = yield call(postArticle);
       if (res) {
@@ -77,7 +77,7 @@ export function* postArticleFlow() {
       }
     }
   }
-}
+} */
 
 export function* getRestaurantList(page, searchConditions) {
   yield put({ type: globalActionsTypes.FETCH_START });

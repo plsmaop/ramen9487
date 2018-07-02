@@ -9,11 +9,11 @@ const router = express.Router();
 
 router.post('/login', (req, res) => {
   const { username, password } = req.body;
-  if (username.length === 0) {
+  if (!username) {
     response(res, 200, 2, '帳號不可為空');
     return;
   }
-  if (password.length === 0) {
+  if (!password) {
     response(res, 200, 2, '密碼不可為空');
     return;
   }
@@ -43,22 +43,22 @@ router.post('/login', (req, res) => {
 
 router.post('/register', (req, res) => {
   const { username, password, email } = req.body;
-  if (username.length === 0) {
+  if (!username) {
     response(res, 200, 2, '帳號不可為空');
     return;
   }
-  if (password.length === 0) {
+  if (!password) {
     response(res, 200, 2, '密碼不可為空');
     return;
   }
-  if (email.length === 0) {
+  if (!email) {
     response(res, 200, 2, '信箱不可為空');
     return;
   }
-  UserModel.findOne({ username })
+  UserModel.findOne({ $or: [{ username }, { email }] })
     .then((data) => {
       if (data) {
-        response(res, 200, 1, '帳號已存在');
+        response(res, 200, 1, '帳號或信箱已存在');
         return;
       }
       hash.hashPassword(password).then((hashPwd) => {
@@ -72,11 +72,12 @@ router.post('/register', (req, res) => {
           .then(() => {
             UserModel.findOne({ username })
               .then((userInfo) => {
-                /* const data = {};
+                const data = {};
                 data.username = userInfo.username;
                 data.userType = userInfo.type;
-                data.userId = userInfo._id; */
-                if (userInfo) response(res, 200, 0, '註冊成功，請使用這組帳密登入');
+                data.userId = userInfo._id;
+                data.email = userInfo.email;
+                if (userInfo) response(res, 200, 0, '註冊成功，請使用這組帳密登入', data);
                 else response(res, 200, 2, '註冊失敗');
               });
           });

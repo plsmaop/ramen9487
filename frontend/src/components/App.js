@@ -4,11 +4,11 @@ import Page from './page';
 import './style.css';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faStore,faMapMarkerAlt,faPhone,faPaperclip,faUtensils,faDollarSign,faImages } from '@fortawesome/free-solid-svg-icons'
-/* import Grid from '@material-ui/core/Grid';
+import Grid from '@material-ui/core/Grid';
 import { withStyles, MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
-import NavBar from '../containers/navBar';
-import Router from './router'; */
+// import NavBar from '../containers/navBar';
+// import Router from './router';
 
 library.add(faStore, faMapMarkerAlt, faPhone, faPaperclip, faUtensils, faDollarSign, faImages);
 
@@ -60,11 +60,11 @@ const styles = theme => ({
 const App = ({ classes }) => (
   <div>
     <MuiThemeProvider theme={theme}>
-      <NavBar />
+
       <div className={classes.root}>
         <Grid container spacing={0} direction="row" align="center" justify="center">
           <Grid item xs={24} sm={9}>
-            <Router />
+
           </Grid>
         </Grid>
       </div>
@@ -77,5 +77,3 @@ App.propTypes = {
 };
 
 export default withStyles(styles)(App); */
-
-
