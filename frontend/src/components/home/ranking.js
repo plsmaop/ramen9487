@@ -6,6 +6,14 @@ export default class Ranking extends Component{
             <div className="ranking-container">
                 <div className="ranking-wrapper">
                     <div className="ranking-title">豚骨類</div>
+                    <div className="switch">
+                        <input type="radio" className="switch-input" name="view" value="week1" id="week1" checked/>
+                        <label htmlFor="week1" className="switch-label switch-label-off">評分</label>
+                        <input type="radio" className="switch-input" name="view" value="month1" id="month1"/>
+                        <label htmlFor="month1" className="switch-label switch-label-on">人氣</label>
+                        <span className="switch-selection"></span>
+                    </div>
+
                     <div className="ranking">
                         <div className="ramen">
                             <div className="position">1</div>
@@ -42,6 +50,13 @@ export default class Ranking extends Component{
 
                 <div className="ranking-wrapper">
                     <div className="ranking-title">醬油類</div>
+                    <div className="switch">
+                        <input type="radio" className="switch-input" name="view" value="week2" id="week2" checked/>
+                        <label htmlFor="week2" className="switch-label switch-label-off">評分</label>
+                        <input type="radio" className="switch-input" name="view" value="month2" id="month2"/>
+                        <label htmlFor="month2" className="switch-label switch-label-on">人氣</label>
+                        <span className="switch-selection"></span>
+                    </div>
                     <div className="ranking">
                         <div className="ramen">
                             <div className="position">1</div>
@@ -78,6 +93,13 @@ export default class Ranking extends Component{
 
                  <div className="ranking-wrapper">
                     <div className="ranking-title">豚骨類</div>
+                    <div className="switch">
+                        <input type="radio" className="switch-input" name="view" value="week3" id="week3" checked/>
+                        <label htmlFor="week3" className="switch-label switch-label-off">評分</label>
+                        <input type="radio" className="switch-input" name="view" value="month3" id="month3"/>
+                        <label htmlFor="month3" className="switch-label switch-label-on">人氣</label>
+                        <span className="switch-selection"></span>
+                    </div>
                     <div className="ranking">
                         <div className="ramen">
                             <div className="position">1</div>
@@ -114,6 +136,13 @@ export default class Ranking extends Component{
 
                 <div className="ranking-wrapper">
                     <div className="ranking-title">醬油類</div>
+                    <div className="switch">
+                        <input type="radio" className="switch-input" name="view" value="week4" id="week4" checked/>
+                        <label htmlFor="week4" className="switch-label switch-label-off">評分</label>
+                        <input type="radio" className="switch-input" name="view" value="month4" id="month4"/>
+                        <label htmlFor="month4" className="switch-label switch-label-on">人氣</label>
+                        <span className="switch-selection"></span>
+                    </div>
                     <div className="ranking">
                         <div className="ramen">
                             <div className="position">1</div>
