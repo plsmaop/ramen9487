@@ -63,7 +63,7 @@ const reducer = (state = initialState, action) => {
     case actionsTypes.RECIEVE_REVIEW:
       return {
         ...state,
-        currentRestaurantReviews: state.currentRestaurantReviews.concat([action.data]),
+        currentRestaurantReviews: [action.data].concat(state.currentRestaurantReviews),
       };
     default:
       return state;

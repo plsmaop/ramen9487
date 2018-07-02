@@ -63,9 +63,9 @@ router.get('/ramenRestaurantList', (req, res) => {
   const { page, number, searchConditions } = req.query;
   const { sortType } = searchConditions;
   const secondSortType = sortType === 'totalScore' ? 'popularity' : 'totalScore';
-  const pageNum = page ? page : 1;
+  const pageNum = Number(page) ? Number(page) : 1;
   const skip = pageNum === 1 ? 0 : (pageNum - 1) * Number(number);
-  const limit = 8;
+  const limit = Number(number);
   const searchCondition = {
     isPublish: true,
   };
@@ -102,10 +102,9 @@ router.get('/ramenRestaurantList', (req, res) => {
           return;
         }
         if (result.length === 0) {
-          response(res, 200, 0, '查無資訊，請確認關鍵字沒有打錯');
+          response(res, 200, 2, '查無資訊，請確認關鍵字沒有打錯');
           return;
         }
-        console.log(result);
         const end = skip + limit <= result.length ? skip + limit : result.length;
         const resultData = result.slice(skip, end);
         responseData.data = resultData.map(item => ({ id: item._id, ...(item._doc) }));

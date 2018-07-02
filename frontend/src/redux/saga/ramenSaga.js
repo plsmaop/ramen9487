@@ -85,7 +85,7 @@ export function* getRestaurantList(page, number, searchConditions) {
 export function* getRestaurantListFlow() {
   while (true) {
     const req = yield take(ramenActionsTypes.GET_RESTAURANT_LIST);
-    const res = yield call(getRestaurantList, req.page, req.mumber, req.searchConditions);
+    const res = yield call(getRestaurantList, req.page, req.number, req.searchConditions);
     if (res) {
       if (res.code === 0) {
         yield put({ type: ramenActionsTypes.RECIEVE_RESTAURANT_LIST, data: res.data });

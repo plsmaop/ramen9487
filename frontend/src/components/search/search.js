@@ -148,20 +148,23 @@ class Search extends Component {
       disabledMRT: false,
       crazyMRT: false,
       stayOpenMRT: false,
-      valueMRT: [],
+      valueMRT: '',
       rtlMRT: false,
       removeSelectedRamen: true,
       disabledRamen: false,
       crazyRamen: false,
       stayOpenRamen: false,
-      valueRamen: [],
+      valueRamen: '',
       rtlRamen: false,
       activePage: 5,
+      keyWord: '',
     };
 
     this.handleSelectChangeMRT = this.handleSelectChangeMRT.bind(this);
     this.handleSelectChangeRamen = this.handleSelectChangeRamen.bind(this);
     this.toggleCheckbox = this.toggleCheckbox.bind(this);
+    this.handleSearchConditionsChange = this.handleSearchConditionsChange.bind(this);
+    this.handleSearch = this.handleSearch.bind(this);
     /* this.changePage = this.changePage.bind(this); */
     /* this.toggleRtl = this.toggleRtl.bind(this); */
   }
@@ -192,15 +195,47 @@ class Search extends Component {
     this.setState({ rtl });
   } */
 
+  handleSearchConditionsChange(e) {
+    const searchConditions = {};
+    searchConditions.keyWord = e.target.value;
+    this.setState(searchConditions);
+  }
+
+  handleSearch() {
+    const { getRestaurantList } = this.props;
+    const { valueMRT, valueRamen, keyWord } = this.state;
+    const location = valueMRT.split(',');
+    const tag = valueRamen.split(',');
+    const searchConditions = {
+      location: (location.length > 0 && location[0] != '') ? location : [],
+      tag: (tag.length > 0 && tag[0] != '') ? tag : [],
+      keyWord,
+      sortType: 'totalScore',
+    };
+    getRestaurantList(1, 5, searchConditions);
+  }
+
   render() {
     const { crazyMRT, disabledMRT, stayOpenMRT, valueMRT,
       crazyRamen, disabledRamen, stayOpenRamen, valueRamen,
     } = this.state;
     const { restaurantList } = this.props;
+    const { keyWord } = this.state;
+    const { handleSearchConditionsChange, handleSearch } = this;
+    console.log(this.state);
     return (
       <div>
         <div className="search-container">
-          <div id="search-box"><input id= 'input' placeholder="Search..." /><button id="search-button"><i className="fa fa-search"></i></button>
+          <div id="search-box">
+            <input
+              id= 'input'
+              placeholder="Search..."
+              value={keyWord}
+              onChange={e => handleSearchConditionsChange(e)}
+            />
+            <button id="search-button" onClick={handleSearch}>
+              <i className="fa fa-search"></i>
+            </button>
             <div className="spinner"><i className="fa fa-spinner"></i></div>
           </div>
         </div>
@@ -250,6 +285,7 @@ class Search extends Component {
 
 Search.propTypes = {
   restaurantList: PropTypes.arrayOf(Object).isRequired,
+  getRestaurantList: PropTypes.func.isRequired,
 };
 
 export default Search;

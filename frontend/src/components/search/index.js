@@ -8,4 +8,6 @@ const mapStateToProps = state => ({
   restaurantList: state.ramen.restaurantList,
 });
 
-export default connect(mapStateToProps, null)(search);
+const { getRestaurantList } = actions;
+
+export default connect(mapStateToProps, { getRestaurantList })(search);
