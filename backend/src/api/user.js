@@ -43,15 +43,15 @@ router.post('/login', (req, res) => {
 
 router.post('/register', (req, res) => {
   const { username, password, email } = req.body;
-  if (username.length === 0) {
+  if (!username) {
     response(res, 200, 2, '帳號不可為空');
     return;
   }
-  if (password.length === 0) {
+  if (!password) {
     response(res, 200, 2, '密碼不可為空');
     return;
   }
-  if (email.length === 0) {
+  if (!email) {
     response(res, 200, 2, '信箱不可為空');
     return;
   }

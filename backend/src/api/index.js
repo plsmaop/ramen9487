@@ -2,7 +2,6 @@ import express from 'express';
 import path from 'path';
 import compression from 'compression';
 import bodyParser from 'body-parser';
-import httpProxy from 'http-proxy';
 import mongoose from 'mongoose';
 import bluebird from 'bluebird';
 import cookieParser from 'cookie-parser';

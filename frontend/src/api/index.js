@@ -4,17 +4,7 @@ import serverUrl from '../configuration';
 
 const config = {
   baseURL: serverUrl,
-  transformRequest: [
-    (data) => {
-      let ret = '';
-      if (data) {
-        Object.entries(data).forEach(([key, value]) => {
-          ret += `${encodeURIComponent(key)}=${encodeURIComponent(value)}&`;
-        });
-      }
-      return ret;
-    },
-  ],
+  transformRequest: [data => qs.stringify(data, { arrayFormat: 'brackets' })],
   paramsSerializer: params => qs.stringify(params, { arrayFormat: 'brackets' }),
   headers: {
     'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',

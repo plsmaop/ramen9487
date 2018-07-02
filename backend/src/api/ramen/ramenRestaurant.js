@@ -60,19 +60,35 @@ router.patch('/:id', (req, res) => {
 });
 
 router.get('/ramenRestaurantList', (req, res) => {
-  const { page, searchConditions } = req.query;
+  const { page, number, searchConditions } = req.query;
   const { sortType } = searchConditions;
+  const secondSortType = sortType === 'totalScore' ? 'popularity' : 'totalScore';
   const pageNum = page ? page : 1;
-  const skip = pageNum === 1 ? 0 : (pageNum - 1) * 8;
+  const skip = pageNum === 1 ? 0 : (pageNum - 1) * Number(number);
   const limit = 8;
-  const requestNumber = {
-    skip, limit,
-  };
   const searchCondition = {
     isPublish: true,
-    // tag: { $in: [] },
-    // location: { $in: searchConditions.location },
   };
+  Object.entries(searchConditions).forEach(([key, value]) => {
+    if (key === 'location' && value.length > 0) {
+      searchCondition.location = {
+        $in: value,
+      };
+    } else if (key === 'tag' && value.length > 0) {
+      searchCondition.tag = {
+        $in: value,
+      };
+    } else if (key === 'keyWord' && value.length > 0) {
+      const regex = new RegExp(value, 'ig');
+      const regexQuery = { $regex: regex, $options: 'ig' };
+      searchCondition.$or = [
+        { address: regexQuery },
+        { name: regexQuery },
+        { location: { $in: [regex] } },
+        { tag: { $in: [regex] } },
+      ];
+    }
+  });
   const responseData = {
     data: [],
     total: 0,
@@ -80,9 +96,13 @@ router.get('/ramenRestaurantList', (req, res) => {
   RamenModel.count(searchCondition).then((count) => {
     responseData.total = count;
     RamenModel.find(searchCondition, 'location _id name totalScore address tag popularity')
-      .sort(`-${sortType}`).then((result) => {
-        if (result.length === 0) {
+      .sort([[sortType, -1], [secondSortType, -1]]).then((result) => {
+        if (!result) {
           response(res, 200, 2, '獲取拉麵店列表失敗');
+          return;
+        }
+        if (result.length === 0) {
+          response(res, 200, 0, '查無資訊，請確認關鍵字沒有打錯');
           return;
         }
         console.log(result);
@@ -149,7 +169,7 @@ router.post('/:id/review', (req, res) => {
     response(res, 200, 2, '該麵店不存在');
     return;
   }
-  const { food, env, service } = req.body;
+  const { food, env, service } = req.body.scores;
   let totalScore = (parseFloat(food) + parseFloat(env) + parseFloat(service)) / 3;
   RamenModel.findOne({ _id: id }, 'totalScore scores reviewNumber popularity').then((ramen) => {
     const scores = {
@@ -176,7 +196,13 @@ router.post('/:id/review', (req, res) => {
         response(res, 200, 2, '上傳麵店評論失敗');
         return;
       }
+    }).catch((err) => {
+      response(res, 200, 2, '上傳麵店評論失敗');
+      console.log(err);
     });
+  }).catch((err) => {
+    response(res, 200, 2, '上傳麵店評論失敗');
+    console.log(err);
   });
   const tempReview = new ReviewModel({ ...req.body, id });
   tempReview.save().then((data) => {
