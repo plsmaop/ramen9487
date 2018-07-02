@@ -7,6 +7,8 @@ export const actionsTypes = {
   RECIEVE_RESTAURANT_NAME_LIST: 'RECIEVE_RESTAURANT_NAME_LIST',
   GET_RESTAURANT_REVIEWS: 'GET_RESTAURANT_REVIEWS',
   RECIEVE_RESTAURANT_REVIEWS: 'RECIEVE_RESTAURANT_REVIEWS',
+  POST_REVIEW: 'POST_REVIEW',
+  RECIEVE_REVIEW: 'RECIEVE_REVIEW',
 };
 
 export const actions = {
@@ -24,10 +26,16 @@ export const actions = {
     type: actionsTypes.GET_RESTAURANT_REVIEWS,
     id,
   }),
+  postReview: (id, content) => ({
+    type: actionsTypes.POST_REVIEW,
+    id,
+    content,
+  }),
 };
 
 const initialState = {
   page: 1,
+  totalNumber: 0,
   restaurantList: [],
   restaurantNameList: [],
   currentRestaurant: {},
@@ -39,7 +47,8 @@ const reducer = (state = initialState, action) => {
     case actionsTypes.RECIEVE_RESTAURANT_LIST:
       return {
         ...state,
-        restaurantList: action.data,
+        totalNumber: action.data.total,
+        restaurantList: action.data.data,
       };
     case actionsTypes.RECIEVE_RESTAURANT:
       return {
@@ -50,6 +59,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         currentRestaurantReviews: action.data,
+      };
+    case actionsTypes.RECIEVE_REVIEW:
+      return {
+        ...state,
+        currentRestaurantReviews: state.currentRestaurantReviews.concat([action.data]),
       };
     default:
       return state;

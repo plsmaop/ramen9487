@@ -3,29 +3,26 @@ import { get, post, del, patch } from '../../api';
 import { actionsTypes as globalActionsTypes } from '../globalModule';
 import { actionsTypes as ramenActionsTypes } from '../ramenModule';
 
-export function* postArticle() {
+export function* postReview(id, content) {
   yield put({ type: globalActionsTypes.FETCH_START });
   try {
-    const title = yield select(state => state.article.articleDraft.title);
+    /* const title = yield select(state => state.article.articleDraft.title);
     const content = yield select(state => state.article.articleDraft.content);
     const id = yield select(state => state.article.articleDraft.id);
     const partialContent = yield select(state => state.article.articleDraft.partialContent);
     const dateTime = Date.now();
-    const timestamp = Math.floor(dateTime / 1000);
+    const timestamp = Math.floor(dateTime / 1000); */
     const data = {
-      title,
-      content,
-      id,
-      partialContent,
+      ...content,
       time: new Date(),
-      timestamp,
+      timestamp: Math.floor(Date.now() / 1000),
     };
     /* if (id) {
       return yield call(post, '/article/updateArticle', data);
     } else {
       return yield call(post, '/article/addArticle', data);
     } */
-    return yield call(post, '/article/newArticle', data);
+    return yield call(post, `/ramen/restaurant/${id}/review`, data);
   } catch (err) {
     console.log(err);
     return yield put({ code: 2, message: '網路異常，請稍候重試' });
@@ -34,16 +31,11 @@ export function* postArticle() {
   }
 }
 
-/* export function* postArticleFlow() {
+export function* postReviewFlow() {
   while (true) {
-    const request = yield take(ArticleActionsTypes.POST_ARTICLE);
-    /* if (request.data.title.length === 0) {
-      yield put({ type: globalActionsTypes.SET_MESSAGE, msgContent: '標題不可空白', isReqSuccess: false });
-    } else if (request.data.content.length === 0) {
-      yield put({ type: globalActionsTypes.SET_MESSAGE, msgContent: '內容不可空白', isReqSuccess: false });
-    } 
+    const req = yield take(ramenActionsTypes.POST_REVIEW);
     if (1) {
-      const res = yield call(postArticle);
+      const res = yield call(postReview, req.id, req.content);
       if (res) {
         if (res.code === 0) {
           yield put({
@@ -53,10 +45,10 @@ export function* postArticle() {
             code: res.code,
           });
           yield put({
-            type: ArticleActionsTypes.RECIEVE_ARTICLE,
+            type: ramenActionsTypes.RECIEVE_REVIEW,
             data: res.data,
           });
-          yield put({ type: ArticleActionsTypes.CLEAR_DRAFT });
+          // yield put({ type: ArticleActionsTypes.CLEAR_DRAFT });
         } else if (res.code === 1) {
           // 請重新登入
           yield put({ type: globalActionsTypes.CLEAR_USER_INFO });
@@ -77,7 +69,7 @@ export function* postArticle() {
       }
     }
   }
-} */
+}
 
 export function* getRestaurantList(page, number, searchConditions) {
   yield put({ type: globalActionsTypes.FETCH_START });

@@ -1,7 +1,10 @@
 import { fork } from 'redux-saga/effects';
-import { loginFlow, registerFlow, userAuth, logout } from './globalSaga';
+import {
+  loginFlow, registerFlow, userAuth, logout,
+} from './globalSaga';
 import {
   getRestaurantListFlow, getRestaurantFlow, getRestaurantReviewsFlow,
+  postReviewFlow,
 } from './ramenSaga';
 
 export default function* rootSaga() {
@@ -12,4 +15,5 @@ export default function* rootSaga() {
   yield fork(getRestaurantListFlow);
   yield fork(getRestaurantFlow);
   yield fork(getRestaurantReviewsFlow);
+  yield fork(postReviewFlow);
 }

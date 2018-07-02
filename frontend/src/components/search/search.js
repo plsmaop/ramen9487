@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import Select from 'react-select';
-import $ from 'jquery';
-
+import PropTypes from 'prop-types';
+import SearchListItem from './searchListItem';
 import './style.css';
 
 
 const MRT = [
-	{ label: '象山', value: '象山' },
+  { label: '象山', value: '象山' },
   { label: '台北101/世貿', value: '台北101/世貿' },
   { label: '信義安和', value: '信義安和' },
   { label: '大安', value: '大安' },
@@ -140,191 +140,99 @@ const ramenKind = [
   { label: '拌麵', value: '拌麵' },
 ]
 
-export default class Search extends Component {
-  constructor (props) {
+class Search extends Component {
+  constructor(props) {
     super(props);
-    this.state = { removeSelectedMRT: true,
-                  disabledMRT: false,
-                  crazyMRT: false,
-                  stayOpenMRT: false,
-                  valueMRT: [],
-                  rtlMRT: false, 
-                
-                  removeSelectedRamen: true,
-                  disabledRamen: false,
-                  crazyRamen: false,
-                  stayOpenRamen: false,
-                  valueRamen: [],
-                  rtlRamen: false,
-
-                  activePage: 5,
-                };
+    this.state = {
+      removeSelectedMRT: true,
+      disabledMRT: false,
+      crazyMRT: false,
+      stayOpenMRT: false,
+      valueMRT: [],
+      rtlMRT: false,
+      removeSelectedRamen: true,
+      disabledRamen: false,
+      crazyRamen: false,
+      stayOpenRamen: false,
+      valueRamen: [],
+      rtlRamen: false,
+      activePage: 5,
+    };
 
     this.handleSelectChangeMRT = this.handleSelectChangeMRT.bind(this);
     this.handleSelectChangeRamen = this.handleSelectChangeRamen.bind(this);
     this.toggleCheckbox = this.toggleCheckbox.bind(this);
     /* this.changePage = this.changePage.bind(this); */
     /* this.toggleRtl = this.toggleRtl.bind(this); */
-
   }
 
-  handleSelectChangeMRT (valueMRT) {
-		/* console.log('You\'ve selected:', value); */
-		this.setState({ valueMRT });
+  handleSelectChangeMRT(valueMRT) {
+    /* console.log('You\'ve selected:', value); */
+    this.setState({ valueMRT });
   }
 
-  handleSelectChangeRamen (valueRamen) {
-		/* console.log('You\'ve selected:', value); */
-		this.setState({ valueRamen });
+  handleSelectChangeRamen(valueRamen) {
+    /* console.log('You\'ve selected:', value); */
+    this.setState({ valueRamen });
   }
-  
-	toggleCheckbox (e) {
-		this.setState({
-			[e.target.name]: e.target.checked,
-		});
+
+  toggleCheckbox(e) {
+    this.setState({
+      [e.target.name]: e.target.checked,
+    });
   }
 
   /* changePage(){
     const el = this.refs.page;
     $(el).removeClass('is_active')
   } */
-  
-	/* toggleRtl (e) {
-		let rtl = e.target.checked;
-		this.setState({ rtl });
-	} */
 
- 
+  /* toggleRtl (e) {
+    let rtl = e.target.checked;
+    this.setState({ rtl });
+  } */
 
-  render(){
+  render() {
     const { crazyMRT, disabledMRT, stayOpenMRT, valueMRT,
-            crazyRamen, disabledRamen, stayOpenRamen, valueRamen } = this.state;
-    return(
+      crazyRamen, disabledRamen, stayOpenRamen, valueRamen,
+    } = this.state;
+    const { restaurantList } = this.props;
+    return (
       <div>
         <div className="search-container">
-          <div id="search-box"><input id="input" placeholder="Search..." /><button id="search-button"><i className="fa fa-search"></i></button>
+          <div id="search-box"><input id= 'input' placeholder="Search..." /><button id="search-button"><i className="fa fa-search"></i></button>
             <div className="spinner"><i className="fa fa-spinner"></i></div>
           </div>
         </div>
-
-
-      <Select
+        <Select
           className="select-mrt"
-					closeOnSelect={!stayOpenMRT}
-					disabled={disabledMRT}
-					multi
-					onChange={this.handleSelectChangeMRT}
-					options={MRT}
-					placeholder="選擇附近捷運站"
+          closeOnSelect={!stayOpenMRT}
+          disabled={disabledMRT}
+          multi
+          onChange={this.handleSelectChangeMRT}
+          options={MRT}
+          placeholder="選擇附近捷運站"
           removeSelected={this.state.removeSelected}
-					rtl={this.state.rtlMRT}
-					simpleValue
-					value={valueMRT}
-				/>
-
+          rtl={this.state.rtlMRT}
+          simpleValue
+          value={valueMRT}
+        />
         <Select
           className="select-ramenKind"
-					closeOnSelect={!stayOpenRamen}
-					disabled={disabledRamen}
-					multi
+          closeOnSelect={!stayOpenRamen}
+          disabled={disabledRamen}
+          multi
           onChange={this.handleSelectChangeRamen}
-					options={ramenKind}
-					placeholder="選擇拉麵分類"
+          options={ramenKind}
+          placeholder="選擇拉麵分類"
           removeSelected={this.state.removeSelected}
-					rtl={this.state.rtlRamen}
-					simpleValue
-					value={valueRamen}
-				/>
-
-        <div id="movie-card-list">
-
-          <div className="movie-card">
-            <div className="color-overlay">
-              <div className="movie-content">
-                <div className="movie-header">
-                  <h1 className="movie-title">鷹流東京豚骨拉麵 公館店</h1>
-                  <h4 className="movie-info">台北市汀州路3段104巷4號</h4>
-                </div>
-                <p className="movie-desc">
-                  <h5 className="search-ratings-h">Ratings: <div className="search-ratings">4.7</div></h5>
-                  <h5 className="search-views-h">Views: <div className="search-views">126</div></h5>
-                </p>
-                
-                <a className="btn btn-outline" href="#">See more...</a>
-              </div>
-            </div>
-          </div>
-
-          <div className="movie-card">
-            <div className="color-overlay">
-              <div className="movie-content">
-                <div className="movie-header">
-                  <h1 className="movie-title">麵屋真燈</h1>
-                  <h4 className="movie-info">台北市南京東路5段250巷11之2號</h4>
-                </div>
-                <p className="movie-desc">
-                  <h5 className="search-ratings-h">Ratings: <div className="search-ratings">4.3</div></h5>
-                  <h5 className="search-views-h">Views: <div className="search-views">69</div></h5>
-                </p>
-                
-                <a className="btn btn-outline" href="#">See more...</a>
-              </div>
-            </div>
-          </div>
-
-          <div className="movie-card">
-            <div className="color-overlay">
-              <div className="movie-content">
-                <div className="movie-header">
-                  <h1 className="movie-title">鬼金棒 台北總店</h1>
-                  <h4 className="movie-info">台北市中山北路1段92號</h4>
-                </div>
-                <p className="movie-desc">
-                  <h5 className="search-ratings-h">Ratings: <div className="search-ratings">4.9</div></h5>
-                  <h5 className="search-views-h">Views: <div className="search-views">361</div></h5>
-                </p>
-                
-                <a className="btn btn-outline" href="#">See more...</a>
-              </div>
-            </div>
-          </div>
-
-          <div className="movie-card">
-            <div className="color-overlay">
-              <div className="movie-content">
-                <div className="movie-header">
-                  <h1 className="movie-title">Tsuta Taiwan</h1>
-                  <h4 className="movie-info">台北市忠孝西路1段36號</h4>
-                </div>
-                <p className="movie-desc">
-                  <h5 className="search-ratings-h">Ratings: <div className="search-ratings">3.8</div></h5>
-                  <h5 className="search-views-h">Views: <div className="search-views">11</div></h5>
-                </p>
-                
-                <a className="btn btn-outline" href="#">See more...</a>
-              </div>
-            </div>
-          </div>
-
-          <div className="movie-card">
-            <div className="color-overlay">
-              <div className="movie-content">
-                <div className="movie-header">
-                  <h1 className="movie-title">山嵐拉麵 忠孝店</h1>
-                  <h4 className="movie-info">台北市大安區大安路1段51巷29號</h4>
-                </div>
-                <p className="movie-desc">
-                  <h5 className="search-ratings-h">Ratings: <div className="search-ratings">4.4</div></h5>
-                  <h5 className="search-views-h">Views: <div className="search-views">77</div></h5>
-                </p>
-                
-                <a className="btn btn-outline" href="#">See more...</a>
-              </div>
-            </div>
-          </div>
-          
-        </div>
-
+          rtl={this.state.rtlRamen}
+          simpleValue
+          value={valueRamen}
+        />
+        {
+          restaurantList.map(item => <SearchListItem {...item} />)
+        }
         <div className="pagination-wrapper">
           <ul className="search-pagination">
             <li className="search-pagination__item"><a ref="page" href="#" className="search-pagination__link is_active" /* onClick={this.changePage} */>1</a></li>
@@ -335,9 +243,13 @@ export default class Search extends Component {
             <li className="search-pagination__item"><a ref="page" href="#" className="search-pagination__link" /* onClick={this.changePage} */>6</a></li>
           </ul>
         </div>
-        
       </div>
-    )
+    );
   }
 }
 
+Search.propTypes = {
+  restaurantList: PropTypes.arrayOf(Object).isRequired,
+};
+
+export default Search;
