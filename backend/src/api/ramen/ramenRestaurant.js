@@ -3,7 +3,7 @@ import functions from '../../functions';
 import models from '../../db/models';
 
 const router = express.Router();
-const { RamenModel, ReviewModel } = models;
+const { RamenModel, ReviewModel, ImageModel } = models;
 const { response } = functions;
 
 router.post('/newRamenRestaurant', (req, res) => {

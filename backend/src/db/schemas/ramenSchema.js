@@ -23,4 +23,5 @@ export default new mongoose.Schema({
   isPublish: Boolean,
   popularity: Number,
   reviewNumber: Number,
+  img: [String],
 });

@@ -10,9 +10,10 @@ export const actionsTypes = {
 };
 
 export const actions = {
-  getRestaurantList: (page, searchConditions) => ({
+  getRestaurantList: (page, number, searchConditions) => ({
     type: actionsTypes.GET_RESTAURANT_LIST,
     page,
+    number,
     searchConditions,
   }),
   getRestaurant: id => ({

@@ -79,10 +79,10 @@ export function* postArticle() {
   }
 } */
 
-export function* getRestaurantList(page, searchConditions) {
+export function* getRestaurantList(page, number, searchConditions) {
   yield put({ type: globalActionsTypes.FETCH_START });
   try {
-    return yield call(get, `/ramen/ramenRestaurantList/${page}`, searchConditions);
+    return yield call(get, '/ramen/restaurant/ramenRestaurantList', { page, number, searchConditions });
   } catch (err) {
     return yield put({ code: 2, message: '網路異常，請稍候重試' });
   } finally {
@@ -93,7 +93,7 @@ export function* getRestaurantList(page, searchConditions) {
 export function* getRestaurantListFlow() {
   while (true) {
     const req = yield take(ramenActionsTypes.GET_RESTAURANT_LIST);
-    const res = yield call(getRestaurantList, req.page, req.searchConditions);
+    const res = yield call(getRestaurantList, req.page, req.mumber, req.searchConditions);
     if (res) {
       if (res.code === 0) {
         yield put({ type: ramenActionsTypes.RECIEVE_RESTAURANT_LIST, data: res.data });
@@ -172,7 +172,7 @@ export function* getRestaurantFlow() {
 export function* getRestaurantReviews(id) {
   yield put({ type: globalActionsTypes.FETCH_START });
   try {
-    return yield call(get, `/ramen/restaurant/${id}`);
+    return yield call(get, `/ramen/restaurant/${id}/reviews`);
   } catch (err) {
     return yield put({ code: 2, message: '網路異常，請稍候重試' });
   } finally {

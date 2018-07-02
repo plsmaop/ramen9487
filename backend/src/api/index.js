@@ -10,6 +10,8 @@ import cors from 'cors';
 import config from '../config';
 import user from './user';
 import ramen from './ramen';
+import image from './image';
+import diary from './diary';
 
 // config
 const { dbUrl, apiPort } = config;
@@ -59,4 +61,6 @@ if (process.env.NODE_ENV === 'production') {
 const router = express.Router();
 router.use('/user', user);
 router.use('/ramen', ramen);
+router.use('/image', image);
+router.use('/diary', diary);
 backend.use(router);
