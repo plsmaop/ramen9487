@@ -1,0 +1,354 @@
+h4{
+  color: tomato;
+}
+
+h5{
+  color: tomato;
+  display: inline-block;
+}
+
+.wrap-h5{
+  width: 5%;
+  display: inline-block;
+  margin-right: 7%;
+}
+
+.addForm-input{
+  width: 90%;
+  padding-top: 1em ;
+  padding-bottom: 1em;
+  line-height: 1.4;
+  background-color: #f9f9f9;
+  border: 1px solid #e5e5e5;
+  border-radius: 3px;
+  transition: all 0.35s ease-in-out;
+}
+
+.addForm-input[type="radio"] + label,
+/* .addForm-input[type="checkbox"] + label:before, */
+.addForm-select,
+.addForm-select option{
+  width: 90%;
+  padding: 1em;
+  line-height: 1.4;
+  background-color: #f9f9f9;
+  border: 1px solid #e5e5e5;
+  border-radius: 3px;
+  transition: all 0.35s ease-in-out;
+}
+
+.addForm-input[type="checkbox"] + label{
+  text-align: center;
+  display: inline-block;
+  width: 9%;
+  margin-right: 0.1%;
+  border-radius: 3px;
+  padding: 2%;
+  line-height: 1.4;
+  background-color: #f9f9f9;
+  border: 1px solid #e5e5e5;
+  transition: all 0.35s ease-in-out;
+}
+
+.addForm-input:focus {
+  outline: 0;
+  border-color: tomato;
+}
+.addForm-input:focus + .input-icon i {
+  color: tomato;
+}
+.addForm-input:focus + .input-icon:after {
+  border-right-color: tomato;
+}
+.addForm-input[type="radio"],.addForm-input[type="checkbox"] {
+  display: none;
+  height:10%;
+}
+.addForm-input[type="radio"] + label {
+  display: inline-block;
+  width: 30%;
+  text-align: center;
+  border-radius: 0;
+}
+
+.addForm-select{
+  display: inline-block;
+  width: 15%;
+  margin-right: 4%;
+  margin-left: 4%;
+  text-align: center;
+  border-radius: 0;
+}
+.addForm-input[type="radio"] + label:first-of-type {
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+.addForm-input[type="radio"] + label:last-of-type {
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+.addForm-input[type="radio"] + label i {
+  padding-right: 0.4em;
+}
+.addForm-input[type="radio"]:checked + label,
+.addForm-input[type="checkbox"]:checked + label,
+.addForm-input:checked + label:before,
+.addForm-select:focus,
+.addForm-select:active {
+  background-color: tomato;
+  color: #fff;
+  border-color: tomato;
+}
+/* .addForm-input[type="checkbox"] {
+  display: none;
+}
+.addForm-input[type="checkbox"] + label {
+  position: relative;
+  display: block;
+  padding-left: 1.6em;
+}
+.addForm-input[type="checkbox"] + label:before {
+  position: absolute;
+  top: 0.2em;
+  left: 0;
+  display: block;
+  width: 1em;
+  height: 1em;
+  padding: 0;
+  content: "";
+}
+.addForm-input[type="checkbox"] + label:after {
+  position: absolute;
+  top: 0.45em;
+  left: 0.2em;
+  font-size: 0.8em;
+  color: #fff;
+  opacity: 0;
+  font-family: FontAwesome;
+  content: "\f00c";
+} */
+.addForm-input:checked + label:after {
+  opacity: 1;
+}
+.addForm-select {
+  height: 3.4em;
+  line-height: 2;
+}
+.addForm-select:first-of-type {
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+.addForm-select:last-of-type {
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+.addForm-select:focus,
+.addForm-select:active {
+  outline: 0;
+}
+.addForm-select option {
+  background-color: tomato;
+  color: #fff;
+}
+
+.menu{
+  width:40%;
+  display: inline-block;
+  margin-right: 10%;
+}
+
+.menu-dish{
+  width: 100%;
+  padding-left: 18%;
+  display: inline-block;
+}
+
+.menu-price{
+  width: 20%;
+  display: inline-block;
+}
+
+.input-group {
+  margin-bottom: 1em;
+  zoom: 1;
+}
+.input-group:before,
+.input-group:after {
+  content: "";
+  display: table;
+}
+.input-group:after {
+  clear: both;
+}
+.input-group-icon {
+  position: relative;
+}
+.input-group-icon input {
+  padding-left: 10%;
+}
+.input-group-icon .input-icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 8%;
+  height: 100%;
+  line-height: 250%;
+  text-align: center;
+  pointer-events: none;
+}
+.input-group-icon .input-icon:after {
+  position: absolute;
+  top: 1%;
+  bottom: 1%;
+  left: 100%;
+  display: block;
+  border-right: 1px solid #e5e5e5;
+  content: "";
+  transition: all 0.35s ease-in-out;
+}
+.input-group-icon .input-icon i {
+  transition: all 0.35s ease-in-out;
+}
+
+.addForm-header{
+  max-width: 60%;
+  padding: 1em 3em 2em 3em;
+  margin: 2% auto;
+  background-color: #fff;
+  border-radius: 4.2px;
+  box-shadow: 0px 3px 10px -2px rgba(0, 0, 0, 0.2);
+}
+
+h1{
+  color: tomato;
+}
+
+h3{
+  color: tomato;
+  
+}
+
+.container {
+  max-width: 60%;
+  padding: 1em 3em 2em 3em;
+  margin: 2% auto;
+  background-color: #fff;
+  border-radius: 4.2px;
+  box-shadow: 0px 3px 10px -2px rgba(0, 0, 0, 0.2);
+}
+.row {
+  zoom: 1;
+}
+.row:before,
+.row:after {
+  content: "";
+  display: table;
+}
+.row:after {
+  clear: both;
+}
+.col-half {
+  padding-right: 10px;
+  float: left;
+  width: 48%;
+}
+.col-half:last-of-type {
+  padding-right: 0;
+}
+.col-third {
+  padding-right: 10px;
+  float: left;
+  width: 33.33333333%;
+}
+.col-third:last-of-type {
+  padding-right: 0;
+}
+@media only screen and (max-width: 540px) {
+  .col-half {
+    width: 100%;
+    padding-right: 0;
+  }
+}
+
+.addForm-textarea{
+  width: 97%;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 170%;
+  border-radius: 3px;
+  background-color: #f9f9f9;
+  border: 1px solid #e5e5e5;
+  padding: 1%;
+}
+
+.addForm-textarea:focus{
+  outline: none;
+  
+}
+
+.submit-image-url{
+  display: inline-block;
+  width: 88%;
+}
+
+.submit-images{
+  display: inline-block;
+  height: 150%;
+  width: 10%;
+  border-radius: 3px;
+  background-color: #f9f9f9;
+  border: 1px solid #e5e5e5;
+  padding: 1%;
+}
+
+.submit-images:hover{
+  background:#e9e3e3;
+  transition: all .4s ease-in-out;
+}
+
+.submit-result{
+  width: 17%;
+  height: 30%;
+  margin: 2% auto;
+  color: tomato;
+  font-size: 1.15rem;
+  line-height: 65px;
+  text-transform: uppercase;
+  text-align: center;
+  position: relative;
+  cursor: pointer;
+  margin-top: 4%;
+}
+
+.submit-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.submit-svg rect, .submit-svg path, .submit-svg polyline {
+  fill: none;
+  stroke: tomato;
+  stroke-width: 1;
+}
+
+.submit-result:hover svg rect {
+  stroke: tomato;
+}
+
+.submit-svg rect {
+  stroke-dasharray: 400, 0;
+  -webkit-transition: all 0.8s ease-in-out;
+  -moz-transition: all 0.8s ease-in-out;
+  -ms-transition: all 0.8s ease-in-out;
+  -o-transition: all 0.8s ease-in-out;
+}
+.submit-result:hover svg rect {
+  stroke-width: 3;
+  stroke-dasharray: 35, 245;
+  stroke-dashoffset: 38;
+  -webkit-transition: all 0.8s ease-in-out;
+  -moz-transition: all 0.8s ease-in-out;
+  -ms-transition: all 0.8s ease-in-out;
+  -o-transition: all 0.8s ease-in-out;
+}
+
