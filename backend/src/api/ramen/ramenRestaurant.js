@@ -152,7 +152,7 @@ router.get('/:id/reviews', (req, res) => {
     response(res, 200, 2, '該麵店不存在');
     return;
   }
-  ReviewModel.find({ _id: id })
+  ReviewModel.find({ _id: id }).sort({ timeStamp: -1 })
     .then((result) => {
       if (result) {
         response(res, 200, 0, '成功載入麵店評論', result);
@@ -164,6 +164,11 @@ router.get('/:id/reviews', (req, res) => {
 });
 
 router.post('/:id/review', (req, res) => {
+  if (!req.session.userInfo) {
+    response(res, 200, 1, '登入逾期，請重新登入');
+    return;
+  }
+  const { userId } = req.session.userInfo;
   const { id } = req.params;
   if (!id) {
     response(res, 200, 2, '該麵店不存在');
@@ -204,7 +209,7 @@ router.post('/:id/review', (req, res) => {
     response(res, 200, 2, '上傳麵店評論失敗');
     console.log(err);
   });
-  const tempReview = new ReviewModel({ ...req.body, id });
+  const tempReview = new ReviewModel({ ...req.body, authorId: userId });
   tempReview.save().then((data) => {
     if (!data) response(res, 200, 0, '上傳麵店評論失敗');
     else response(res, 200, 2, '上傳麵店評論成功', data);

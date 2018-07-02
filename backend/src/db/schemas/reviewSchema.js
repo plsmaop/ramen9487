@@ -9,6 +9,7 @@ export default new mongoose.Schema({
   },
   content: String,
   author: String,
+  authorId: String,
   time: String,
   timeStamp: String,
 });
