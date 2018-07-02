@@ -34,7 +34,6 @@ class LoginPanel extends Component {
     const newState = {};
     newState[type] = e.target.value;
     this.setState(newState);
-    console.log(this.state);
   }
   render() {
     const {
@@ -42,7 +41,7 @@ class LoginPanel extends Component {
       remail
     } = this.state;
     const { handleInputChange } = this;
-    const { userLogin } = this.props;
+    const { userLogin, userRegister } = this.props;
     return(
       <div>
         <div className="login-container">
@@ -53,10 +52,10 @@ class LoginPanel extends Component {
         <div className="form">
           <div className="thumbnail"><div className="login-ramen" ></div></div>
           <form ref="register" className="register-form">
-            <input type="text" placeholder="username" />
-            <input type="password" placeholder="password" />
-            <input type="text" placeholder="email address" />
-            <button>create</button>
+            <input type="text" placeholder="username" value={rname} onChange={(e) => handleInputChange('rname', e)}/>
+            <input type="password" placeholder="password" value={rpass} onChange={(e) => handleInputChange('rpass', e)}/>
+            <input type="text" placeholder="email address" value={remail} onChange={(e) => handleInputChange('remail', e)}/>
+            <button onClick={() => userRegister(rname, rpass, remail)}>create</button>
             <p className="message">Already registered? <div className="to-login"  onClick={this.handleLoginClick}>Sign In</div></p>
           </form>
           <form ref="login" className="login-form">
@@ -73,6 +72,7 @@ class LoginPanel extends Component {
 
 LoginPanel.propTypes = {
   userLogin: PropTypes.func.isRequired,
+  userRegister: PropTypes.func.isRequired,
 };
 
 export default LoginPanel;

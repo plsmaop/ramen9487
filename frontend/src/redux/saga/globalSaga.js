@@ -14,10 +14,10 @@ export function* login(username, password) {
   }
 }
 
-export function* register(username, password) {
+export function* register(username, password, email) {
   yield put({ type: actionsTypes.FETCH_START });
   try {
-    return yield call(post, '/user/register', { username, password });
+    return yield call(post, '/user/register', { username, password, email });
   } catch (error) {
     console.log(error);
     return yield put({ code: 2, message: '網路異常，請稍候重試' });
@@ -55,8 +55,8 @@ export function* loginFlow() {
 
 export function* registerFlow() {
   while (true) {
-    const request = yield take(actionsTypes.USER_REGISTER);
-    const res = yield call(register, request.username, request.password);
+    const req = yield take(actionsTypes.USER_REGISTER);
+    const res = yield call(register, req.username, req.password, req.email);
     if (res) {
       const isReqSuccess = (res.code === 0);
       yield put({
