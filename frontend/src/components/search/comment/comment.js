@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './style.css';
 
 export default class Comment extends Component {
@@ -7,19 +8,26 @@ export default class Comment extends Component {
       <div className="comment-container">
         <form>
 
+          <div className="row">
+              <h2 className="comment-h2">店名</h2>
+              <div className="input-group input-group-icon"><input className="addForm-input" type="text" />
+                <div className="input-icon"><FontAwesomeIcon icon="store" /></div>
+              </div>
+          </div>
+
            <div className="row">
-            <h2 className="comment-h2">Ratings (0~5, one decimal allowed)</h2>
+            <h2 className="comment-h2">Ratings (0~5)</h2>
             <div className="col-third">
               <div className="comment-wrap-h5"><h3>食物</h3></div>
-              <div className="input-group input-group-icon menu"><input className="addForm-input comment-ratings" type="number" min="0" max="5" step=".1"/></div>
+              <div className="input-group input-group-icon menu"><input className="addForm-input comment-ratings" type="number" min="0" max="5" step=".1" placeholder="0.0"/></div>
             </div>
             <div className="col-third">
               <div className="comment-wrap-h5"><h3>環境</h3></div>
-              <div className="input-group input-group-icon menu"><input className="addForm-input comment-ratings" type="number" min="0" max="5" step=".1"/></div>
+              <div className="input-group input-group-icon menu"><input className="addForm-input comment-ratings" type="number" min="0" max="5" step=".1" placeholder="0.0"/></div>
             </div>
             <div className="col-third">
               <div className="comment-wrap-h5"><h3>服務</h3></div>
-              <div className="input-group input-group-icon menu"><input className="addForm-input comment-ratings" type="number" min="0" max="5" step=".1"/></div>
+              <div className="input-group input-group-icon menu"><input className="addForm-input comment-ratings" type="number" min="0" max="5" step=".1" placeholder="0.0"/></div>
             </div>
           </div>
 
