@@ -1,14 +1,9 @@
 import React, { Component } from 'react';
 import Select from 'react-select';
-<<<<<<< HEAD
 
 import PropTypes from 'prop-types';
 import SearchListItem from './searchListItem';
 
-=======
-import PropTypes from 'prop-types';
-import SearchListItem from './searchListItem';
->>>>>>> randy-test
 import './style.css';
 
 

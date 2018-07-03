@@ -5,10 +5,6 @@ import Search from './search';
 import AddForm from './search/addForm';
 
 export default class Page extends Component{
-<<<<<<< HEAD
-
-=======
->>>>>>> randy-test
   render(){
     return(
       <div>
