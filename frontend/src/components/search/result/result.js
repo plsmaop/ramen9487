@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import './style.css';
+import Map from './googlemap';
 
 export default class SearchResult extends Component {
   render(){
     return(
-      <div class="result-wrapper">
+      <div className="result-wrapper">
 
-        <div class="result-block result-summary">
+        <div className="result-block result-summary">
           <div className="result-summaryCard">
             <div className="result-color-overlay">
               <div className="movie-content">
@@ -39,6 +40,34 @@ export default class SearchResult extends Component {
             <div className="icon-info-wrap">
               <div className="result-icon web"></div>
               <div className="result-ans web-ans">https://www.facebook.com/tsutataiwan</div>
+            </div>
+
+            <div className="icon-info-wrap wrap-menu">
+              <div className="result-icon result-menu"></div>
+              <div className="result-ans ">
+                <article>
+                  <div class="menu-title">
+                    <span>叉燒味玉醬油拉麵</span>
+                    <span class="menu-price">$385</span>
+                  </div>
+                  <div class="menu-title">
+                    <span>叉燒味玉鹽味拉麵</span>
+                    <span class="menu-price">$360</span>
+                  </div>
+                  <div class="menu-title">
+                    <span>秘味噌拉麵</span>
+                    <span class="menu-price">$330</span>
+                  </div>
+                  <div class="menu-title">
+                    <span>燒烤梅花丼</span>
+                    <span class="menu-price">$100</span>
+                  </div>
+                  <div class="menu-title">
+                    <span>秘味噌胡麻拌麵</span>
+                    <span class="menu-price">$300</span>
+                  </div>
+                </article>
+              </div>
             </div>
 
             <div className="icon-info-wrap">
@@ -82,22 +111,66 @@ export default class SearchResult extends Component {
               </ul >
             </div> 
 
-            <div className="icon-info-wrap">
+            <div className="icon-info-wrap wrap-tags">
               <div className="result-icon near-mrt"></div>
-              <ul class="tags">
-                <li><a href="#" class="tag">象山</a></li>
-                <li><a href="#" class="tag">國父紀念館</a></li>
-                <li><a href="#" class="tag">南港軟體園區</a></li>
-                <li><a href="#" class="tag">中正紀念堂</a></li>
-              </ul>
+             
+                <ul className="tags">
+                  <li><div className="tag">象山</div></li>
+                  <li><div className="tag">國父紀念館</div></li>
+                  <li><div className="tag">南港軟體園區</div></li>
+                  <li><div className="tag">中正紀念堂</div></li>
+                </ul>
+              
+            </div>
+
+            <div className="icon-info-wrap wrap-tags">
+              <div className="result-icon category"></div>
+              
+                <ul className="tags">
+                  <li><div className="tag">豚骨</div></li>
+                  <li><div className="tag">醬油</div></li>
+                  <li><div className="tag">沾麵</div></li>
+                  <li><div className="tag">家系</div></li>
+                </ul>
+              
+            </div>
+
+            <div className="icon-info-wrap wrap-tags">
+              <div className="result-icon other-info"></div>
+              
+                <ul className="tags">
+                  <li><div className="tag">預約</div></li>
+                  <li><div className="tag">外帶</div></li>
+                  <li><div className="tag">刷卡</div></li>
+                  <li><div className="tag">親子</div></li>
+                </ul>
+              
+            </div>
+
+            <div className="icon-info-wrap wrap-tags">
+              <div className="result-icon ps"></div>
+              <div className="result-ans">很好吃</div>              
+            </div>
+
+            <div className="icon-info-wrap ">
+              <div className="addComment-result">
+                Add comment
+                <svg className="addComment-svg" width="130" height="65" viewBox="0 0 130 65" xmlns="http://www.w3.org/2000/svg">
+                  <rect x='0' y='0' fill='none' width='130' height='65'/>
+                </svg>
+              </div>
             </div>
 
           </div>
         </div>
 
-        <div class="result-block result-info1"></div>
-        <div class="result-block result-info2"></div>
+        <div className="result-block result-info1">
+           <Map/>
+        </div>
+         
+        {/* <div className="result-block result-info2"></div> */}
       </div>
     )
   }
 }
+

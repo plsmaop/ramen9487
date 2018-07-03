@@ -15,8 +15,8 @@ export default class Page extends Component{
                     <Ranking/>
                 </div>
                 <div className="page" id="p2">
-                    {/* <Search/> */}
-                    <SearchResult/>
+                     <Search/>
+                    {/* <SearchResult/> */}
                 </div>  
                 <div className="page" id="p3">
                     {/* <section className="icon fa fa-rocket"><span className="title">Rocket</span></section> */}

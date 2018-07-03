@@ -200,6 +200,10 @@ export default class Search extends Component {
             crazyRamen, disabledRamen, stayOpenRamen, valueRamen } = this.state;
     return(
       <div>
+        <span class="addForm-button">
+          <i class="addForm-button-icon fa fa-bars fa-lg"></i>
+        </span>
+
         <div className="search-container">
           <div id="search-box"><input id="input" placeholder="Search..." /><button id="search-button"><i className="fa fa-search"></i></button>
             <div className="spinner"><i className="fa fa-spinner"></i></div>
