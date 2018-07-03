@@ -25,7 +25,3 @@ export default class Page extends Component{
     )
   }
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> randy-test
