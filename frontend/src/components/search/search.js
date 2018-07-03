@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
 import Select from 'react-select';
-<<<<<<< HEAD
 import PropTypes from 'prop-types';
 import SearchListItem from './searchListItem';
-=======
-
->>>>>>> randy
 import './style.css';
 
 
