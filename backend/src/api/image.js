@@ -40,7 +40,7 @@ router.post('/:id/newImage', (req, res) => {
   tempImage.image.data = req.body.data;
   tempImage.save().then((result) => {
     console.log('ya');
-    if (result) response(res, 200, 0, '上傳圖片成功', result);
+    if (result) response(res, 200, 0, '上傳圖片成功', { imgId: result._id });
     else response(res, 200, 2, '上傳圖片失敗');
   }).catch((err) => {
     response(res, 200, 2, '上傳圖片失敗');
