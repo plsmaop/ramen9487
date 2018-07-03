@@ -13,7 +13,7 @@ export default class AddForm extends Component {
           <h3>請詳細填寫以下資訊 ...</h3>
         </div>
         
-        <div className="container">
+        <div className="addForm-container">
           <form>
               <div className="row">
                   <h4>店名</h4>

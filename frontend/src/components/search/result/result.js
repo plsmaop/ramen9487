@@ -3,6 +3,22 @@ import './style.css';
 import Map from './googlemap';
 
 export default class SearchResult extends Component {
+  constructor(props){
+    super(props);
+
+    this.state={
+      like: "heart"
+    }
+
+    this.toggleHeartClass = this.toggleHeartClass.bind(this)
+  }
+
+  toggleHeartClass(){
+    if(this.state.like === undefined) this.setState({"like": "heart"})
+    let like_button_class = (this.state.like === "heart") ? "heart-clicked":"heart";
+    this.setState({like: like_button_class})
+  }
+
   render(){
     return(
       <div className="result-wrapper">
@@ -14,10 +30,14 @@ export default class SearchResult extends Component {
                 <div className="movie-header">
                   <h1 className="movie-title">Tsuta Taiwan</h1>
                 </div>
-                <p className="movie-desc">
+                <p className="store-desc">
                   <h5 className="search-ratings-h">Ratings: <div className="search-ratings">3.8</div></h5>
                   <h5 className="search-views-h">Views: <div className="search-views">11</div></h5>
                 </p>
+
+                <div className="summary-footer">
+                  <div ref="like-button" className={this.state.like} onClick={this.toggleHeartClass}>♥</div>
+                </div>
 
               </div>
             </div>
@@ -46,25 +66,25 @@ export default class SearchResult extends Component {
               <div className="result-icon result-menu"></div>
               <div className="result-ans ">
                 <article>
-                  <div class="menu-title">
+                  <div className="menu-title">
                     <span>叉燒味玉醬油拉麵</span>
-                    <span class="menu-price">$385</span>
+                    <span className="menu-price">$385</span>
                   </div>
-                  <div class="menu-title">
+                  <div className="menu-title">
                     <span>叉燒味玉鹽味拉麵</span>
-                    <span class="menu-price">$360</span>
+                    <span className="menu-price">$360</span>
                   </div>
-                  <div class="menu-title">
+                  <div className="menu-title">
                     <span>秘味噌拉麵</span>
-                    <span class="menu-price">$330</span>
+                    <span className="menu-price">$330</span>
                   </div>
-                  <div class="menu-title">
+                  <div className="menu-title">
                     <span>燒烤梅花丼</span>
-                    <span class="menu-price">$100</span>
+                    <span className="menu-price">$100</span>
                   </div>
-                  <div class="menu-title">
+                  <div className="menu-title">
                     <span>秘味噌胡麻拌麵</span>
-                    <span class="menu-price">$300</span>
+                    <span className="menu-price">$300</span>
                   </div>
                 </article>
               </div>

@@ -228,7 +228,7 @@ h3{
   
 }
 
-.container {
+.addForm-container {
   max-width: 60%;
   padding: 1em 3em 2em 3em;
   margin: 2% auto;
@@ -258,7 +258,7 @@ h3{
 .col-third {
   padding-right: 10px;
   float: left;
-  width: 33.33333333%;
+  width: 30.33333333%;
 }
 .col-third:last-of-type {
   padding-right: 0;
@@ -283,7 +283,7 @@ h3{
 
 .addForm-textarea:focus{
   outline: none;
-  
+  border: tomato;
 }
 
 .submit-image-url{
@@ -307,9 +307,9 @@ h3{
 }
 
 .submit-result{
-  width: 17%;
-  height: 30%;
-  margin: 2% auto;
+  width: 100%;
+  height: 100%;
+  margin: 1% auto;
   color: tomato;
   font-size: 1.15rem;
   line-height: 65px;
@@ -323,6 +323,7 @@ h3{
 .submit-svg {
   position: absolute;
   top: 0;
+  width: 100%;
   left: 0;
 }
 .submit-svg rect, .submit-svg path, .submit-svg polyline {
