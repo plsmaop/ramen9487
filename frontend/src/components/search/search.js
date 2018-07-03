@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import Select from 'react-select';
+import Pagination from './pagination';
+
 
 import PropTypes from 'prop-types';
 import SearchListItem from './searchListItem';
 
 import './style.css';
+
+
 
 
 const MRT = [
@@ -167,6 +171,7 @@ class Search extends Component {
     this.toggleCheckbox = this.toggleCheckbox.bind(this);
     this.handleSearchConditionsChange = this.handleSearchConditionsChange.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
+    this.onPageChanged = this.onPageChanged.bind(this);
     /* this.changePage = this.changePage.bind(this); */
     /* this.toggleRtl = this.toggleRtl.bind(this); */
   }
@@ -187,10 +192,20 @@ class Search extends Component {
     });
   }
 
-  /* changePage(){
-    const el = this.refs.page;
-    $(el).removeClass('is_active')
-  } */
+  onPageChanged = data => {
+    console.log('fuck');
+  }
+
+  /* onPageChanged example
+  onPageChanged = data => {
+    const { allCountries } = this.state; 放所有資料陣列
+    const { currentPage, totalPages, pageLimit } = data;
+
+    const offset = (currentPage - 1) * pageLimit;
+    const currentCountries = allCountries.slice(offset, offset + pageLimit); 這一夜要顯示的
+
+    this.setState({ currentPage, currentCountries, totalPages });
+  }  */
 
   /* toggleRtl (e) {
     let rtl = e.target.checked;
@@ -203,7 +218,7 @@ class Search extends Component {
     this.setState(searchConditions);
   }
 
-  handleSearch() {
+  handleSearch(i = 1) {
     const { getRestaurantList } = this.props;
     const { valueMRT, valueRamen, keyWord } = this.state;
     const location = valueMRT.split(',');
@@ -214,17 +229,18 @@ class Search extends Component {
       keyWord,
       sortType: 'totalScore',
     };
-    getRestaurantList(1, 5, searchConditions);
+    getRestaurantList(i, 5, searchConditions);
   }
 
   render() {
     const { crazyMRT, disabledMRT, stayOpenMRT, valueMRT,
       crazyRamen, disabledRamen, stayOpenRamen, valueRamen,
     } = this.state;
-    const { restaurantList } = this.props;
+    const { restaurantList, totalNumber } = this.props;
     const { keyWord } = this.state;
     const { handleSearchConditionsChange, handleSearch } = this;
     console.log(this.state);
+    const limit = totalNumber%5 === 0 ? totalNumber/5 : Math.floor(totalNumber/5)+1;
     return (
       <div>
         <span class="addForm-button">
@@ -275,21 +291,16 @@ class Search extends Component {
           restaurantList.map(item => <SearchListItem {...item} />)
         }
         <div className="pagination-wrapper">
-          <ul className="search-pagination">
-            <li className="search-pagination__item"><a ref="page" href="#" className="search-pagination__link is_active" /* onClick={this.changePage} */>1</a></li>
-            <li className="search-pagination__item"><a ref="page" href="#" className="search-pagination__link" /* onClick={this.changePage} */>2</a></li>
-            <li className="search-pagination__item"><a ref="page" href="#" className="search-pagination__link" /* onClick={this.changePage} */>3</a></li>
-            <li className="search-pagination__item"><a ref="page" href="#" className="search-pagination__link" /* onClick={this.changePage} */>4</a></li>
-            <li className="search-pagination__item"><a ref="page" href="#" className="search-pagination__link" /* onClick={this.changePage} */>5</a></li>
-            <li className="search-pagination__item"><a ref="page" href="#" className="search-pagination__link" /* onClick={this.changePage} */>6</a></li>
-          </ul>
-        </div>
+              <Pagination totalRecords={totalNumber} pageLimit={5} pageNeighbours={1} onPageChanged={handleSearch} />
+              {/* totalRecords: 總共幾筆資料 pageLimit: 最多幾頁 改這兩個東西就好 */}
+            </div>
       </div>
     );
   }
 }
 
 Search.propTypes = {
+  totalNumber: PropTypes.number.isRequired,
   restaurantList: PropTypes.arrayOf(Object).isRequired,
   getRestaurantList: PropTypes.func.isRequired,
 };

@@ -1,3 +1,5 @@
+import Pagination from "react-js-pagination";
+
 showCheckboxes() {
   if(!expanded){
     this.refs.checkboxes.style.display = "block";
@@ -73,3 +75,17 @@ showCheckboxes() {
 #checkboxes label:hover {
   background-color: tomato;
 }
+
+
+
+/*Pagination*/
+<div className="pagination-wrapper">
+          <ul className="search-pagination">
+            <li className="search-pagination__item"><a ref="page" href="#" className="search-pagination__link is_active" /* onClick={this.changePage} */>1</a></li>
+            <li className="search-pagination__item"><a ref="page" href="#" className="search-pagination__link" /* onClick={this.changePage} */>2</a></li>
+            <li className="search-pagination__item"><a ref="page" href="#" className="search-pagination__link" /* onClick={this.changePage} */>3</a></li>
+            <li className="search-pagination__item"><a ref="page" href="#" className="search-pagination__link" /* onClick={this.changePage} */>4</a></li>
+            <li className="search-pagination__item"><a ref="page" href="#" className="search-pagination__link" /* onClick={this.changePage} */>5</a></li>
+            <li className="search-pagination__item"><a ref="page" href="#" className="search-pagination__link" /* onClick={this.changePage} */>6</a></li>
+          </ul>
+        </div>
