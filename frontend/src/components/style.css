@@ -38,7 +38,7 @@ html, body, .page {
     -webkit-transform: translateX(-190%);
     -moz-transform: translateX(-190%);
     -o-transform: translateX(-190%);
-    transition-delay: .4s !important;
+    transition-delay: 0.00001s !important;
   }
   
   #t2:target #p1, 

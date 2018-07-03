@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Select from 'react-select';
-import $ from 'jquery';
 
 import './style.css';
 
