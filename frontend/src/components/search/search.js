@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import Select from 'react-select';
+import Pagination from './pagination';
+
 
 import './style.css';
+
+
 
 
 const MRT = [
@@ -139,6 +143,8 @@ const ramenKind = [
   { label: '拌麵', value: '拌麵' },
 ]
 
+
+
 export default class Search extends Component {
   constructor (props) {
     super(props);
@@ -156,12 +162,13 @@ export default class Search extends Component {
                   valueRamen: [],
                   rtlRamen: false,
 
-                  activePage: 5,
+                  
                 };
 
     this.handleSelectChangeMRT = this.handleSelectChangeMRT.bind(this);
     this.handleSelectChangeRamen = this.handleSelectChangeRamen.bind(this);
     this.toggleCheckbox = this.toggleCheckbox.bind(this);
+    this.onPageChanged = this.onPageChanged.bind(this);
     /* this.changePage = this.changePage.bind(this); */
     /* this.toggleRtl = this.toggleRtl.bind(this); */
 
@@ -183,15 +190,20 @@ export default class Search extends Component {
 		});
   }
 
-  /* changePage(){
-    const el = this.refs.page;
-    $(el).removeClass('is_active')
-  } */
-  
-	/* toggleRtl (e) {
-		let rtl = e.target.checked;
-		this.setState({ rtl });
-	} */
+  onPageChanged = data => {
+    console.log('fuck');
+  }
+
+  /* onPageChanged example
+  onPageChanged = data => {
+    const { allCountries } = this.state; 放所有資料陣列
+    const { currentPage, totalPages, pageLimit } = data;
+
+    const offset = (currentPage - 1) * pageLimit;
+    const currentCountries = allCountries.slice(offset, offset + pageLimit); 這一夜要顯示的
+
+    this.setState({ currentPage, currentCountries, totalPages });
+  }  */
 
  
 
@@ -333,17 +345,11 @@ export default class Search extends Component {
           
         </div>
 
+
         <div className="pagination-wrapper">
-          <ul className="search-pagination">
-            <li className="search-pagination__item"><a ref="page" href="#" className="search-pagination__link is_active" /* onClick={this.changePage} */>1</a></li>
-            <li className="search-pagination__item"><a ref="page" href="#" className="search-pagination__link" /* onClick={this.changePage} */>2</a></li>
-            <li className="search-pagination__item"><a ref="page" href="#" className="search-pagination__link" /* onClick={this.changePage} */>3</a></li>
-            <li className="search-pagination__item"><a ref="page" href="#" className="search-pagination__link" /* onClick={this.changePage} */>4</a></li>
-            <li className="search-pagination__item"><a ref="page" href="#" className="search-pagination__link" /* onClick={this.changePage} */>5</a></li>
-            <li className="search-pagination__item"><a ref="page" href="#" className="search-pagination__link" /* onClick={this.changePage} */>6</a></li>
-          </ul>
-        </div>
-        
+              <Pagination totalRecords={45} pageLimit={3} pageNeighbours={1} onPageChanged={this.onPageChanged} />
+              {/* totalRecords: 總共幾筆資料 pageLimit: 最多幾頁 改這兩個東西就好 */}
+            </div>
       </div>
     )
   }

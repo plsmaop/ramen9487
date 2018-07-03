@@ -795,3 +795,42 @@ h1, h2, h3 {
 .search-pagination__link.is_active:after {
   transform: scale(0.2);
 }
+
+.pagination {
+  display: inline-block;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.pagination li {
+  display: inline-block;
+}
+
+.pagination .break a {
+  cursor: default;
+}
+
+ul.pagination {
+  margin-top: 0;
+  margin-bottom: 0;
+  background-color: tomato;
+  border-radius: 5px;
+  
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); }
+  ul.pagination li.page-item.active a.page-link {
+    color: tomato !important;
+    border-radius: 5px;
+    background-color: #ffffff !important;
+    border-color: #ffffff !important; }
+  ul.pagination a.page-link {
+    padding: 0.75rem 1rem;
+    min-width: 3.5rem;
+    text-align: center;
+    box-shadow: none !important;
+    border-color: #ffffff !important;
+    color: #191a1b;
+    font-weight: 900;
+    font-size: 1rem; }
+    ul.pagination a.page-link:hover {
+      background-color: #ffffff;
+      border-radius: 5px; }
