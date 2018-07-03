@@ -2,18 +2,18 @@ import React, { Component } from 'react';
 import './style.css';
 import Map from './googlemap';
 
-export default class SearchResult extends Component {
-  constructor(props){
+class SearchResult extends Component {
+  constructor(props) {
     super(props);
 
-    this.state={
-      like: "heart"
-    }
+    this.state = {
+      like: 'heart',
+    };
 
-    this.toggleHeartClass = this.toggleHeartClass.bind(this)
+    this.toggleHeartClass = this.toggleHeartClass.bind(this);
   }
 
-  toggleHeartClass(){
+  toggleHeartClass() {
     if(this.state.like === undefined) this.setState({"like": "heart"})
     let like_button_class = (this.state.like === "heart") ? "heart-clicked":"heart";
     this.setState({like: like_button_class})
@@ -194,3 +194,4 @@ export default class SearchResult extends Component {
   }
 }
 
+export default SearchResult;
