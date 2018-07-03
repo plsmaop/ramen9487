@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles, MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 const style = theme => ({
@@ -13,18 +13,31 @@ const style = theme => ({
   },
 });
 
-const LoadingScreen = ({ classes, type }) => (
-  <div className={classes.load}>
-    <CircularProgress className={classes.progress} size={100} />
-    <h3>
-      {type}
-    </h3>
-  </div>
-);
+const LoadingScreen = ({ classes, type, color }) => {
+  const theme = createMuiTheme({
+    palette: {
+      primary: {
+        main: color,
+        light: '#EEEEEE',
+      },
+    },
+  });
+  return (
+    <MuiThemeProvider theme={theme}>
+      <div className={classes.load}>
+        <CircularProgress className={classes.progress} size={100} />
+        <h3>
+          {type}
+        </h3>
+      </div>
+    </MuiThemeProvider>
+  );
+};
 
 LoadingScreen.propTypes = {
   classes: PropTypes.objectOf(String).isRequired,
   type: PropTypes.string.isRequired,
+  color: PropTypes.string.isRequired,
 };
 
 export default withStyles(style)(LoadingScreen);

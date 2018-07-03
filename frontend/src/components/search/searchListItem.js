@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import './style.css';
 
 const SearchListItem = (props) => {
   const {
     name, address, totalScore,
-    popularity,
+    popularity, id,
   } = props;
   return (
     <div className="movie-card">
@@ -34,7 +35,8 @@ const SearchListItem = (props) => {
               </div>
             </h5>
           </p>
-          <a className="btn btn-outline" href="#">See more...</a>
+          <Link to={`/ramen/restaurant/${id}`}><a className="btn btn-outline" >See more...</a></Link>
+          
         </div>
       </div>
     </div>
@@ -46,6 +48,7 @@ SearchListItem.propTypes = {
   address: PropTypes.string.isRequired,
   totalScore: PropTypes.string.isRequired,
   popularity: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
 };
 //       <img src={data} className="ramen-img" />
 export default SearchListItem;

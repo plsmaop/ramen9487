@@ -17,6 +17,7 @@ class SearchResult extends Component {
 
   componentDidMount() {
     this.props.getRestaurant(this.props.id);
+    this.props.getRestaurantReviews(this.props.id);
   }
 
   toggleHeartClass() {
@@ -27,12 +28,16 @@ class SearchResult extends Component {
 
   render() {
     const { isFetching } = this.props;
-    if (isFetching || !this.props.currentRestaurant.menu) return (<LoadingScreen type="拉麵載入中..." />);
+    if (isFetching || !this.props.currentRestaurant.menu) return (<LoadingScreen color="#FF5722" type="拉麵載入中..." />);
     const {
       name, totalScore, popularity,
       address, menu, tag,
       location, url,
     } = this.props.currentRestaurant;
+    const img = null;
+    const { currentRestaurantReviews } = this.props;
+    const review = currentRestaurantReviews.length > 0 ? currentRestaurantReviews.map(i => i.content) : [];
+    
     return(
       <div className="result-wrapper">
 
@@ -42,11 +47,11 @@ class SearchResult extends Component {
             <div className="result-color-overlay">
               <div className="movie-content">
                 <div className="movie-header">
-                  <h1 className="movie-title">Tsuta Taiwan</h1>
+                  <h1 className="movie-title">{name}</h1>
                 </div>
                 <p className="store-desc">
-                  <h5 className="search-ratings-h">Ratings: <div className="search-ratings">3.8</div></h5>
-                  <h5 className="search-views-h">Views: <div className="search-views">11</div></h5>
+                  <h5 className="search-ratings-h">Ratings: <div className="search-ratings">{(Math.floor(Number(totalScore)*100)) / 100}</div></h5>
+                  <h5 className="search-views-h">Views: <div className="search-views">{Number(popularity)}</div></h5>
                 </p>
 
                 <div className="summary-footer">
@@ -56,7 +61,9 @@ class SearchResult extends Component {
               </div>
             </div>
           </div>
-          <img  src="https://2.bp.blogspot.com/-9i4Qmtjlq4c/We8IWmECzcI/AAAAAAAAbrQ/PYMDXo9loH8OOVYvpB3eTws8yXTnR8hXwCLcBGAs/s1600/IMG_3337.JPG"/>
+          {
+            img
+          }
         </div>
 
         <div className="result-block result-sidebar">
@@ -64,45 +71,118 @@ class SearchResult extends Component {
 
             <div className="icon-info-wrap">
               <div className="result-icon location"></div>
-              <div className="result-ans">台北市忠孝西路1段36號</div>
+              <div className="result-ans">{address}</div>
             </div>
 
-            <div className="icon-info-wrap">
-              <div className="result-icon phone"></div>
-              <div className="result-ans">02 2370 3978</div>
-            </div>
+
 
             <div className="icon-info-wrap">
               <div className="result-icon web"></div>
-              <div className="result-ans web-ans">https://www.facebook.com/tsutataiwan</div>
+              <div className="result-ans web-ans"><a href={url}>點我</a></div>
             </div>
 
             <div className="icon-info-wrap wrap-menu">
               <div className="result-icon result-menu"></div>
               <div className="result-ans ">
                 <article>
-                  <div className="menu-title">
-                    <span>叉燒味玉醬油拉麵</span>
-                    <span className="menu-price">$385</span>
-                  </div>
-                  <div className="menu-title">
-                    <span>叉燒味玉鹽味拉麵</span>
-                    <span className="menu-price">$360</span>
-                  </div>
-                  <div className="menu-title">
-                    <span>秘味噌拉麵</span>
-                    <span className="menu-price">$330</span>
-                  </div>
-                  <div className="menu-title">
-                    <span>燒烤梅花丼</span>
-                    <span className="menu-price">$100</span>
-                  </div>
-                  <div className="menu-title">
-                    <span>秘味噌胡麻拌麵</span>
-                    <span className="menu-price">$300</span>
-                  </div>
+                  {
+                    menu.map(item => (
+                      <div className="menu-title">
+                        <span>{item}</span>
+                      </div>
+                    ))
+                  }
+                  
                 </article>
               </div>
+            </div>
+
+            
+            <div className="icon-info-wrap wrap-tags">
+              <div className="result-icon near-mrt"></div>
+             
+                <ul className="tags">
+                  {
+                    location.map(item => (
+                      <div className="menu-title">
+                        <span>{item}</span>
+                      </div>
+                    ))
+                  }
+
+                </ul>
+              
+            </div>
+
+            <div className="icon-info-wrap wrap-tags">
+              <div className="result-icon category"></div>
+              
+                <ul className="tags">
+                  {
+                    tag.map(item => (
+                      <div className="menu-title">
+                        <span>{item}</span>
+                      </div>
+                    ))
+                  }
+
+                </ul>
+              
+            </div>
+
+
+
+            <div className="icon-info-wrap wrap-tags">
+              <div className="result-icon ps"></div>
+              {
+                review.map(i => (
+                  <div className="result-ans">{i}</div>
+                ))
+              }
+                            
+            </div>
+
+            <div className="icon-info-wrap ">
+              <div className="addComment-result">
+                Add comment
+                <svg className="addComment-svg" width="130" height="65" viewBox="0 0 130 65" xmlns="http://www.w3.org/2000/svg">
+                  <rect x='0' y='0' fill='none' width='130' height='65'/>
+                </svg>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div className="result-block result-info1">
+           <Map />
+        </div>
+         
+        {/* <div className="result-block result-info2"></div> */}
+      </div>
+    )
+  }
+}
+
+SearchResult.propTypes = {
+  currentRestaurant: PropTypes.object.isRequired,
+  isLogin: PropTypes.bool.isRequired,
+  id: PropTypes.string.isRequired,
+  isFetching: PropTypes.bool.isRequired,
+  reqMsg: PropTypes.object.isRequired,
+  getRestaurant: PropTypes.func.isRequired,
+  fetchImage: PropTypes.func.isRequired,
+  getRestaurantReviews: PropTypes.func.isRequired,
+  currentRestaurantReviews: PropTypes.arrayOf(Object).isRequired,
+};
+
+export default SearchResult;
+
+/*
+
+            <div className="icon-info-wrap">
+              <div className="result-icon phone"></div>
+              <div className="result-ans">02 2370 3978</div>
             </div>
 
             <div className="icon-info-wrap">
@@ -146,31 +226,28 @@ class SearchResult extends Component {
               </ul >
             </div> 
 
-            <div className="icon-info-wrap wrap-tags">
-              <div className="result-icon near-mrt"></div>
-             
-                <ul className="tags">
-                  <li><div className="tag">象山</div></li>
-                  <li><div className="tag">國父紀念館</div></li>
-                  <li><div className="tag">南港軟體園區</div></li>
-                  <li><div className="tag">中正紀念堂</div></li>
-                </ul>
-              
-            </div>
+            <div className="menu-title">
+                    <span>叉燒味玉醬油拉麵</span>
+                    <span className="menu-price">$385</span>
+                  </div>
+                  <div className="menu-title">
+                    <span>叉燒味玉鹽味拉麵</span>
+                    <span className="menu-price">$360</span>
+                  </div>
+                  <div className="menu-title">
+                    <span>秘味噌拉麵</span>
+                    <span className="menu-price">$330</span>
+                  </div>
+                  <div className="menu-title">
+                    <span>燒烤梅花丼</span>
+                    <span className="menu-price">$100</span>
+                  </div>
+                  <div className="menu-title">
+                    <span>秘味噌胡麻拌麵</span>
+                    <span className="menu-price">$300</span>
+                  </div>
 
-            <div className="icon-info-wrap wrap-tags">
-              <div className="result-icon category"></div>
-              
-                <ul className="tags">
-                  <li><div className="tag">豚骨</div></li>
-                  <li><div className="tag">醬油</div></li>
-                  <li><div className="tag">沾麵</div></li>
-                  <li><div className="tag">家系</div></li>
-                </ul>
-              
-            </div>
-
-            <div className="icon-info-wrap wrap-tags">
+                              <div className="icon-info-wrap wrap-tags">
               <div className="result-icon other-info"></div>
               
                 <ul className="tags">
@@ -182,41 +259,13 @@ class SearchResult extends Component {
               
             </div>
 
-            <div className="icon-info-wrap wrap-tags">
-              <div className="result-icon ps"></div>
-              <div className="result-ans">很好吃</div>              
-            </div>
+                              <li><div className="tag">象山</div></li>
+                  <li><div className="tag">國父紀念館</div></li>
+                  <li><div className="tag">南港軟體園區</div></li>
+                  <li><div className="tag">中正紀念堂</div></li>
 
-            <div className="icon-info-wrap ">
-              <div className="addComment-result">
-                Add comment
-                <svg className="addComment-svg" width="130" height="65" viewBox="0 0 130 65" xmlns="http://www.w3.org/2000/svg">
-                  <rect x='0' y='0' fill='none' width='130' height='65'/>
-                </svg>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-        <div className="result-block result-info1">
-           <Map/>
-        </div>
-         
-        {/* <div className="result-block result-info2"></div> */}
-      </div>
-    )
-  }
-}
-
-SearchResult.propTypes = {
-  currentRestaurant: PropTypes.object.isRequired,
-  isLogin: PropTypes.bool.isRequired,
-  id: PropTypes.string.isRequired,
-  isFetching: PropTypes.bool.isRequired,
-  reqMsg: PropTypes.object.isRequired,
-  getRestaurant: PropTypes.func.isRequired,
-  imageActions:PropTypes.func.isRequired,
-};
-
-export default SearchResult;
+                                    <li><div className="tag">豚骨</div></li>
+                  <li><div className="tag">醬油</div></li>
+                  <li><div className="tag">沾麵</div></li>
+                  <li><div className="tag">家系</div></li>
+*/

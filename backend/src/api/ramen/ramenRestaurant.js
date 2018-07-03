@@ -156,9 +156,9 @@ router.get('/:id/reviews', (req, res) => {
     response(res, 200, 2, '該麵店不存在');
     return;
   }
-  ReviewModel.find({ _id: id }).sort({ timeStamp: -1 })
+  ReviewModel.find({ id }).sort({ timeStamp: -1 })
     .then((result) => {
-      if (result) {
+      if (result.length > 0) {
         response(res, 200, 0, '成功載入麵店評論', result);
       } else response(res, 200, 2, '目前無評論');
     }).catch((err) => {
