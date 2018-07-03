@@ -6,6 +6,7 @@ import Search from './search/search';
 import AddForm from './search/addForm/addForm';
 import SearchResult from './search/result/result';
 import Comment from './search/comment/comment';
+import Diary from './user/diary/diary';
 
 export default class Page extends Component{
     render(){
@@ -22,11 +23,13 @@ export default class Page extends Component{
                 <div className="page" id="p3">
                     {/* <section className="icon fa fa-rocket"><span className="title">Rocket</span></section> */}
                     {/* <LoginPanel/> */}
-                    <AddForm/>
+                    {/* <AddForm/> */}
+                    <Diary/>
                 </div>
                 <div className="page" id="p4">
                     {/* <AddForm/> */}
-                    <Comment/>
+                    {/* <Comment/> */}
+                    <LoginPanel/>
                 </div> 
             </div>
         )
