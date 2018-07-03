@@ -21,8 +21,10 @@ const App = () => (
     <div className="ct" id="t2">
       <div className="ct" id="t3">
         <div className="ct" id="t4">
-          <Menu />
-          <Page />
+          {/* <Menu />
+          <Page /> */}
+            <Menu/>
+            <Router/>
         </div>
       </div>
     </div>

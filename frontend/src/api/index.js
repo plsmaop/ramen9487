@@ -1,6 +1,5 @@
 import axios from 'axios';
 import qs from 'qs';
-import io from 'socket.io-client';
 import serverUrl from '../configuration';
 
 const config = {
@@ -35,7 +34,7 @@ export const patch = (url, data = {}) => axios.patch(url, data, config);
 export const upload = (url, data) => axios.post(url, data, config);
 
 // upload Image
-class Socket {
+/* class Socket {
   constructor() {
     this.socket = undefined;
     this.config = process.env.NODE_ENV === 'production'
@@ -53,4 +52,4 @@ class Socket {
     this.socket.emit('/image/upLoadImage', data);
   }
 }
-export const socket = new Socket();
+export const socket = new Socket(); */

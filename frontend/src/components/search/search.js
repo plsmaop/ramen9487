@@ -228,7 +228,7 @@ class Search extends Component {
     return (
       <div>
         <span class="addForm-button">
-          <i class="addForm-button-icon fa fa-bars fa-lg"></i>
+          <i class="addForm-button-icon fa fa-plus"></i>
         </span>
 
         <div className="search-container">

@@ -1,3 +1,9 @@
+.addform-background{
+  background-color: tomato;
+  height: 2048px;
+  
+}
+
 h4{
   color: tomato;
 }
@@ -211,6 +217,7 @@ h5{
 }
 
 .addForm-header{
+  
   max-width: 60%;
   padding: 1em 3em 2em 3em;
   margin: 2% auto;
