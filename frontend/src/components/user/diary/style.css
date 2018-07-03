@@ -94,15 +94,39 @@
   height: 100%;
 }
 
+.update-diary-button {
+  z-index: 900;
+  position: absolute;
+  top: 4%;
+  right: 13%;
+  display: block;
+  cursor: pointer;
+  width: 6%;
+  height: 10%;
+  background-color: rebeccapurple;
+  border-bottom-left-radius: 100%;
+}
+.update-diary-button:active i {
+  opacity: 0.8;
+}
+.update-diary-button i {
+  color: white;
+  margin-top: 24%;
+  margin-left: 45%;
+}
+
+.update-diary-button:hover i{
+  color:rgb(233, 232, 232)
+}
+
+
 .diary-favorites{
   width: 100%;
   white-space: nowrap;
   overflow-x: scroll;
   overflow-y: hidden;
+  padding-top: 4%;
 }
-
-
-
 
 .diary-favorite-element{
   opacity: 1;
@@ -118,8 +142,16 @@
   box-shadow: 0.3rem 0.4rem 0.4rem rgba(0, 0, 0, 0.4);
 }
 
+.diary-favorite-element img{
+    margin-bottom:  15%;
+    width: 100%; /* or any custom size */
+    height: 59%; 
+    object-fit: contain;
+}
+
 .diary-favorite-img{
-  background-size: 300px 360px;
+  
+  background-size: 260px 320px;
   background-repeat: no-repeat;
   background-position: center;
   display: inline-block;
@@ -133,7 +165,7 @@
   text-align:center;
   display: block;
   width:100%;
-  height: 40%;
+  height: 20%;
   color:black;
   font-weight: 700;
 }
@@ -156,7 +188,7 @@
 
 .diary-favorite-logo-block{
   position: absolute;
-  top: 98%;
+  top: 100%;
   left: 74%;
   width:12%;
   height: 16%;
@@ -186,7 +218,7 @@
   color:rebeccapurple;
   width:100%;
   height:20%;
-  margin-top: 2%;
+  margin-top: 1%;
   margin-left: 4%;
   font-size: 64px;
 }

@@ -7,6 +7,7 @@ import AddForm from './search/addForm/addForm';
 import SearchResult from './search/result/result';
 import Comment from './search/comment/comment';
 import Diary from './user/diary/diary';
+import AddRecord from './user/addRecord/addRecord'
 
 export default class Page extends Component{
     render(){
@@ -29,7 +30,8 @@ export default class Page extends Component{
                 <div className="page" id="p4">
                     {/* <AddForm/> */}
                     {/* <Comment/> */}
-                    <LoginPanel/>
+                    {/* <LoginPanel/> */}
+                    <AddRecord/>
                 </div> 
             </div>
         )

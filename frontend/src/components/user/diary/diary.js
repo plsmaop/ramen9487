@@ -53,9 +53,9 @@ export default class Diary extends Component {
         </div>
 
         <div className="diary-block diary-heatmap">
-          <div className="update-diary-button">
-            <span className="update-diary-button-logo">Add</span>
-          </div>
+          <span class="update-diary-button">
+            <i class="update-diary--button-icon fa fa-plus fa-lg"></i>
+          </span>
 
           <ResponsiveHeatMap
               data={data}
@@ -126,22 +126,23 @@ export default class Diary extends Component {
             <div className="diary-favorite-logo-block"><div className="diary-favorite-logo"></div></div>
 
             <div className="diary-favorite-element ">
-              <div className="diary-favorite-img love1"></div>
-              <div className="diary-favorite-name">東京鷹流豚骨拉麵 公館店</div>
+              {/* <div className="diary-favorite-img love1"></div> */}
+              <img  src="https://2.bp.blogspot.com/-9i4Qmtjlq4c/We8IWmECzcI/AAAAAAAAbrQ/PYMDXo9loH8OOVYvpB3eTws8yXTnR8hXwCLcBGAs/s1600/IMG_3337.JPG"/>
+              <div className="diary-favorite-name">東京鷹流拉麵</div>
             </div>
             
             <div className="diary-favorite-element ">
-              <div className="diary-favorite-img love2"></div>
+            <img  src="https://img.tenjo.tw/uploads/20170411233851_60.jpg"/>
               <div className="diary-favorite-name">山嵐拉麵 忠孝店</div>
             </div>
 
             <div className="diary-favorite-element ">
-              <div className="diary-favorite-img love3"></div>
+            <img  src="http://pics13.yamedia.tw/43/userfile/s/strangerckbe/album/156bdad30e9dbd.jpg"/>
               <div className="diary-favorite-name">鬼金棒 台北總店</div>
             </div>
 
             <div className="diary-favorite-element ">
-              <div className="diary-favorite-img love4"></div>
+            <img  src="https://pic.pimg.tw/vilo92/1461163249-2633035104.jpg?v=1461163301"/>
               <div className="diary-favorite-name">麵屋真燈</div>
             </div>
             

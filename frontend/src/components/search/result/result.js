@@ -25,6 +25,7 @@ export default class SearchResult extends Component {
 
         <div className="result-block result-summary">
           <div className="result-summaryCard">
+            
             <div className="result-color-overlay">
               <div className="movie-content">
                 <div className="movie-header">
@@ -42,6 +43,7 @@ export default class SearchResult extends Component {
               </div>
             </div>
           </div>
+          <img  src="https://2.bp.blogspot.com/-9i4Qmtjlq4c/We8IWmECzcI/AAAAAAAAbrQ/PYMDXo9loH8OOVYvpB3eTws8yXTnR8hXwCLcBGAs/s1600/IMG_3337.JPG"/>
         </div>
 
         <div className="result-block result-sidebar">
