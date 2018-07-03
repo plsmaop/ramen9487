@@ -72,8 +72,4 @@ const App = ({ classes }) => (
   </div>
 );
 
-App.propTypes = {
-  classes: PropTypes.objectOf(String).isRequired,
-};
-
-export default withStyles(styles)(App); */
+ */

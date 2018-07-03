@@ -3,6 +3,7 @@ import { findDOMNode } from 'react-dom';
 import PropTypes from 'prop-types';
 import './style.css';
 import $ from 'jquery';
+import ButtonProgress from '../buttonProgress';
 
 class LoginPanel extends Component {
   constructor(props) {
@@ -70,6 +71,8 @@ class LoginPanel extends Component {
   }
 }
 
+// 
+// <ButtonProgress style={{'!important paddingLeft': 0}}color="#FFEB3B" type="login" handleClick={() => userLogin(username, password)} />
 LoginPanel.propTypes = {
   userLogin: PropTypes.func.isRequired,
   userRegister: PropTypes.func.isRequired,

@@ -1,7 +1,7 @@
 import React from 'react';
 
 const MRT = () => (
-  <select className="addForm-select">
+  <select className="addForm-select" onChange={e => console.log(e.target.value)}>
     <option>--</option>
     <optgroup label="淡水信義線">
       <option>象山</option>
