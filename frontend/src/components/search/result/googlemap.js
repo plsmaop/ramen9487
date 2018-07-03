@@ -16,7 +16,7 @@ class Map extends Component {
    return(
       <div className="wrap-googlemap">
         <GoogleMapExample
-          containerElement={ <div style={{ display:'block',position:'relative', height: `100%`, width: '100%',marginTop:'0.4%' }} /> }
+          containerElement={ <div style={{ display:'block',position:'relative', height: `97%`, width: '99%',marginTop:'1%' }} /> }
           mapElement={ <div style={{ height: `100%` }} /> }
         />
       </div>

@@ -1,0 +1,77 @@
+.addRecord-container{
+  justify-content: center;
+  width: 60%;
+  height: 44%;
+  padding: 1em 3em 2em 3em;
+  margin: 15% auto;
+  background-color: #fff;
+  border-radius: 4.2px;
+  box-shadow: 0px 3px 10px -2px rgba(0, 0, 0, 0.2);
+}
+
+.addRecord-h2, .addRecord-h3{
+  color: rebeccapurple;
+}
+
+.addRecord-wrap-h5{
+  display: inline-block;
+  color: rebeccapurple;
+  width: 30%;
+  margin-right: 3%;
+}
+
+.addRecord-select,
+.addRecord-select option{
+  width: 90%;
+  padding: 1em;
+  line-height: 1.4;
+  background-color: #f9f9f9;
+  border: 1px solid #e5e5e5;
+  border-radius: 3px;
+  transition: all 0.35s ease-in-out;
+}
+
+.addRecord-select{
+  display: inline-block;
+  width: 50%;
+  margin-right: 4%;
+  margin-left: 4%;
+  text-align: center;
+  border-radius: 0;
+}
+
+.addRecord-select:focus,
+.addRecord-select:active {
+  background-color: rebeccapurple;
+  color: #fff;
+  border-color: rebeccapurple;
+}
+
+.addRecord-select {
+  height: 3.4em;
+  line-height: 2;
+}
+.addRecord-select:first-of-type {
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+.addRecord-select:last-of-type {
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+.addRecord-select:focus,
+.addRecord-select:active {
+  outline: 0;
+}
+.addRecord-select option {
+  background-color: rebeccapurple;
+  color: #fff;
+}
+
+.addRecord-submit, .addRecord-submit:hover svg rect,
+.addRecord-submit-svg rect, .addRecord-submit-svg path,
+.addRecord-submit-svg polyline{
+  color:rebeccapurple;
+  stroke: rebeccapurple;
+
+}
