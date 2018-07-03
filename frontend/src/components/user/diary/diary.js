@@ -53,69 +53,73 @@ export default class Diary extends Component {
         </div>
 
         <div className="diary-block diary-heatmap">
-        <ResponsiveHeatMap
-            data={data}
-            keys={[
-              "Mon",
-              "Tue",
-              "Wed",
-              "Thu",
-              "Fri",
-              "Sat",
-              "Sun"
-            ]}
-            indexBy="eatTime"
-            margin={{
-                "top": 100,
-                "right": 60,
-                "bottom": 60,
-                "left": 60
-            }}
-            colors="purples"
-            axisTop={{
-                "orient": "top",
-                "tickSize": 5,
-                "tickPadding": 5,
-                "tickRotation": 0,
-                "legend": "",
-                "legendOffset": 36
-            }}
-            axisLeft={{
-                "orient": "left",
-                "tickSize": 5,
-                "tickPadding": 5,
-                "tickRotation": 0,
-                "legendPosition": "center",
-                "legendOffset": -40
-            }}
-            cellOpacity={0.75}
-            cellBorderWidth={3}
-            cellBorderColor="inherit:darker(0.4)"
-            labelTextColor="inherit:darker(1.8)"
-            defs={[
-                {
-                    "id": "lines",
-                    "type": "patternLines",
-                    "background": "inherit",
-                    "color": "rgba(0, 0, 0, 0.1)",
-                    "rotation": -45,
-                    "lineWidth": 4,
-                    "spacing": 7
-                }
-            ]}
-            fill={[
-                {
-                    "id": "lines"
-                }
-            ]}
-            animate={true}
-            motionStiffness={100}
-            motionDamping={9}
-            isInteractive={false}
-            hoverTarget="cell"
-            cellHoverOpacity={0.55}
-            cellHoverOthersOpacity={0.25}
-        />
+          <div className="update-diary-button">
+            <span className="update-diary-button-logo">Add</span>
+          </div>
+
+          <ResponsiveHeatMap
+              data={data}
+              keys={[
+                "Mon",
+                "Tue",
+                "Wed",
+                "Thu",
+                "Fri",
+                "Sat",
+                "Sun"
+              ]}
+              indexBy="eatTime"
+              margin={{
+                  "top": 100,
+                  "right": 60,
+                  "bottom": 60,
+                  "left": 60
+              }}
+              colors="purples"
+              axisTop={{
+                  "orient": "top",
+                  "tickSize": 5,
+                  "tickPadding": 5,
+                  "tickRotation": 0,
+                  "legend": "",
+                  "legendOffset": 36
+              }}
+              axisLeft={{
+                  "orient": "left",
+                  "tickSize": 5,
+                  "tickPadding": 5,
+                  "tickRotation": 0,
+                  "legendPosition": "center",
+                  "legendOffset": -40
+              }}
+              cellOpacity={0.75}
+              cellBorderWidth={3}
+              cellBorderColor="inherit:darker(0.4)"
+              labelTextColor="inherit:darker(1.8)"
+              defs={[
+                  {
+                      "id": "lines",
+                      "type": "patternLines",
+                      "background": "inherit",
+                      "color": "rgba(0, 0, 0, 0.1)",
+                      "rotation": -45,
+                      "lineWidth": 4,
+                      "spacing": 7
+                  }
+              ]}
+              fill={[
+                  {
+                      "id": "lines"
+                  }
+              ]}
+              animate={true}
+              motionStiffness={100}
+              motionDamping={9}
+              isInteractive={false}
+              hoverTarget="cell"
+              cellHoverOpacity={0.55}
+              cellHoverOthersOpacity={0.25}
+          />
         </div>
 
         <div className="diary-block diary-favorites">

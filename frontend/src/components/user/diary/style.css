@@ -33,6 +33,8 @@
   grid-column-end: 4;
   grid-row: 1;
 }
+
+
 .diary-favorites {
   grid-column-start: 1 ;
   grid-column-end: 4;
