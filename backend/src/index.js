@@ -1,58 +1,39 @@
 import path from 'path';
 import express from 'express';
 import favicon from 'serve-favicon';
-import http from 'http';
 import compression from 'compression';
 import connectHistoryApiFallback from 'connect-history-api-fallback';
-import bodyParser from 'body-parser';
-import mongoose from 'mongoose';
-import bluebird from 'bluebird';
-import cookieParser from 'cookie-parser';
-import session from 'express-session';
+import httpProxy from 'http-proxy';
 import cors from 'cors';
-import apiRouter from './api';
-import dbUrl from './config';
+import helmet from 'helmet';
+import config from './config';
 
 // config
+const { serverPort, apiUrl, apiPort } = config;
 const backend = express();
-const server = http.Server(backend);
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || serverPort;
 backend.use(compression());
+backend.use(helmet());
 backend.use(favicon(path.join(__dirname, 'favicon.ico')));
 backend.use(cors({ credentials: true, origin: true }));
-backend.use(bodyParser.urlencoded({ xtended: false }));
-backend.use(cookieParser('i_am_lazyeeeee'));
-backend.use(session({
-  secret: 'i_am_lazyeeeee',
-  resave: true,
-  saveUninitialized: true,
-  cookie: {
-    maxAge: 60 * 1000 * 60,
-    secure: false,
-    httpOnly: false,
-  },
-}));
 
+backend.use((req, res, next) => {
+  res.setHeader('content-type', 'application/json');
+  next();
+});
 
 // router
-backend.use('/', connectHistoryApiFallback());
-backend.use('/api', apiRouter);
+const api = `${apiUrl}:${apiPort}`;
+const proxy = httpProxy.createProxyServer({
+  target: api,
+});
 
-// data base
-mongoose.Promise = bluebird;
-mongoose.connect(dbUrl, (err) => {
-  if (err) {
-    console.log(err, 'failde to connect to db');
-    return;
-  }
-  console.log('connect to db successfully');
-  backend.listen(port, (error) => {
-    if (error) {
-      console.error('err:', error);
-    } else {
-      console.info(`===> api server is running`);
-    }
-  });
+backend.use('/api', (req, res) => proxy.web(req, res, { target: api }));
+backend.use('/', connectHistoryApiFallback());
+
+backend.listen(port, (err) => {
+  if (err) console.error(err);
+  else console.log(`===>open http://localhost:${port}`);
 });
 
 if (process.env.NODE_ENV === 'production') {

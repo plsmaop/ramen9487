@@ -1,7 +1,14 @@
 import UserModel from './userModel';
-import ArticleModel from './articleModel';
+import ramenModel from './ramenModel';
+import ReviewModel from './reviewModel';
+import ImageModel from './imageModel';
+
+const { RamenModel, RamenTempModel } = ramenModel;
 
 export default {
   UserModel,
-  ArticleModel,
+  RamenModel,
+  RamenTempModel,
+  ReviewModel,
+  ImageModel,
 };

@@ -19,10 +19,11 @@ export const actions = {
     password,
   }),
   userLogout: () => ({ type: actionsTypes.USER_LOGOUT }),
-  userRegister: (username, password) => ({
+  userRegister: (username, password, email) => ({
     type: actionsTypes.USER_REGISTER,
     username,
     password,
+    email,
   }),
   clearMsg: () => ({
     type: actionsTypes.SET_MESSAGE,
