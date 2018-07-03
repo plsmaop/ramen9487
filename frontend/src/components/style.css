@@ -13,6 +13,15 @@ html, body, .page {
     overflow-x: hidden;
   }
 
+  #root{
+    margin-top: -50px;
+   
+  }
+
+  .ct{
+    height: 100%;
+  }
+
 .page {
     position: absolute;
   }
@@ -41,11 +50,6 @@ html, body, .page {
     transition-delay: 0.00001s !important;
   }
   
-  #t2:target #p1, 
-  #t3:target #p1,
-  #t4:target #p1{
-    
-  }
   
   #t2:target #p1 .icon, 
   #t3:target #p1 .icon,
