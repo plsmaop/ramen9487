@@ -30,7 +30,8 @@ class AddForm extends Component {
           <h1>新增你的推薦拉麵給我們！</h1>
           <h3>請詳細填寫以下資訊 ...</h3>
         </div>
-        <div className="container">
+        
+        <div className="addForm-container">
           <form>
             <div className="row">
               <h4>店名</h4>

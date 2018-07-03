@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import Select from 'react-select';
+<<<<<<< HEAD
 import PropTypes from 'prop-types';
 import SearchListItem from './searchListItem';
+=======
+
+>>>>>>> randy
 import './style.css';
 
 
@@ -225,6 +229,10 @@ class Search extends Component {
     console.log(this.state);
     return (
       <div>
+        <span class="addForm-button">
+          <i class="addForm-button-icon fa fa-bars fa-lg"></i>
+        </span>
+
         <div className="search-container">
           <div id="search-box">
             <input

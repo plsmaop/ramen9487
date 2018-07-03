@@ -16,6 +16,7 @@
     "qs": "^6.5.2",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
+    "react-google-maps": "^9.4.5",
     "react-js-pagination": "^3.0.2",
     "react-paginate": "^5.2.3",
     "react-redux": "^5.0.7",
