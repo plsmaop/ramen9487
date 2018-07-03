@@ -43,6 +43,7 @@ class LoginPanel extends Component {
     } = this.state;
     const { handleInputChange } = this;
     const { userLogin, userRegister } = this.props;
+    console.log(this.props);
     return(
       <div>
         <div className="login-container">
@@ -62,7 +63,7 @@ class LoginPanel extends Component {
           <form ref="login" className="login-form">
             <input type="text" placeholder="username" value={username} onChange={(e) => handleInputChange('username', e)} />
             <input type="password" placeholder="password" value={password} onChange={(e) => handleInputChange('password', e)} />
-            <button onClick={() => userLogin(username, password)}>login</button>
+            <ButtonProgress style={{marginLeft: -50}} color="#FFEB3B" type="login" handleClick={() => userLogin(username, password)} />
             <p className="message">Not registered? <div className="to-register" onClick={this.handleRegisterClick}>Create an account</div></p>
           </form>
         </div>
@@ -71,7 +72,7 @@ class LoginPanel extends Component {
   }
 }
 
-// 
+// onClick={() => userLogin(username, password)}<button >login</button>
 // <ButtonProgress style={{'!important paddingLeft': 0}}color="#FFEB3B" type="login" handleClick={() => userLogin(username, password)} />
 LoginPanel.propTypes = {
   userLogin: PropTypes.func.isRequired,

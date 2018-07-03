@@ -17,4 +17,5 @@ export default new mongoose.Schema({
     when: String,
     img: [String],
   }],
+  isVeryfied: Boolean,
 });

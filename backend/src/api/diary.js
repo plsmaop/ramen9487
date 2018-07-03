@@ -62,8 +62,8 @@ router.get('/:id', (req, res) => {
     return;
   }
   UserModel.find({ _id: id }, 'ramenRecords').then((data) => {
-    if (data) response(res, 200, 0, '獲取拉麵紀錄成功', data.ramenRecords);
-    else response(res, 200, 2, '獲取拉麵紀錄失敗', data.ramenRecords);
+    if (data) response(res, 200, 0, '獲取拉麵紀錄成功', { ramenRecords: data.ramenRecords, myRamen: data.myRamen });
+    else response(res, 200, 2, '獲取拉麵紀錄失敗');
   }).catch((err) => {
     response(res, 200, 2, '獲取拉麵紀錄失敗');
     console.log(err);

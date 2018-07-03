@@ -45,6 +45,7 @@ export default (state = initialState, action) => {
         ...state,
         uploadedData: {},
         fetchedData: {},
+        isUploadImage: false,
       };
     default:
       return state;

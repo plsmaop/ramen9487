@@ -93,6 +93,7 @@ export function* postNewRestaurant(id, data) {
     }
     const imgData = yield select(state => state.image.uploadedData);
     const res = yield call(uploadImage, id, imgData);
+    yield put({ type: imageActionsTypes.CLEAR_IMAGE });
     if (res) {
       if (res.code === 0) {
         yield put({ type: imageActionsTypes.RECIEVE_IMAGE, data: res.data });
@@ -207,17 +208,6 @@ export function* getRestaurantListFlow() {
         });
       }
     }
-  }
-}
-
-export function* delArticle(id) {
-  yield put({ type: globalActionsTypes.FETCH_START });
-  try {
-    return yield call(del, `/article/${id}`);
-  } catch (err) {
-    return yield put({ code: 2, message: '網路異常，請稍候重試' });
-  } finally {
-    yield put({ type: globalActionsTypes.FETCH_END });
   }
 }
 
@@ -337,6 +327,25 @@ export function* uploadImageFlow() {
         isReqSuccess: false,
         code: 2,
       });
+    }
+  }
+}
+
+export function* fetchImage() {
+  while (true) {
+    const req = yield take(imageActionsTypes.FETCH_IMAGE);
+    try {
+      const res = yield call(get, `/image/${req.url}`);
+      if (res && res.code === 0) {
+        yield put({
+          type: globalActionsTypes.SET_MESSAGE,
+          msgContent: res.message,
+          isReqSuccess: true,
+          code: res.code,
+        });
+      }
+    } catch (err) {
+      console.log(err);
     }
   }
 }

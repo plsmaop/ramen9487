@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import './style.css';
 import Map from './googlemap';
 
@@ -193,5 +194,9 @@ class SearchResult extends Component {
     )
   }
 }
+
+SearchResult.propTypes = {
+  currentRestaurant: PropTypes.object.isRequired,
+};
 
 export default SearchResult;

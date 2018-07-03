@@ -13,7 +13,7 @@ router.post('/newRamenRestaurant', (req, res) => {
   }
   const isPublish = req.session.userInfo.userType === 'admin';
   const ramenData = {
-    ...req.body, isPublish, totalScore: 0, popularity: 0, reviewNumber: 0,
+    ...req.body, isPublish, totalScore: 0, popularity: 1, reviewNumber: 0,
   };
   const tempRamenRestaurant = new RamenModel(ramenData);
   tempRamenRestaurant.save().then((data) => {
@@ -95,7 +95,7 @@ router.get('/ramenRestaurantList', (req, res) => {
   };
   RamenModel.count(searchCondition).then((count) => {
     responseData.total = count;
-    RamenModel.find(searchCondition, 'location _id name totalScore address tag popularity')
+    RamenModel.find(searchCondition, 'img location _id name totalScore address tag popularity')
       .sort([[sortType, -1], [secondSortType, -1]]).then((result) => {
         if (!result) {
           response(res, 200, 2, '獲取拉麵店列表失敗');

@@ -9,6 +9,7 @@ const SearchListItem = (props) => {
   } = props;
   return (
     <div className="movie-card">
+
       <div className="color-overlay">
         <div className="movie-content">
           <div className="movie-header">
@@ -46,5 +47,5 @@ SearchListItem.propTypes = {
   totalScore: PropTypes.string.isRequired,
   popularity: PropTypes.string.isRequired,
 };
-
+//       <img src={data} className="ramen-img" />
 export default SearchListItem;
