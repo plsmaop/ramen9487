@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import LoadingScreen from '../../loadingScreen';
 import './style.css';
 import Map from './googlemap';
 
@@ -14,18 +15,30 @@ class SearchResult extends Component {
     this.toggleHeartClass = this.toggleHeartClass.bind(this);
   }
 
+  componentDidMount() {
+    this.props.getRestaurant(this.props.id);
+  }
+
   toggleHeartClass() {
-    if(this.state.like === undefined) this.setState({"like": "heart"})
+    if (this.state.like === undefined) this.setState({"like": "heart"})
     let like_button_class = (this.state.like === "heart") ? "heart-clicked":"heart";
     this.setState({like: like_button_class})
   }
 
-  render(){
+  render() {
+    const { isFetching } = this.props;
+    if (isFetching || !this.props.currentRestaurant.menu) return (<LoadingScreen type="拉麵載入中..." />);
+    const {
+      name, totalScore, popularity,
+      address, menu, tag,
+      location, url,
+    } = this.props.currentRestaurant;
     return(
       <div className="result-wrapper">
 
         <div className="result-block result-summary">
           <div className="result-summaryCard">
+            
             <div className="result-color-overlay">
               <div className="movie-content">
                 <div className="movie-header">
@@ -43,6 +56,7 @@ class SearchResult extends Component {
               </div>
             </div>
           </div>
+          <img  src="https://2.bp.blogspot.com/-9i4Qmtjlq4c/We8IWmECzcI/AAAAAAAAbrQ/PYMDXo9loH8OOVYvpB3eTws8yXTnR8hXwCLcBGAs/s1600/IMG_3337.JPG"/>
         </div>
 
         <div className="result-block result-sidebar">
@@ -197,6 +211,12 @@ class SearchResult extends Component {
 
 SearchResult.propTypes = {
   currentRestaurant: PropTypes.object.isRequired,
+  isLogin: PropTypes.bool.isRequired,
+  id: PropTypes.string.isRequired,
+  isFetching: PropTypes.bool.isRequired,
+  reqMsg: PropTypes.object.isRequired,
+  getRestaurant: PropTypes.func.isRequired,
+  imageActions:PropTypes.func.isRequired,
 };
 
 export default SearchResult;
