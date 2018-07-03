@@ -12,11 +12,11 @@ class AddForm extends Component {
     this.state = {
       name: '',
       address: '',
-      location: ['', '', '', ''],
+      location: [],
       phone: '',
       tag: [],
-      others: [],
-      bussinessHours: [],
+      others: '',
+      bussinessHours: [[], [], [], [], [], [], []],
       img: [],
       menu: [],
       url: '',
@@ -33,22 +33,34 @@ class AddForm extends Component {
     reader.onload = () => updateImage({ data: reader.result, type: data.type });
   }
 
-  handleInputUpdate(type, e, index = 0) {
+  handleInputUpdate(type, e, index = 0, i = 0) {
     const { state } = this;
     const data = e.target.value;
     if (!data || data.length === 0) return;
     const newState = {};
     switch (type) {
-      case 'location':
-        newState.location = state.location.concat([data]);
+      case 'tag': {
+        const { tag } = state;
+        if (tag.includes(data)) newState.tag = tag.filter(item => item !== data);
+        else newState.tag = state.tag.concat([data]);
         break;
-      case 'tag':
-        newState.tag = state.tag.concat([data]);
-        break;
+      }
       case 'menu': {
         const { menu } = state;
         menu[index] = data;
         newState.menu = menu;
+        break;
+      }
+      case 'location': {
+        const { location } = state;
+        if (data === '--') location[index] = null;
+        else location[index] = data;
+        break;
+      }
+      case 'bussinessHours': {
+        const { bussinessHours } = state;
+        if (data === '--') bussinessHours[index][i] = null;
+        else bussinessHours[index][i] = data;
         break;
       }
       default:
@@ -59,10 +71,11 @@ class AddForm extends Component {
   }
 
   render() {
-    const { handleFileUpload, handleInputUpdate } = this;
-    const { uploadImage } = this.props;
+    const { handleFileUpload, handleInputUpdate, state } = this;
+    const { uploadImage, isFetching, postNewRestaurant } = this.props;
     console.log(this.state);
     const menu = [];
+    const mrt = [];
     for (let i = 0; i < 4; i += 1) {
       menu.push(
         <div className="input-group input-group-icon menu">
@@ -71,6 +84,9 @@ class AddForm extends Component {
             <FontAwesomeIcon icon="utensils" />
           </div>
         </div>,
+      );
+      mrt.push(
+        <MRT handleInputUpdate={e => handleInputUpdate('location', e, i)} />,
       );
     }
     // const { fetchedData } = this.props;
@@ -92,7 +108,7 @@ class AddForm extends Component {
                 店名
               </h4>
               <div className="input-group input-group-icon">
-                <input className="addForm-input" type="text" onChange={e => handleInputUpdate('name', e)}/>
+                <input className="addForm-input" type="text" onChange={e => handleInputUpdate('name', e)} />
                 <div className="input-icon">
                   <FontAwesomeIcon icon="store" />
                 </div>
@@ -101,7 +117,7 @@ class AddForm extends Component {
                 地址
               </h4>
               <div className="input-group input-group-icon">
-                <input className="addForm-input" type="text" onChange={e => handleInputUpdate('address', e)}/>
+                <input className="addForm-input" type="text" onChange={e => handleInputUpdate('address', e)} />
                 <div className="input-icon">
                   <FontAwesomeIcon icon="map-marker-alt" />
                 </div>
@@ -110,16 +126,13 @@ class AddForm extends Component {
                 鄰近捷運站 (可複選至多4個)
               </h4>
               <div className="input-group">
-                <MRT />
-                <MRT />
-                <MRT />
-                <MRT />
+                { mrt }
               </div>
               <h4>
                 電話
               </h4>
               <div className="input-group input-group-icon">
-                <input className="addForm-input" type="tel" onChange={e => handleInputUpdate('phone', e)}/>
+                <input className="addForm-input" type="tel" onChange={e => handleInputUpdate('phone', e)} />
                 <div className="input-icon">
                   <FontAwesomeIcon icon="phone" />
                 </div>
@@ -128,7 +141,7 @@ class AddForm extends Component {
                 粉專/官網連結
               </h4>
               <div className="input-group input-group-icon">
-                <input className="addForm-input" type="url" onChange={e => handleInputUpdate('url', e)}/>
+                <input className="addForm-input" type="url" onChange={e => handleInputUpdate('url', e)} />
                 <div className="input-icon">
                   <FontAwesomeIcon icon="paperclip" />
                 </div>
@@ -139,12 +152,48 @@ class AddForm extends Component {
                 拉麵分類
               </h4>
               <div className="input-group">
-                <input className="addForm-input" type="checkbox" name="ramen-kind-豚骨" value="豚骨" id="ramen-kind-豚骨"/><label htmlFor="ramen-kind-豚骨"><span>豚骨</span></label>
-                <input className="addForm-input" type="checkbox" name="ramen-kind-醬油" value="醬油" id="ramen-kind-醬油" /><label htmlFor="ramen-kind-醬油"> <span>醬油</span></label>
-                <input className="addForm-input" type="checkbox" name="ramen-kind-味噌" value="味噌" id="ramen-kind-味噌" /><label htmlFor="ramen-kind-味噌"> <span>味噌</span></label>
-                <input className="addForm-input" type="checkbox" name="ramen-kind-煮干" value="煮干" id="ramen-kind-煮干" /><label htmlFor="ramen-kind-煮干"> <span>煮干</span></label>
-                <input className="addForm-input" type="checkbox" name="ramen-kind-家系" value="家系" id="ramen-kind-家系" /><label htmlFor="ramen-kind-家系"> <span>家系</span></label>
-                <input className="addForm-input" type="checkbox" name="ramen-kind-鷄白湯" value="鷄白湯" id="ramen-kind-鷄白湯" /><label htmlFor="ramen-kind-鷄白湯"> <span>鷄白湯</span></label>                  <input className="addForm-input" type="checkbox" name="ramen-kind-沾麵" value="沾麵" id="ramen-kind-沾麵" /><label htmlFor="ramen-kind-沾麵"> <span>沾麵</span></label>
+                <input className="addForm-input" type="checkbox" name="ramen-kind-豚骨" value="豚骨" id="ramen-kind-豚骨" onChange={e => handleInputUpdate('tag', e)} />
+                <label htmlFor="ramen-kind-豚骨">
+                  <span>
+                    豚骨
+                  </span>
+                </label>
+                <input className="addForm-input" type="checkbox" name="ramen-kind-醬油" value="醬油" id="ramen-kind-醬油" onChange={e => handleInputUpdate('tag', e)} />
+                <label htmlFor="ramen-kind-醬油">
+                  <span>
+                    醬油
+                  </span>
+                </label>
+                <input className="addForm-input" type="checkbox" name="ramen-kind-味噌" value="味噌" id="ramen-kind-味噌" onChange={e => handleInputUpdate('tag', e)} />
+                <label htmlFor="ramen-kind-味噌">
+                  <span>
+                    味噌
+                  </span>
+                </label>
+                <input className="addForm-input" type="checkbox" name="ramen-kind-煮干" value="煮干" id="ramen-kind-煮干" onChange={e => handleInputUpdate('tag', e)} />
+                <label htmlFor="ramen-kind-煮干">
+                  <span>
+                    煮干
+                  </span>
+                </label>
+                <input className="addForm-input" type="checkbox" name="ramen-kind-家系" value="家系" id="ramen-kind-家系" onChange={e => handleInputUpdate('tag', e)} />
+                <label htmlFor="ramen-kind-家系">
+                  <span>
+                    家系
+                  </span>
+                </label>
+                <input className="addForm-input" type="checkbox" name="ramen-kind-鷄白湯" value="鷄白湯" id="ramen-kind-鷄白湯" onChange={e => handleInputUpdate('tag', e)} />
+                <label htmlFor="ramen-kind-鷄白湯">
+                  <span>
+                    鷄白湯
+                  </span>
+                </label>
+                <input className="addForm-input" type="checkbox" name="ramen-kind-沾麵" value="沾麵" id="ramen-kind-沾麵" onChange={e => handleInputUpdate('tag', e)} />
+                <label htmlFor="ramen-kind-沾麵">
+                  <span>
+                    沾麵
+                  </span>
+                </label>
               </div>
             </div>
             <div className="row">
@@ -153,48 +202,78 @@ class AddForm extends Component {
               </h4>
               <div className="col-half">
                 <div className="wrap-h5">
-                  <h5>Mon</h5>
+                  <h5>
+                    Mon
+                  </h5>
                 </div>
-                <BusinessHours />
-                <BusinessHours />
+                <BusinessHours handleInputUpdate={e => handleInputUpdate('bussinessHours', e, 1, 0)} />
+                <BusinessHours handleInputUpdate={e => handleInputUpdate('bussinessHours', e, 1, 1)} />
               </div>
               <div className="col-half">
-                <div className="wrap-h5"><h5>Tue</h5></div>
-                <BusinessHours/>
-                <BusinessHours/>
+                <div className="wrap-h5">
+                  <h5>
+                    Tue
+                  </h5>
+                </div>
+                <BusinessHours handleInputUpdate={e => handleInputUpdate('bussinessHours', e, 2, 0)} />
+                <BusinessHours handleInputUpdate={e => handleInputUpdate('bussinessHours', e, 2, 1)} />
               </div>
               <div className="col-half">
-                <div className="wrap-h5"><h5>Wed</h5></div>
-                <BusinessHours/>
-                <BusinessHours/>
+                <div className="wrap-h5">
+                  <h5>
+                    Wed
+                  </h5>
+                </div>
+                <BusinessHours handleInputUpdate={e => handleInputUpdate('bussinessHours', e, 3, 0)} />
+                <BusinessHours handleInputUpdate={e => handleInputUpdate('bussinessHours', e, 3, 1)} />
               </div>
               <div className="col-half">
-                <div className="wrap-h5"><h5>Thr</h5></div>
-                <BusinessHours/>
-                <BusinessHours/>
+                <div className="wrap-h5">
+                  <h5>
+                    Thr
+                  </h5>
+                </div>
+                <BusinessHours handleInputUpdate={e => handleInputUpdate('bussinessHours', e, 4, 0)} />
+                <BusinessHours handleInputUpdate={e => handleInputUpdate('bussinessHours', e, 4, 1)} />
               </div>
               <div className="col-half">
-                <div className="wrap-h5"><h5>Fri</h5></div>
-                <BusinessHours/>
-                <BusinessHours/>
+                <div className="wrap-h5">
+                  <h5>
+                    Fri
+                  </h5>
+                </div>
+                <BusinessHours handleInputUpdate={e => handleInputUpdate('bussinessHours', e, 5, 0)} />
+                <BusinessHours handleInputUpdate={e => handleInputUpdate('bussinessHours', e, 5, 1)} />
               </div>
               <div className="col-half">
-                <div className="wrap-h5"><h5>Sat</h5></div>
-                <BusinessHours/>
-                <BusinessHours/>
+                <div className="wrap-h5">
+                  <h5>
+                    Sat
+                  </h5>
+                </div>
+                <BusinessHours handleInputUpdate={e => handleInputUpdate('bussinessHours', e, 6, 0)} />
+                <BusinessHours handleInputUpdate={e => handleInputUpdate('bussinessHours', e, 6, 1)} />
               </div>
               <div className="col-half">
-                <div className="wrap-h5"><h5>Sun</h5></div>
-                <BusinessHours />
-                <BusinessHours />
+                <div className="wrap-h5">
+                  <h5>
+                    Sun
+                  </h5>
+                </div>
+                <BusinessHours handleInputUpdate={e => handleInputUpdate('bussinessHours', e, 0, 0)} />
+                <BusinessHours handleInputUpdate={e => handleInputUpdate('bussinessHours', e, 0, 1)} />
               </div>
             </div>
             <div className="row">
-              <h4>主要菜單</h4>
+              <h4>
+                主要菜單
+              </h4>
               {menu}
             </div>
             <div className="row">
-              <h4>上傳圖片</h4>
+              <h4>
+                上傳圖片
+              </h4>
               <div className="input-group input-group-icon submit-image-url">
                 <input
                   size={10485760}
@@ -204,16 +283,17 @@ class AddForm extends Component {
                   onChange={e => handleFileUpload(e)}
                 />
               </div>
-              <button className="submit-images" onClick={uploadImage}>Upload</button>
             </div>
 
             <div className="row">
-              <h4>備註</h4>
-              <textarea className="addForm-textarea" rows="10" cols="50" />
+              <h4>
+                備註
+              </h4>
+              <textarea className="addForm-textarea" rows="10" cols="50" onChange={e => handleInputUpdate('others', e)} />
             </div>
 
             <div className="row" style={{ textAlign: 'center' }}>
-              <ButtonProgress type="submit" color="#FF4081" isFetching={this.props.isFetching}/>
+              <ButtonProgress type="submit" color="#FF4081" isFetching={isFetching} handleClick={() => postNewRestaurant(state)} />
             </div>
           </form>
         </div>
@@ -225,13 +305,14 @@ class AddForm extends Component {
 AddForm.propTypes = {
   updateImage: PropTypes.func.isRequired,
   uploadImage: PropTypes.func.isRequired,
+  postNewRestaurant: PropTypes.func.isRequired,
   isFetching: PropTypes.bool.isRequired,
   // fetchedData: PropTypes.objectOf(String).isRequired,
 };
 
 export default AddForm;
 
-/* 
+/*  <button className="submit-images" onClick={uploadImage}>Upload</button>
 <div className="input-group"><input type="checkbox" id="terms" /><label htmlFor="terms">I accept the terms and conditions for signing up to this service, and hereby confirm I have read the privacy policy.</label></div>
 <div className="submit-result">
                 Submit

@@ -209,8 +209,8 @@ class Search extends Component {
     const location = valueMRT.split(',');
     const tag = valueRamen.split(',');
     const searchConditions = {
-      location: (location.length > 0 && location[0] != '') ? location : [],
-      tag: (tag.length > 0 && tag[0] != '') ? tag : [],
+      location: (location.length > 0 && location[0] !== '') ? location : [],
+      tag: (tag.length > 0 && tag[0] !== '') ? tag : [],
       keyWord,
       sortType: 'totalScore',
     };

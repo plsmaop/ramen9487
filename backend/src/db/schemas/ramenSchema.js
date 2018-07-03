@@ -18,7 +18,7 @@ export default new mongoose.Schema({
   },
   others: [String],
   menu: [String],
-  bussinessHours: [String],
+  bussinessHours: [[String]],
   url: String,
   isPublish: Boolean,
   popularity: Number,

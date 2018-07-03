@@ -72,6 +72,108 @@ export function* postReviewFlow() {
   }
 }
 
+export function* uploadImage(id, data) {
+  yield put({ type: globalActionsTypes.FETCH_START });
+  try {
+    return yield call(upload, `/image/${id}/newImage`, data);
+  } catch (err) {
+    return yield put({ code: 2, message: '網路異常，請稍候重試' });
+  } finally {
+    yield put({ type: globalActionsTypes.FETCH_END });
+  }
+}
+
+export function* postNewRestaurant(id, data) {
+  yield put({ type: globalActionsTypes.FETCH_START });
+  try {
+    data.others = [data.others];
+    const isUploadImage = yield select(state => state.image.isUploadImage);
+    if (!isUploadImage) {
+      return yield call(post, '/ramen/restaurant/newRamenRestaurant', data);
+    }
+    const imgData = yield select(state => state.image.uploadedData);
+    const res = yield call(uploadImage, id, imgData);
+    if (res) {
+      if (res.code === 0) {
+        yield put({ type: imageActionsTypes.RECIEVE_IMAGE, data: res.data });
+        yield put({
+          type: globalActionsTypes.SET_MESSAGE,
+          msgContent: res.message,
+          isReqSuccess: true,
+          code: res.code,
+        });
+        data.img = [res.data.imgId];
+      } else {
+        yield put({
+          type: globalActionsTypes.SET_MESSAGE,
+          msgContent: res.message,
+          isReqSuccess: false,
+          code: res.code,
+        });
+      }
+    } else {
+      yield put({
+        type: globalActionsTypes.SET_MESSAGE,
+        msgContent: '網路異常，請稍候重試',
+        isReqSuccess: false,
+        code: 2,
+      });
+    }
+    return yield call(post, '/ramen/restaurant/newRamenRestaurant', data);
+  } catch (err) {
+    console.log(err);
+    return yield put({ code: 2, message: '網路異常，請稍候重試' });
+  } finally {
+    yield put({ type: globalActionsTypes.FETCH_END });
+  }
+}
+
+export function* postNewRestaurantFlow() {
+  while (true) {
+    const req = yield take(ramenActionsTypes.POST_NEW_RESTAURANT);
+    if (1) {
+      const id = yield select(state => state.global.userInfo.userId);
+      if (!id) {
+        yield put({ type: globalActionsTypes.CLEAR_USER_INFO });
+        yield put({
+          type: globalActionsTypes.SET_MESSAGE,
+          msgContent: '登入逾期，請重新登入',
+          isReqSuccess: false,
+          code: 1,
+        });
+        return;
+      }
+      const res = yield call(postNewRestaurant, id, req.data);
+      if (res) {
+        if (res.code === 0) {
+          yield put({
+            type: globalActionsTypes.SET_MESSAGE,
+            msgContent: res.message,
+            isReqSuccess: true,
+            code: res.code,
+          });
+        } else if (res.code === 1) {
+          // 請重新登入
+          yield put({ type: globalActionsTypes.CLEAR_USER_INFO });
+          yield put({
+            type: globalActionsTypes.SET_MESSAGE,
+            msgContent: res.message,
+            isReqSuccess: false,
+            code: res.code,
+          });
+        } else {
+          yield put({
+            type: globalActionsTypes.SET_MESSAGE,
+            msgContent: res.message,
+            isReqSuccess: false,
+            code: res.code,
+          });
+        }
+      }
+    }
+  }
+}
+
 export function* getRestaurantList(page, number, searchConditions) {
   yield put({ type: globalActionsTypes.FETCH_START });
   try {
@@ -202,17 +304,6 @@ export function* getRestaurantReviewsFlow() {
         code: 2,
       });
     }
-  }
-}
-
-export function* uploadImage(id, data) {
-  yield put({ type: globalActionsTypes.FETCH_START });
-  try {
-    return yield call(upload, `/image/${id}/newImage`, data);
-  } catch (err) {
-    return yield put({ code: 2, message: '網路異常，請稍候重試' });
-  } finally {
-    yield put({ type: globalActionsTypes.FETCH_END });
   }
 }
 

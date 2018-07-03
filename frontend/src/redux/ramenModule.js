@@ -9,6 +9,7 @@ export const actionsTypes = {
   RECIEVE_RESTAURANT_REVIEWS: 'RECIEVE_RESTAURANT_REVIEWS',
   POST_REVIEW: 'POST_REVIEW',
   RECIEVE_REVIEW: 'RECIEVE_REVIEW',
+  POST_NEW_RESTAURANT: 'POST_NEW_RESTAURANT',
 };
 
 export const actions = {
@@ -30,6 +31,10 @@ export const actions = {
     type: actionsTypes.POST_REVIEW,
     id,
     content,
+  }),
+  postNewRestaurant: data => ({
+    type: actionsTypes.POST_NEW_RESTAURANT,
+    data,
   }),
 };
 

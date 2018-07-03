@@ -1,7 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const MRT = () => (
-  <select className="addForm-select" onChange={e => console.log(e.target.value)}>
+const MRT = ({ handleInputUpdate }) => (
+  <select className="addForm-select" onChange={e => handleInputUpdate(e)}>
     <option>--</option>
     <optgroup label="淡水信義線">
       <option>象山</option>
@@ -140,5 +141,9 @@ const MRT = () => (
     </optgroup>
   </select>
 );
+
+MRT.propTypes = {
+  handleInputUpdate: PropTypes.func.isRequired,
+};
 
 export default MRT;

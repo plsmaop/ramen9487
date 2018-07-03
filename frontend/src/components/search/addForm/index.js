@@ -1,11 +1,13 @@
 import { connect } from 'react-redux';
-import { actions } from '../../../redux/imageModule';
+import { actions as imageActions } from '../../../redux/imageModule';
+import { actions as ramenActions } from '../../../redux/ramenModule';
 import AddForm from './addForm';
 
-const { updateImage, uploadImage } = actions;
+const { updateImage, uploadImage } = imageActions;
+const { postNewRestaurant } = ramenActions;
 const mapStateToProps = state => ({
   fetchedData: state.image.fetchedData,
   isFetching: state.global.isFetching,
 });
 
-export default connect(mapStateToProps, { updateImage, uploadImage })(AddForm);
+export default connect(mapStateToProps, { updateImage, uploadImage, postNewRestaurant })(AddForm);

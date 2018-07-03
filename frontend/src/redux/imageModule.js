@@ -26,6 +26,7 @@ export const actions = {
 const initialState = {
   uploadedData: {},
   fetchedData: {},
+  isUploadImage: false,
 };
 
 // reudcer
@@ -33,7 +34,7 @@ export default (state = initialState, action) => {
   switch (action.type) {
     case actionsTypes.UPDATE_IMAGE:
       return {
-        ...state, uploadedData: action.data,
+        ...state, uploadedData: action.data, isUploadImage: true,
       };
     case actionsTypes.RECIEVE_IMAGE:
       return {
