@@ -1,0 +1,1 @@
+export default number => (Math.floor(number*100)) / 100;

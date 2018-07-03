@@ -16,7 +16,6 @@ backend.use(compression());
 backend.use(helmet());
 backend.use(favicon(path.join(__dirname, 'favicon.ico')));
 backend.use(cors({ credentials: true, origin: true }));
-
 backend.use((req, res, next) => {
   res.setHeader('content-type', 'application/json');
   next();

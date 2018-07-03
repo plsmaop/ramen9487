@@ -4,7 +4,7 @@ import models from '../../db/models';
 
 const router = express.Router();
 const { RamenModel, ReviewModel, ImageModel } = models;
-const { response } = functions;
+const { response, floor } = functions;
 
 router.post('/newRamenRestaurant', (req, res) => {
   if (!req.session.userInfo) {
@@ -105,6 +105,11 @@ router.get('/ramenRestaurantList', (req, res) => {
           response(res, 200, 2, '查無資訊，請確認關鍵字沒有打錯');
           return;
         }
+        result.map((item) => {
+          item.totalScore = floor(item.totalScore);
+          return item;
+        });
+        console.log(result);
         const end = skip + limit <= result.length ? skip + limit : result.length;
         const resultData = result.slice(skip, end);
         responseData.data = resultData.map(item => ({ id: item._id, ...(item._doc) }));

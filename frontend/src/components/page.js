@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import HomeMain from './home';
 import LoginPanel from './user';
 import Search from './search';
-import AddForm from './search/addForm/addForm';
+import AddForm from './search/addForm';
 
 export default class Page extends Component{
   render(){

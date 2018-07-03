@@ -41,6 +41,7 @@ export function* loginFlow() {
       });
       if (res.code === 0) {
         yield put({ type: actionsTypes.RECIEVE_USER_INFO, data: res.data });
+        // socket.createSocket();
       }
     } else {
       yield put({
