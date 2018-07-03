@@ -4,7 +4,7 @@ import {
 } from './globalSaga';
 import {
   getRestaurantListFlow, getRestaurantFlow, getRestaurantReviewsFlow,
-  postReviewFlow,
+  postReviewFlow, uploadImageFlow,
 } from './ramenSaga';
 
 export default function* rootSaga() {
@@ -16,4 +16,5 @@ export default function* rootSaga() {
   yield fork(getRestaurantFlow);
   yield fork(getRestaurantReviewsFlow);
   yield fork(postReviewFlow);
+  yield fork(uploadImageFlow);
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles, MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Button from '@material-ui/core/Button';
 
@@ -26,26 +26,39 @@ const styles = theme => ({
 
 const ButtonProgress = ({
   handleClick, isFetching, type,
-  classes,
-}) => (
-  <div className={classes.wrapper}>
-    <Button
-      variant="raised"
-      color="primary"
-      className={classes.button}
-      onClick={handleClick}
-      disabled={isFetching}
-    >
-      {type}
-    </Button>
-    {isFetching && <CircularProgress size={24} className={classes.buttonProgress} />}
-  </div>
-);
+  classes, color,
+}) => {
+  const theme = createMuiTheme({
+    palette: {
+      primary: {
+        main: color,
+        light: '#EEEEEE',
+      },
+    },
+  });
+  return (
+    <MuiThemeProvider theme={theme}>
+      <div className={classes.wrapper}>
+        <Button
+          variant="raised"
+          color="primary"
+          className={classes.button}
+          onClick={handleClick}
+          disabled={isFetching}
+        >
+          {type}
+        </Button>
+        {isFetching && <CircularProgress size={24} className={classes.buttonProgress} />}
+      </div>
+    </MuiThemeProvider>
+  );
+};
 
 ButtonProgress.propTypes = {
   handleClick: PropTypes.func.isRequired,
   isFetching: PropTypes.bool.isRequired,
   type: PropTypes.string.isRequired,
+  color: PropTypes.string.isRequired,
   classes: PropTypes.objectOf(String).isRequired,
 };
 

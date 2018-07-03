@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import HomeMain from './home';
 import LoginPanel from './user';
 import Search from './search';
-import AddForm from './search/addForm/addForm';
-import SearchResult from './search/result/result';
+import AddForm from './search/addForm';
 
 export default class Page extends Component{
+<<<<<<< HEAD
 
+=======
+>>>>>>> randy-test
   render(){
     return(
       <div>
@@ -27,4 +29,7 @@ export default class Page extends Component{
     )
   }
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> randy-test

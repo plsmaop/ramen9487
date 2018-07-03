@@ -1,4 +1,5 @@
 import express from 'express';
+import fs from 'fs';
 import functions from '../functions';
 import models from '../db/models';
 
@@ -7,8 +8,6 @@ const { ImageModel } = models;
 const { response } = functions;
 
 router.post('/:id/newImage', (req, res) => {
-  console.log(req.files);
-  console.log(req.body);
   const { id } = req.params;
   if (!req.session.userInfo) {
     response(res, 200, 1, '登入逾期，請重新登入');
@@ -17,10 +16,30 @@ router.post('/:id/newImage', (req, res) => {
     response(res, 200, 1, '權限不足');
     return;
   }
+  const { data, type } = req.body;
+  /* const img = data.replace(/^data:image\/\w+;base64,/, '');
+  const buf = new Buffer(img, 'base64');
+  fs.open(`./pic/${id}.png`, 'w+', (err, fd) => {
+    if (err) {
+      console.log(err);
+      response(res, 200, 2, '上傳失敗');
+      return;
+    }
+  });
+  fs.writeFile(`./pic/${id}.png`, buf, (err) => {
+    if (err) {
+      console.log(err);
+      response(res, 200, 2, '上傳失敗');
+      return;
+    }
+  });
+  response(res, 200, 0, 'OK'); */
+  console.log('saving');
   const tempImage = new ImageModel({ id });
-  tempImage.image.contentType = 'image/jpg';
-  tempImage.image.data = req.files.file;
+  tempImage.image.contentType = req.body.type;
+  tempImage.image.data = req.body.data;
   tempImage.save().then((result) => {
+    console.log('ya');
     if (result) response(res, 200, 0, '上傳圖片成功', { imgId: result._id });
     else response(res, 200, 2, '上傳圖片失敗');
   }).catch((err) => {

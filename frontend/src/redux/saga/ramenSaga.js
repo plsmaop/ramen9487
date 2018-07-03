@@ -1,7 +1,8 @@
 import { take, call, put, select } from 'redux-saga/effects';
-import { get, post, del, patch } from '../../api';
+import { get, post, del, patch, upload } from '../../api';
 import { actionsTypes as globalActionsTypes } from '../globalModule';
 import { actionsTypes as ramenActionsTypes } from '../ramenModule';
+import { actionsTypes as imageActionsTypes } from '../imageModule';
 
 export function* postReview(id, content) {
   yield put({ type: globalActionsTypes.FETCH_START });
@@ -179,6 +180,51 @@ export function* getRestaurantReviewsFlow() {
     if (res) {
       if (res.code === 0) {
         yield put({ type: ramenActionsTypes.RECIEVE_RESTAURANT_REVIEWS, data: res.data });
+        yield put({
+          type: globalActionsTypes.SET_MESSAGE,
+          msgContent: res.message,
+          isReqSuccess: true,
+          code: res.code,
+        });
+      } else {
+        yield put({
+          type: globalActionsTypes.SET_MESSAGE,
+          msgContent: res.message,
+          isReqSuccess: false,
+          code: res.code,
+        });
+      }
+    } else {
+      yield put({
+        type: globalActionsTypes.SET_MESSAGE,
+        msgContent: '網路異常，請稍候重試',
+        isReqSuccess: false,
+        code: 2,
+      });
+    }
+  }
+}
+
+export function* uploadImage(id, data) {
+  yield put({ type: globalActionsTypes.FETCH_START });
+  try {
+    return yield call(upload, `/image/${id}/newImage`, data);
+  } catch (err) {
+    return yield put({ code: 2, message: '網路異常，請稍候重試' });
+  } finally {
+    yield put({ type: globalActionsTypes.FETCH_END });
+  }
+}
+
+export function* uploadImageFlow() {
+  while (true) {
+    const req = yield take(imageActionsTypes.UPLOAD_IMAGE);
+    const data = yield select(state => state.image.uploadedData);
+    const id = yield select(state => state.global.userInfo.userId);
+    const res = yield call(uploadImage, id, data);
+    if (res) {
+      if (res.code === 0) {
+        yield put({ type: imageActionsTypes.RECIEVE_IMAGE, data: res.data });
         yield put({
           type: globalActionsTypes.SET_MESSAGE,
           msgContent: res.message,
