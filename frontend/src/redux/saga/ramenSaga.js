@@ -16,11 +16,6 @@ export function* postReview(id, content) {
       time: new Date(),
       timestamp: Math.floor(Date.now() / 1000),
     };
-    /* if (id) {
-      return yield call(post, '/article/updateArticle', data);
-    } else {
-      return yield call(post, '/article/addArticle', data);
-    } */
     return yield call(post, `/ramen/restaurant/${id}/review`, data);
   } catch (err) {
     console.log(err);

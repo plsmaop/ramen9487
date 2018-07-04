@@ -137,6 +137,7 @@ router.post('/:id/favorite', (req, res) => {
     return;
   }
   const { favoriteRamenId } = req.body;
+  console.log(req.body);
   UserModel.update(
     {
       _id: id,
@@ -146,6 +147,7 @@ router.post('/:id/favorite', (req, res) => {
       $push: { myRamen: favoriteRamenId },
     },
   ).then((result) => {
+    console.log(result);
     if (result.n !== 1) {
       response(res, 200, 2, '收藏拉麵失敗');
       return;

@@ -13,6 +13,10 @@ router.post('/newRamenRestaurant', (req, res) => {
   }
   const isPublish = req.session.userInfo.userType === 'admin';
   if (isPublish) {
+    if (req.body.name.length === 0) {
+      response(res, 200, 2, '新增拉麵店失敗');
+      return;
+    }
     RamenModel.update({ _id: req.body.name }, { img: req.body.img })
       .then(result => response(res, 200, 0, '已收到您提供的新拉麵店資訊，我們會在審核完成後放上網站'));
     return;
@@ -167,6 +171,7 @@ router.get('/:id/reviews', (req, res) => {
   }
   ReviewModel.find({ id }).sort({ timeStamp: -1 })
     .then((result) => {
+      console.log(result);
       if (result.length > 0) {
         response(res, 200, 0, '成功載入麵店評論', result);
       } else response(res, 200, 2, '目前無評論');
@@ -183,10 +188,12 @@ router.post('/:id/review', (req, res) => {
   }
   const { userId } = req.session.userInfo;
   const { id } = req.params;
+  console.log(id);
   if (!id) {
     response(res, 200, 2, '該麵店不存在');
     return;
   }
+
   const { food, env, service } = req.body.scores;
   let totalScore = (parseFloat(food) + parseFloat(env) + parseFloat(service)) / 3;
   RamenModel.findOne({ _id: id }, 'totalScore scores reviewNumber popularity').then((ramen) => {
@@ -195,12 +202,15 @@ router.post('/:id/review', (req, res) => {
       env: Number(env),
       service: Number(service),
     };
-    totalScore = (totalScore + ramen.totalScore) / (1 + ramen.reviewNumber);
+    totalScore = (totalScore + ramen.totalScore * ramen.reviewNumber) / (1 + ramen.reviewNumber);
+
     if (ramen.scores.food) {
-      scores.food = (Number(food) + ramen.scores.food) / (1 + ramen.reviewNumber);
-      scores.env = (Number(env) + ramen.scores.env) / (1 + ramen.reviewNumber);
-      scores.service = (Number(service) + ramen.scores.service) / (1 + ramen.reviewNumber);
+      scores.food = (Number(food) + ramen.scores.food * ramen.reviewNumber) / (1 + ramen.reviewNumber);
+      scores.env = (Number(env) + ramen.scores.env * ramen.reviewNumber) / (1 + ramen.reviewNumber);
+      scores.service = (Number(service) + ramen.scores.service * ramen.reviewNumber) / (1 + ramen.reviewNumber);
     }
+    console.log(ramen.scores);
+    console.log(totalScore);
     RamenModel.update(
       { _id: id },
       {
@@ -210,6 +220,7 @@ router.post('/:id/review', (req, res) => {
         popularity: ramen.popularity + 1,
       },
     ).then((result) => {
+      console.log(result);
       if (result.n !== 1) {
         response(res, 200, 2, '上傳麵店評論失敗');
         return;
@@ -222,7 +233,7 @@ router.post('/:id/review', (req, res) => {
     response(res, 200, 2, '上傳麵店評論失敗');
     console.log(err);
   });
-  const tempReview = new ReviewModel({ ...req.body, authorId: userId });
+  const tempReview = new ReviewModel({ id, ...req.body, authorId: userId });
   tempReview.save().then((data) => {
     if (!data) response(res, 200, 2, '上傳麵店評論失敗');
     else response(res, 200, 0, '上傳麵店評論成功', data);
