@@ -25,7 +25,6 @@ const MRT = [
   { label: '雙連', value: '雙連' },
   { label: '民權西路', value: '民權西路' },
   { label: '圓山', value: '圓山' },
-  { label: '鷄白湯', value: '鷄白湯' },
   { label: '劍潭', value: '劍潭' },
   { label: '士林', value: '士林' },
   { label: '芝山', value: '芝山' },
@@ -164,6 +163,8 @@ class Search extends Component {
       rtlRamen: false,
       activePage: 5,
       keyWord: '',
+      currentPage: 1
+
     };
 
     this.handleSelectChangeMRT = this.handleSelectChangeMRT.bind(this);
@@ -171,7 +172,7 @@ class Search extends Component {
     this.toggleCheckbox = this.toggleCheckbox.bind(this);
     this.handleSearchConditionsChange = this.handleSearchConditionsChange.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
-    this.onPageChanged = this.onPageChanged.bind(this);
+    /* this.onPageChanged = this.onPageChanged.bind(this); */
     /* this.changePage = this.changePage.bind(this); */
     /* this.toggleRtl = this.toggleRtl.bind(this); */
   }
@@ -192,9 +193,9 @@ class Search extends Component {
     });
   }
 
-  onPageChanged = data => {
+  /* onPageChanged = data => {
     console.log('fuck');
-  }
+  } */
 
   /* onPageChanged example
   onPageChanged = data => {
@@ -218,9 +219,11 @@ class Search extends Component {
     this.setState(searchConditions);
   }
 
-  handleSearch(i = 1) {
+  handleSearch(i) {
+    console.log(this.props.totalNumber)
+    console.log('fuckkk',i)
     const { getRestaurantList } = this.props;
-    const { valueMRT, valueRamen, keyWord } = this.state;
+    const { /* currentPage, */ valueMRT, valueRamen, keyWord } = this.state;
     const location = valueMRT.split(',');
     const tag = valueRamen.split(',');
     const searchConditions = {
@@ -229,7 +232,10 @@ class Search extends Component {
       keyWord,
       sortType: 'totalScore',
     };
-    getRestaurantList(i, 5, searchConditions);
+    if(! isNaN(parseInt(i.currentPage)))
+      this.setState({currentPage: i.currentPage})
+    console.log('fuck',this.state.currentPage)
+    getRestaurantList(i.currentPage, 5, searchConditions);
   }
 
   render() {
@@ -296,7 +302,11 @@ class Search extends Component {
                 restaurantList.map(item => <SearchListItem {...item} />)
               }
               <div className="pagination-wrapper">
-                <Pagination totalRecords={totalNumber} pageLimit={5} pageNeighbours={1} onPageChanged={handleSearch} />
+              
+                {(Math.ceil(totalNumber/5) > 0)?
+                  
+                   <Pagination totalRecords={totalNumber} currentPage={this.state.currentPage} pageLimit={5} pageNeighbours={1} onPageChanged={this.handleSearch} />
+                  : null}
                 {/* totalRecords: 總共幾筆資料 pageLimit: 最多幾頁 改這兩個東西就好 */}
               </div>
             </div>) 

@@ -28,7 +28,9 @@ class SearchResult extends Component {
     fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${this.state.address}&key=AIzaSyCT-UUYx-crn1WAFAyK9KH04ScNCH3GyFw`)
       .then(response => {
           if(response.ok){
-            return response.json()
+            let log = response.json()
+            console.log(log)
+            return log
           }else{
           throw new Error('Something went wrong...')
         }
