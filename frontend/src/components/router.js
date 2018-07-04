@@ -12,12 +12,12 @@ import AddRecord from './user/addRecord';
 const Router = () => (
   <div className="all-wrapper">
     <Switch>
-      <Route path="/" exact component={Home} />
-      <Route path="/search" exact component={Search} />
-      <Route path="/diary" exact component={Diary} />
-      <Route path="/login" exact component={LoginPanel} />
-      <Route path="/addform" exact component={AddForm} />
-      <Route path="/addrecord" exact component={AddRecord} />
+      <Route path="/" exact component={Home} refresh="true" />
+      <Route path="/search" exact component={Search} refresh="true" />
+      <Route path="/diary" exact component={Diary} refresh="true" />
+      <Route path="/login" exact component={LoginPanel} refresh="true" />
+      <Route path="/addform" exact component={AddForm} refresh="true" />
+      <Route path="/addrecord" exact component={AddRecord} refresh="true" />
       <Route path="/ramen/restaurant/:id" exact component={SearchResult} />
       <Route component={PageNotFound} />
     </Switch>

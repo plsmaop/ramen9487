@@ -53,7 +53,7 @@ router.patch('/:id', (req, res) => {
   ).then((result) => {
     if (result.n !== 1) response(res, 200, 2, '更新失敗');
     else {
-      RamenModel.find({ _id: id }).then((data) => {
+      RamenModel.findOne({ _id: id }).then((data) => {
         if (!data) response(res, 200, 2, '更新失敗');
         else response(res, 200, 0, '更新成功', data);
       });

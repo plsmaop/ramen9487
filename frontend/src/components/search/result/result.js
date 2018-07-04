@@ -55,7 +55,7 @@ class SearchResult extends Component {
           }
         })
         .then((data) => {
-          console.log(/* data.results[0].geometry.location */data);
+          // console.log(/* data.results[0].geometry.location */data);
           this.setState({
             lat: data.results[0].geometry.location.lat,
             lan: data.results[0].geometry.location.lng,
