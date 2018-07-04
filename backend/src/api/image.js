@@ -47,8 +47,16 @@ router.post('/:id/newImage', (req, res) => {
     console.log(err);
   });
 });
-
+const mongoose = require('mongoose');
 router.get('/:id', (req, res) => {
+  if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+    response(res, 200, 2, '獲取圖片失敗');
+    return;
+  }
+  if (!req.params.id) {
+    response(res, 200, 2, '獲取圖片失敗');
+    return;
+  }
   ImageModel.findOne({ _id: req.params.id }).then((result) => {
     if (result) response(res, 200, 0, '獲取圖片成功', result);
     else response(res, 200, 2, '獲取圖片失敗');
