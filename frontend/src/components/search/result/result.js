@@ -12,6 +12,9 @@ class SearchResult extends Component {
     this.state = {
       like: 'heart',
       addReview: false,
+      address: '台北市中山區南京東路一段29號',
+      lat: '',
+      lan: '',
     };
     this.handleAddReview = this.handleAddReview.bind(this);
     this.toggleHeartClass = this.toggleHeartClass.bind(this);
@@ -20,6 +23,22 @@ class SearchResult extends Component {
   componentDidMount() {
     this.props.getRestaurant(this.props.id);
     this.props.getRestaurantReviews(this.props.id);
+
+    console.log(this.state.address)
+    fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${this.state.address}&key=AIzaSyCT-UUYx-crn1WAFAyK9KH04ScNCH3GyFw`)
+      .then(response => {
+          if(response.ok){
+            return response.json()
+          }else{
+          throw new Error('Something went wrong...')
+        }
+      })
+      .then(data => {
+        console.log(/* data.results[0].geometry.location */data)
+        this.setState({
+        lat: data.results[0].geometry.location.lat,
+        lan: data.results[0].geometry.location.lng,
+      })})
   }
 
   toggleHeartClass() {
@@ -152,7 +171,7 @@ class SearchResult extends Component {
             </div>
           </div>
           <div className="result-block result-info1">
-            <Map />
+            <Map lat={this.state.lat} lan={this.state.lan}/>
           </div>
           
           {/* <div className="result-block result-info2"></div> */}
