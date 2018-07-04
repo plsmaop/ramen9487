@@ -47,7 +47,7 @@ export function* addFavorite() {
     const req = yield take(diaryActionsTypes.ADD_FAVORITE);
     try {
       yield put({ type: globalActionsTypes.FETCH_START });
-      const id = yield select(state => state.global.userInfo.username);
+      const id = yield select(state => state.global.userInfo.userId);
       if (!id || id.length === 0) {
         yield put({
           type: globalActionsTypes.SET_MESSAGE,

@@ -62,11 +62,9 @@ router.get('/:id', (req, res) => {
     return;
   }
   UserModel.findOne({ _id: id }, 'ramenRecords myRamen').then((data) => {
-    console.log(data);
     if (!data) response(res, 200, 2, '獲取拉麵紀錄失敗');
     else {
       RamenModel.find({ _id: { $in: data.myRamen } }, 'name img').then((result) => {
-        console.log(result);
         if (result) response(res, 200, 0, '獲取拉麵紀錄成功', { ramenRecords: data.ramenRecords, myRamen: result });
         else response(res, 200, 2, '獲取拉麵紀錄失敗');
       }).catch((err) => {

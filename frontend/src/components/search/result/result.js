@@ -23,9 +23,10 @@ class SearchResult extends Component {
   }
 
   toggleHeartClass() {
-    if (this.state.like === undefined) this.setState({"like": "heart"})
-    let like_button_class = (this.state.like === "heart") ? "heart-clicked":"heart";
-    this.setState( {like: like_button_class} );
+    if (this.state.like === undefined) this.setState({ like: 'heart' });
+    const like_button_class = (this.state.like === "heart") ? "heart-clicked" : "heart";
+    this.setState({ like: like_button_class });
+    this.props.addFavorite(this.props.id);
   }
 
   handleAddReview() {
@@ -41,13 +42,12 @@ class SearchResult extends Component {
       location, url,
     } = this.props.currentRestaurant;
     const { addReview } = this.state;
-    const { id } = this.props;
+    const { id, addFavorite } = this.props;
     if (addReview) return (<Comment id={id} name={name} />);
     const img = null;
     const { currentRestaurantReviews } = this.props;
     const review = currentRestaurantReviews.length > 0 ? currentRestaurantReviews.map(i => i.content) : [];
-    
-    return(
+    return (
       <div className="result-page">
         <div className="result-wrapper">
 
@@ -170,6 +170,7 @@ SearchResult.propTypes = {
   reqMsg: PropTypes.object.isRequired,
   getRestaurant: PropTypes.func.isRequired,
   fetchImage: PropTypes.func.isRequired,
+  addFavorite: PropTypes.func.isRequired,
   getRestaurantReviews: PropTypes.func.isRequired,
   currentRestaurantReviews: PropTypes.arrayOf(Object).isRequired,
 };
