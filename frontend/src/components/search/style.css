@@ -680,6 +680,8 @@ h1, h2, h3 {
   color: #000000;
   margin-bottom: .25em;
   opacity: .75;
+
+  font-size: 32px;
 }
 .movie-content .movie-info {
   text-transform: uppercase;
@@ -697,7 +699,7 @@ h1, h2, h3 {
 .movie-content .movie-desc {
   font-weight: 300;
   opacity: .84;
-  margin-bottom: 2em;
+  margin-bottom: 1%;
 }
 
 .btn {
