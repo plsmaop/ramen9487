@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { ResponsiveHeatMap } from '@nivo/heatmap';
 import './style.css';
 import LoginPanel from '../index';
-import AddRecord from '../addRecord/addRecord';
+import AddRecord from '../addRecord';
 
 let data=[
   {

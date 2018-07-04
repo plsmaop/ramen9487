@@ -26,11 +26,12 @@ router.post('/:id/newRamenRecord', (req, res) => {
       response(res, 200, 2, '上傳拉麵紀錄失敗');
       return;
     }
-    RamenModel.find({ _id: req.body.id }, 'popularity').then((data) => {
+    RamenModel.findOne({ _id: req.body.id }, 'popularity').then((data) => {
       if (!data) {
         response(res, 200, 2, '上傳拉麵紀錄失敗');
         return;
       }
+      console.log(data.popularity);
       RamenModel.update({ _id: req.body.id }, { popularity: data.popularity + 1 })
         .then((result) => {
           if (result.n !== 1) {

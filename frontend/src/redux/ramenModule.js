@@ -13,6 +13,9 @@ export const actionsTypes = {
 };
 
 export const actions = {
+  getRestaurantNameList: () => ({
+    type: actionsTypes.GET_RESTAURANT_NAME_LIST,
+  }),
   getRestaurantList: (page, number, searchConditions) => ({
     type: actionsTypes.GET_RESTAURANT_LIST,
     page,
@@ -54,6 +57,11 @@ const reducer = (state = initialState, action) => {
         ...state,
         totalNumber: action.data.total,
         restaurantList: action.data.data,
+      };
+    case actionsTypes.RECIEVE_RESTAURANT_NAME_LIST:
+      return {
+        ...state,
+        restaurantNameList: action.data,
       };
     case actionsTypes.RECIEVE_RESTAURANT:
       return {

@@ -3,10 +3,10 @@ import { get, post } from '../../api';
 import { actionsTypes as globalActionsTypes } from '../globalModule';
 import { actionsTypes as diaryActionsTypes } from '../diaryModule';
 
-export function* commitRamen(username, password) {
+export function* commitRamen(id, data) {
   yield put({ type: globalActionsTypes.FETCH_START });
   try {
-    return yield call(post, '/user/login', { username, password });
+    return yield call(post, `/diary/${id}/newRamenRecord`, data);
   } catch (error) {
     console.log(error);
     return yield put({ code: 2, message: '網路異常，請稍候重試' });
@@ -17,8 +17,19 @@ export function* commitRamen(username, password) {
 
 export function* commitRamenFlow() {
   while (true) {
-    const request = yield take(diaryActionsTypes.COMMIT_RAMEN);
-    const res = yield call(commitRamen, request.username, request.password);
+    const req = yield take(diaryActionsTypes.COMMIT_RAMEN);
+    const id = yield select(state => state.global.userInfo.userId);
+    if (!id || id.length === 0) {
+      yield put({
+        type: globalActionsTypes.SET_MESSAGE,
+        msgContent: '登入逾期，請重新登入',
+        isReqSuccess: false,
+        code: 1,
+      });
+      yield put({ type: globalActionsTypes.FETCH_END });
+      return;
+    }
+    const res = yield call(commitRamen, id, req.data);
     console.log(res);
     if (res) {
       const isReqSuccess = (res.code === 0);
