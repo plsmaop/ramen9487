@@ -1,3 +1,11 @@
+.addForm-page{
+  background-color: tomato;
+  height: 100%;
+  padding-left: 15%;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
 .addform-background{
   background-color: tomato;
   height: 2048px;

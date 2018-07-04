@@ -6,9 +6,11 @@ import Button from '@material-ui/core/Button';
 
 const styles = theme => ({
   button: {
+    backgroundColor: 'tomato',
     margin: theme.spacing.unit,
   },
   wrapper: {
+    
     margin: theme.spacing.unit,
     position: 'relative',
   },
@@ -16,6 +18,7 @@ const styles = theme => ({
     flex: 1,
   },
   buttonProgress: {
+    
     position: 'absolute',
     top: '50%',
     left: '50%',
