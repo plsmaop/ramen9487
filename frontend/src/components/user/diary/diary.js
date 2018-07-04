@@ -158,7 +158,7 @@ class Diary extends Component {
               diary.myRamen ? diary.myRamen.map(item => (
                 <div className="diary-favorite-element ">
                   <img src="https://2.bp.blogspot.com/-9i4Qmtjlq4c/We8IWmECzcI/AAAAAAAAbrQ/PYMDXo9loH8OOVYvpB3eTws8yXTnR8hXwCLcBGAs/s1600/IMG_3337.JPG"/>
-                  <div className="diary-favorite-name">{item.name}</div>
+                  <div className="diary-favorite-name"><p>{item.name}</p></div>
                 </div>
               )) : null
             }

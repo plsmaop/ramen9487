@@ -173,11 +173,20 @@
 
 .diary-favorite-name{
   text-align:center;
-  display: block;
-  width:100%;
+  /* display: block; */
+  width:80%;
   height: 20%;
+  margin: auto 10%;
+  /* display: inline-block; */
+  
+  display: block;
   color:black;
   font-weight: 700;
+  overflow-wrap: break-word;
+}
+
+.diary-favorite-name p{
+  overflow: scroll;
 }
 
 .love1{
