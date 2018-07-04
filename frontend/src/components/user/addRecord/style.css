@@ -18,12 +18,13 @@
 
 .addRecord-h2, .addRecord-h3{
   color: rebeccapurple;
+  width: 100%;
 }
 
 .addRecord-wrap-h5{
   display: inline-block;
   color: rebeccapurple;
-  width: 30%;
+  width: 40%;
   margin-right: 3%;
 }
 
@@ -40,7 +41,7 @@
 
 .addRecord-select{
   display: inline-block;
-  width: 50%;
+  width: 40%;
   margin-right: 4%;
   margin-left: 4%;
   text-align: center;
