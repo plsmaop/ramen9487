@@ -3,9 +3,9 @@ import HomeMain from './main';
 import Ranking from './ranking';
 
 const Home = () => (
-  <div>
+  <div className="home-page">
     <HomeMain />
-    <Ranking />
+    {/* <Ranking /> */}
   </div>
 );
 

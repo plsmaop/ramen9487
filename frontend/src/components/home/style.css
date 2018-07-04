@@ -1,19 +1,110 @@
 /* ======= Home ======= */
 
+.home-page{
+  height: 100%;
+  overflow: hidden;
+  overflow-x: scroll;
+  
+}
+
 .home-main{
-  padding: 2%;
-  top: 0;
+  padding: 0%;
+  /* top: 0;
   bottom: 0;
   right: 10%;
-  left: 0;
-  width: 75%;
-  height: 30%;
-  margin-left: auto;
-  margin-right: 0;
-  margin-bottom: 0;
+  left: 0; */
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  
+  /* margin-right: 0;
+  margin-bottom: 0; */
   line-height: 1;
-  margin-top: 7%;
+ /*  display: grid;
+  grid-gap: 4%;
+  grid-template-columns: 50% 20% 30%;
+  grid-template-rows: 50% 50% ;
+  color: #444;
+  width: 100%;
+  height: 100%; */
 }
+
+.home-backimage {
+  background-image: url("../image/front.jpg");
+  /* http://1.bp.blogspot.com/-2RxLanNaJKc/WhrbXLa86FI/AAAAAAAACuE/6Lxp5YIgH3Q7khgzO1X6sB6XaI8HqOIVQCK4BGAYYCw/s1600/DSC_00702.jpg */
+  background-size: 150%;
+  background-repeat: no-repeat;
+  background-position: left;
+  -webkit-animation: slide 40s ease;
+  transform: translate3d(0,0,0);
+  height: 100vh;
+}
+
+.home-backimage:before {
+  content: "";
+  position: absolute;
+ /*  z-index: 1; */
+  width: 100%;
+  height: 100%;
+  background: rgba(131, 110, 101, 0.8)
+}
+
+.home-backimage{
+  /* z-index: 101; */
+  position: relative;
+}
+
+@-webkit-keyframes slide {
+  0%   { background-position: left; }
+  50%   { background-position: right; }
+  100% { background-position: left; }
+}
+
+.home-backimage h1 {
+  font-size: 100px;
+  font-weight: 800;
+  color: white;
+  margin: 0;
+  font-family: 'Trade Winds', cursive;
+  z-index: 5000;
+}
+
+.home-title {
+    position: absolute;
+    padding-left: 20%;
+    padding-top: 15%;
+    max-width: 20%;
+    -webkit-animation-name: shine;
+}
+
+@-webkit-keyframes shine {
+	0%, 10% {
+		background-position: -1000px;
+	}
+	20% {
+		background-position: top left;
+	}
+	90% {
+		background-position: top right;
+	}
+	100% {
+		background-position: 1000px;
+	}
+}
+
+/* .btn {
+  background: #4C384B;
+  color: white;
+  text-decoration: none;
+  padding: 10px 40px;
+  margin: 20px 0;
+  display: inline-block;
+  border-radius: 3px;
+  font-size: 20px;
+} */
+
+
+
 
 .home-image{
   background-image: url('../image/noodle (1).png');
