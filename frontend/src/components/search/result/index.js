@@ -4,7 +4,7 @@ import { actions as imageActions } from '../../../redux/imageModule';
 import { actions as diaryActions } from '../../../redux/diaryModule';
 import result from './result';
 
-const { getRestaurant, getRestaurantReviews } = ramenActions;
+const { getRestaurant, getRestaurantReviews, init } = ramenActions;
 const { fetchImage } = imageActions;
 const { addFavorite } = diaryActions;
 
@@ -18,5 +18,5 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 export default connect(mapStateToProps, {
-  getRestaurant, fetchImage, getRestaurantReviews, addFavorite,
+  getRestaurant, fetchImage, getRestaurantReviews, addFavorite, init,
 })(result);

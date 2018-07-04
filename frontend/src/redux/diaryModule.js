@@ -29,6 +29,11 @@ const initialState = {
   // reudcer
 export default (state = initialState, action) => {
   switch (action.type) {
+    case 'fuck':
+      return {
+        ...state,
+        diary: {},
+      };
     case actionsTypes.RECIEVE_DIARY:
       return {
         ...state, diary: action.data,
