@@ -66,7 +66,7 @@ class LoginPanel extends Component {
             <input type="text" placeholder="username" value={rname} onChange={(e) => handleInputChange('rname', e)}/>
             <input type="password" placeholder="password" value={rpass} onChange={(e) => handleInputChange('rpass', e)}/>
             <input type="text" placeholder="email address" value={remail} onChange={(e) => handleInputChange('remail', e)}/>
-            <button onClick={() => userRegister(rname, rpass, remail)}>create</button>
+            <ButtonProgress style={{marginLeft: -50}} color="#FFEB3B" type="create" handleClick={() => userRegister(rname, rpass, remail)} />
             <p className="message">Already registered? <div className="to-login"  onClick={this.handleLoginClick}>Sign In</div></p>
           </form>
           <form ref="login" className="login-form">
