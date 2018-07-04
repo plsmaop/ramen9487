@@ -105,7 +105,7 @@ class Diary extends Component {
                 "bottom": 60,
                 "left": 60
               }}
-              colors="purples"
+              colors="oranges"
               axisTop={{
                 "orient": "top",
                 "tickSize": 5,
@@ -122,7 +122,7 @@ class Diary extends Component {
                 "legendPosition": "center",
                 "legendOffset": -40
               }}
-              cellOpacity={0.75}
+              cellOpacity={0.77}
               cellBorderWidth={3}
               cellBorderColor="inherit:darker(0.4)"
               labelTextColor="inherit:darker(1.8)"
@@ -148,7 +148,7 @@ class Diary extends Component {
               isInteractive={false}
               hoverTarget="cell"
               cellHoverOpacity={0.55}
-              cellHoverOthersOpacity={0.25}
+              cellHoverOthersOpacity={0.29}
             />
           </div>
 

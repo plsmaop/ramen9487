@@ -1,6 +1,6 @@
 .addRecord-page{
   height: 100%;
-  background: rebeccapurple;
+  background: tomato;
   overflow-x: scroll;
   padding-left: 13%;
 }
@@ -17,13 +17,13 @@
 }
 
 .addRecord-h2, .addRecord-h3{
-  color: rebeccapurple;
+  color: tomato;
   width: 100%;
 }
 
 .addRecord-wrap-h5{
   display: inline-block;
-  color: rebeccapurple;
+  color: tomato;
   width: 40%;
   margin-right: 3%;
 }
@@ -50,9 +50,9 @@
 
 .addRecord-select:focus,
 .addRecord-select:active {
-  background-color: rebeccapurple;
+  background-color: tomato;
   color: #fff;
-  border-color: rebeccapurple;
+  border-color: tomato;
 }
 
 .addRecord-select {
@@ -72,14 +72,14 @@
   outline: 0;
 }
 .addRecord-select option {
-  background-color: rebeccapurple;
+  background-color: tomato;
   color: #fff;
 }
 
 .addRecord-submit, .addRecord-submit:hover svg rect,
 .addRecord-submit-svg rect, .addRecord-submit-svg path,
 .addRecord-submit-svg polyline{
-  color:rebeccapurple;
-  stroke: rebeccapurple;
+  color:tomato;
+  stroke: tomato;
 
 }

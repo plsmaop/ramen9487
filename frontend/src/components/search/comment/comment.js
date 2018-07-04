@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router';
+import ButtonProgress from '../../buttonProgress';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './style.css';
 
@@ -37,7 +38,8 @@ class Comment extends Component {
   }
 
   render() {
-    const { id, name, postReview } = this.props;
+    const { id, name, postReview,isFetching, postNewRestaurant } = this.props;
+    
     const { handleInputChange, state } = this;
     const { redirect } = this.state;
     if (redirect) window.location.reload();
@@ -80,13 +82,14 @@ class Comment extends Component {
                 <textarea className="addForm-textarea" rows="10" cols="50" onChange={e => handleInputChange('content', e)}></textarea>
             </div>
 
-            <div className="row">
-              <div className="submit-result" onClick={() => postReview(id, state)}>
+            <div className="row" style={{ textAlign: 'center' }}>
+               <div className="submit-result" onClick={() => postReview(id, state)}>
                 Submit
                 <svg className="submit-svg" width="130" height="65" viewBox="0 0 130 65" xmlns="http://www.w3.org/2000/svg">
                   <rect x='0' y='0' fill='none' width='130' height='65'/>
                 </svg>
-              </div>
+              </div> 
+              {/* <ButtonProgress type="submit" color="#FF4081" isFetching={isFetching} handleClick={() => postNewRestaurant(state)} /> */}
             </div>
 
           </form>
@@ -101,6 +104,8 @@ Comment.propTypes = {
   name: PropTypes.string.isRequired,
   postReview: PropTypes.func.isRequired,
   reqMsg: PropTypes.string.isRequired,
+  postNewRestaurant: PropTypes.func.isRequired,
+  isFetching: PropTypes.bool.isRequired,
 };
 
 export default Comment;

@@ -296,6 +296,7 @@ class AddForm extends Component {
 
             <div className="row" style={{ textAlign: 'center' }}>
               <ButtonProgress type="submit" color="#FF4081" isFetching={isFetching} handleClick={() => postNewRestaurant(state)} />
+              
             </div>
           </form>
         </div>
