@@ -18,7 +18,10 @@ router.post('/newRamenRestaurant', (req, res) => {
       return;
     }
     RamenModel.update({ _id: req.body.name }, { img: req.body.img })
-      .then(result => response(res, 200, 0, '已收到您提供的新拉麵店資訊，我們會在審核完成後放上網站'));
+      .then(result => {
+        response(res, 200, 0, '已收到您提供的新拉麵店資訊，我們會在審核完成後放上網站');
+        console.log(result);
+      });
     return;
   }
   const ramenData = {
