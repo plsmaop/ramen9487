@@ -7,6 +7,7 @@ import './style.css';
 import LoginPanel from '../index';
 import AddRecord from '../addRecord';
 import LoadingScreen from '../../loadingScreen';
+import DiaryItem from './diaryItem';
 
 let data = [
   {
@@ -51,6 +52,7 @@ class Diary extends Component {
     super(props);
     this.state = {
       commitRamen: false,
+      image: '',
     };
     this.handleCommitRamen = this.handleCommitRamen.bind(this);
   }
@@ -65,6 +67,7 @@ class Diary extends Component {
 
   render() {
     const { isLogin, userInfo, isFetching, diary } = this.props;
+    const { image } = this.state;
     if (!isLogin) return (<Redirect to="/login" />);
     if (isFetching) return (<LoadingScreen type="載入日記..." color="#9C27B0" />);
     const { handleCommitRamen } = this;
@@ -156,12 +159,7 @@ class Diary extends Component {
             <div className="diary-favorite-logo-block"><div className="diary-favorite-logo"></div></div>
             {
               diary.myRamen ? diary.myRamen.map(item => (
-                <Link to={`/ramen/restaurant/${item._id}`} >
-                <div className="diary-favorite-element ">
-                  <img src="https://2.bp.blogspot.com/-9i4Qmtjlq4c/We8IWmECzcI/AAAAAAAAbrQ/PYMDXo9loH8OOVYvpB3eTws8yXTnR8hXwCLcBGAs/s1600/IMG_3337.JPG"/>
-                  <div className="diary-favorite-name"><p>{item.name}</p></div>
-                </div>
-                </Link>
+                <DiaryItem {...item} />
               )) : null
             }
             <div className="diary-favorite-title">Favorites</div>
