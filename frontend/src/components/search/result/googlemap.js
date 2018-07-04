@@ -3,14 +3,20 @@ import { withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
 import './style.css';
 
 class Map extends Component {
+  constructor(props){
+    super(props)
+
+  }
+
    render() {
+     console.log(parseFloat(this.props.lan))
    const GoogleMapExample = withGoogleMap(props => (
       <GoogleMap
-        defaultCenter = { { lat: 25.0459990, lng: 121.5170410} }
+        defaultCenter = { { lat: parseFloat(this.props.lat), lng: parseFloat(this.props.lan)} }
         defaultZoom = { 18 }
         
       >
-      {<Marker position={{ lat: 25.0459990, lng: 121.5170410}} />}
+      {<Marker position={{ lat: parseFloat(this.props.lat), lng: parseFloat(this.props.lan)}} />}
       </GoogleMap>
    ));
    return(
