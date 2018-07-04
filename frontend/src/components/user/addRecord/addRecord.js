@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Redirect } from 'react-router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import LoadingScreen from '../../loadingScreen';
 import ButtonProgress from '../../buttonProgress';
+
 import './style.css';
 
 class AddRecord extends Component {
@@ -12,6 +14,7 @@ class AddRecord extends Component {
       id: '',
       weekday: '',
       time: '',
+      redirect: false,
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSumbit = this.handleSumbit.bind(this);
@@ -22,7 +25,9 @@ class AddRecord extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.reqMsg === '上傳拉麵紀錄成功') window.location.reload();
+    if (nextProps.reqMsg === '上傳拉麵紀錄成功') {
+      setTimeout(() => this.setState({ redirect: true }), 2000);
+    }
   } 
 
   handleInputChange(type, e) {
@@ -43,10 +48,12 @@ class AddRecord extends Component {
   }
 
   render() {
-    const { isFetching, commitRamen, restaurantNameList } = this.props;
+    const { isFetching, commitRamen, restaurantNameList, isLogin } = this.props;
     const { handleInputChange, handleSumbit } = this;
     // if (isFetching) return (<LoadingScreen type="載入拉麵店名..." color="#9C27B0" />);
     // console.log(this.state);
+    if (!isLogin) return (<Redirect to="/login" />);
+    if (this.state.redirect) return (<Redirect to="/diary" />);
     return (
       <div className="addRecord-page">
         <div className="addRecord-container">
@@ -115,6 +122,7 @@ AddRecord.propTypes = {
   commitRamen: PropTypes.func.isRequired,
   isFetching: PropTypes.bool.isRequired,
   reqMsg: PropTypes.string.isRequired,
+  isLogin: PropTypes.bool.isRequired,
 };
 
 export default AddRecord;

@@ -16,6 +16,9 @@ export const actions = {
     type: actionsTypes.COMMIT_RAMEN,
     data,
   }),
+  fetchDiary: () => ({
+    type: actionsTypes.FETCH_DIARY,
+  }),
 };
 
   // initial state

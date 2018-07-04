@@ -53,6 +53,45 @@ export function* commitRamenFlow() {
   }
 }
 
+export function* fetchDiary(id) {
+  yield put({ type: globalActionsTypes.FETCH_START });
+  try {
+    return yield call(get, `/diary/${id}`);
+  } catch (error) {
+    console.log(error);
+    return yield put({ code: 2, message: '網路異常，請稍候重試' });
+  } finally {
+    yield put({ type: globalActionsTypes.FETCH_END });
+  }
+}
+
+export function* fetchDiaryFlow() {
+  while (true) {
+    const req = yield take(diaryActionsTypes.FETCH_DIARY);
+    const id = yield select(state => state.global.userInfo.userId);
+    const res = yield call(fetchDiary, id);
+    if (res) {
+      const isReqSuccess = (res.code === 0);
+      yield put({
+        type: globalActionsTypes.SET_MESSAGE,
+        msgContent: res.message,
+        isReqSuccess,
+        code: res.code,
+      });
+      if (res.code === 0) {
+        yield put({ type: diaryActionsTypes.RECIEVE_DIARY, data: res.data });
+      }
+    } else {
+      yield put({
+        type: globalActionsTypes.SET_MESSAGE,
+        msgContent: '網路異常，請稍候重試',
+        isReqSuccess: false,
+        code: 2,
+      });
+    }
+  }
+}
+
 export function* addFavorite() {
   while (true) {
     const req = yield take(diaryActionsTypes.ADD_FAVORITE);

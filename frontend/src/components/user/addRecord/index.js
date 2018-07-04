@@ -9,6 +9,7 @@ const { commitRamen } = diaryActions;
 const mpaStateToProps = state => ({
   restaurantNameList: state.ramen.restaurantNameList,
   isFetching: state.global.isFetching,
+  isLogin: state.global.isLogin,
   reqMsg: state.global.msg.content,
 });
 

@@ -7,6 +7,7 @@ import AddForm from './search/addForm';
 import PageNotFound from './pageNotFound';
 import SearchResult from './search/result';
 import Diary from './user/diary';
+import AddRecord from './user/addRecord';
 
 const Router = () => (
   <div className="all-wrapper">
@@ -16,6 +17,7 @@ const Router = () => (
       <Route path="/diary" exact component={Diary} />
       <Route path="/login" exact component={LoginPanel} />
       <Route path="/addform" exact component={AddForm} />
+      <Route path="/addrecord" exact component={AddRecord} />
       <Route path="/ramen/restaurant/:id" exact component={SearchResult} />
       <Route component={PageNotFound} />
     </Switch>
