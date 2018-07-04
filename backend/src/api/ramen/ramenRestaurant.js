@@ -53,7 +53,7 @@ router.patch('/:id', (req, res) => {
   ).then((result) => {
     if (result.n !== 1) response(res, 200, 2, '更新失敗');
     else {
-      RamenModel.find({ _id: id }).then((data) => {
+      RamenModel.findOne({ _id: id }).then((data) => {
         if (!data) response(res, 200, 2, '更新失敗');
         else response(res, 200, 0, '更新成功', data);
       });
@@ -141,14 +141,18 @@ router.get('/ramenRestaurantNameList', (req, res) => {
 
 router.get('/:id', (req, res) => {
   const { id } = req.params;
+  // const { userId } = req.
   if (!id) {
     response(res, 200, 2, '該麵店不存在');
     return;
   }
   RamenModel.findOne({ _id: id })
     .then((result) => {
-      if (result) response(res, 200, 0, '成功載入麵店', result);
-      else response(res, 200, 2, '麵店不存在');
+      if (!result) response(res, 200, 2, '麵店不存在');
+      else {
+        // UserModel
+        response(res, 200, 0, '成功載入麵店', result);
+      }
     }).catch((err) => {
       response(res, 200, 2, '載入麵店失敗');
       console.log(err);

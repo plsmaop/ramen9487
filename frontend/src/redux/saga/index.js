@@ -5,10 +5,10 @@ import {
 import {
   getRestaurantListFlow, getRestaurantFlow, getRestaurantReviewsFlow,
   postReviewFlow, uploadImageFlow, postNewRestaurantFlow,
-  fetchImage,
+  fetchImage, getRestaurantNameListFlow,
 } from './ramenSaga';
 
-import { addFavorite } from './diarySaga';
+import { addFavorite, commitRamenFlow, fetchDiaryFlow } from './diarySaga';
 
 export default function* rootSaga() {
   yield fork(loginFlow);
@@ -23,4 +23,7 @@ export default function* rootSaga() {
   yield fork(postNewRestaurantFlow);
   yield fork(fetchImage);
   yield fork(addFavorite);
+  yield fork(getRestaurantNameListFlow);
+  yield fork(commitRamenFlow);
+  yield fork(fetchDiaryFlow);
 }

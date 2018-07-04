@@ -209,6 +209,42 @@ export function* getRestaurantListFlow() {
   }
 }
 
+export function* getRestaurantNameList() {
+  yield put({ type: globalActionsTypes.FETCH_START });
+  try {
+    return yield call(get, '/ramen/restaurant/ramenRestaurantNameList');
+  } catch (err) {
+    return yield put({ code: 2, message: '網路異常，請稍候重試' });
+  } finally {
+    yield put({ type: globalActionsTypes.FETCH_END });
+  }
+}
+
+export function* getRestaurantNameListFlow() {
+  while (true) {
+    yield take(ramenActionsTypes.GET_RESTAURANT_NAME_LIST);
+    const res = yield call(getRestaurantNameList);
+    if (res) {
+      if (res.code === 0) {
+        yield put({ type: ramenActionsTypes.RECIEVE_RESTAURANT_NAME_LIST, data: res.data });
+        yield put({
+          type: globalActionsTypes.SET_MESSAGE,
+          msgContent: res.message,
+          isReqSuccess: true,
+          code: res.code,
+        });
+      } else {
+        yield put({
+          type: globalActionsTypes.SET_MESSAGE,
+          msgContent: res.message,
+          isReqSuccess: false,
+          code: res.code,
+        });
+      }
+    }
+  }
+}
+
 export function* getRestaurant(id) {
   yield put({ type: globalActionsTypes.FETCH_START });
   try {

@@ -6,6 +6,48 @@ const router = express.Router();
 const { UserModel, RamenModel } = models;
 const { response } = functions;
 
+class Data {
+  constructor() {
+    this.data = [
+      {
+        "eatTime": "lunch",
+        "Mon": 0,
+        /* "hot dogColor": "hsl(202, 70%, 50%)", */
+        "Tue": 0,
+        /* "burgerColor": "hsl(197, 70%, 50%)", */
+        "Wed": 0,
+        /* "sandwichColor": "hsl(53, 70%, 50%)", */
+        "Thu": 0,
+        /* "kebabColor": "hsl(195, 70%, 50%)", */
+        "Fri": 0,
+        /* "friesColor": "hsl(243, 70%, 50%)", */
+        "Sat": 0,
+        /* "donutColor": "hsl(88, 70%, 50%)", */
+        "Sun": 0,
+        /* "junkColor": "hsl(270, 70%, 50%)", */
+
+      },
+      {
+        "eatTime": "dinner",
+        "Mon": 0,
+        /* "hot dogColor": "hsl(38, 70%, 50%)", */
+        "Tue": 0,
+        /* "burgerColor": "hsl(277, 70%, 50%)", */
+        "Wed": 0,
+        /* "sandwichColor": "hsl(289, 70%, 50%)", */
+        "Thu": 0,
+        /* "kebabColor": "hsl(226, 70%, 50%)", */
+        "Fri": 0,
+        /* "friesColor": "hsl(213, 70%, 50%)", */
+        "Sat": 0,
+        /* "donutColor": "hsl(120, 70%, 50%)", */
+        "Sun": 0,
+        /* "junkColor": "hsl(80, 70%, 50%)", */
+      },
+    ];
+  }
+}
+
 router.post('/:id/newRamenRecord', (req, res) => {
   const { id } = req.params;
   if (!req.session.userInfo) {
@@ -26,7 +68,7 @@ router.post('/:id/newRamenRecord', (req, res) => {
       response(res, 200, 2, '上傳拉麵紀錄失敗');
       return;
     }
-    RamenModel.find({ _id: req.body.id }, 'popularity').then((data) => {
+    RamenModel.findOne({ _id: req.body.id }, 'popularity').then((data) => {
       if (!data) {
         response(res, 200, 2, '上傳拉麵紀錄失敗');
         return;
@@ -62,13 +104,17 @@ router.get('/:id', (req, res) => {
     return;
   }
   UserModel.findOne({ _id: id }, 'ramenRecords myRamen').then((data) => {
-    console.log(data);
     if (!data) response(res, 200, 2, '獲取拉麵紀錄失敗');
     else {
       RamenModel.find({ _id: { $in: data.myRamen } }, 'name img').then((result) => {
-        console.log(result);
-        if (result) response(res, 200, 0, '獲取拉麵紀錄成功', { ramenRecords: data.ramenRecords, myRamen: result });
-        else response(res, 200, 2, '獲取拉麵紀錄失敗');
+        if (result) {
+          const formatData = new Data().data;
+          data.ramenRecords.forEach((item) => {
+            if (item.time === 'lunch') formatData[0][item.weekday] += 1;
+            else formatData[1][item.weekday] += 1;
+          });
+          response(res, 200, 0, '獲取拉麵紀錄成功', { ramenRecords: formatData, myRamen: result });
+        } else response(res, 200, 2, '獲取拉麵紀錄失敗');
       }).catch((err) => {
         response(res, 200, 2, '獲取拉麵紀錄失敗');
         console.log(err);

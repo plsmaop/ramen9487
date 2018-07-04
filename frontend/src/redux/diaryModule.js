@@ -12,10 +12,12 @@ export const actions = {
     type: actionsTypes.ADD_FAVORITE,
     favoriteRamenId,
   }),
-  commitRamen: (id, data) => ({
+  commitRamen: data => ({
     type: actionsTypes.COMMIT_RAMEN,
-    id,
     data,
+  }),
+  fetchDiary: () => ({
+    type: actionsTypes.FETCH_DIARY,
   }),
 };
 
