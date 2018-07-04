@@ -8,6 +8,7 @@ const { postNewRestaurant } = ramenActions;
 const mapStateToProps = state => ({
   fetchedData: state.image.fetchedData,
   isFetching: state.global.isFetching,
+  isLogin: state.global.isLogin,
 });
 
 export default connect(mapStateToProps, { updateImage, uploadImage, postNewRestaurant })(AddForm);

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router';
 import { findDOMNode } from 'react-dom';
 import PropTypes from 'prop-types';
 import './style.css';
@@ -14,10 +15,17 @@ class LoginPanel extends Component {
       rname: '',
       rpass: '',
       remail: '',
+      redirect: false,
     };
     this.handleRegisterClick = this.handleRegisterClick.bind(this);
     this.handleLoginClick = this.handleLoginClick.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.isLogin) {
+      setTimeout(() => this.setState({ redirect: true }), 2000);
+    }
   }
 
   handleRegisterClick() {
@@ -39,11 +47,12 @@ class LoginPanel extends Component {
   render() {
     const {
       username, password, rname, rpass,
-      remail
+      remail, redirect,
     } = this.state;
     const { handleInputChange } = this;
-    const { userLogin, userRegister } = this.props;
+    const { userLogin, userRegister, isLogin } = this.props;
     console.log(this.props);
+    if (redirect || isLogin) return (<Redirect to="/" />); 
     return(
       <div>
         <div className="login-container">
@@ -77,6 +86,7 @@ class LoginPanel extends Component {
 LoginPanel.propTypes = {
   userLogin: PropTypes.func.isRequired,
   userRegister: PropTypes.func.isRequired,
+  isLogin: PropTypes.bool.isRequired,
 };
 
 export default LoginPanel;

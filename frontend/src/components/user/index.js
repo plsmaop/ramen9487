@@ -3,5 +3,8 @@ import { actions } from '../../redux/globalModule';
 import LoginPanel from './loginPanel';
 
 const { userLogin, userRegister } = actions;
+const mapStateToProps = state => ({
+  isLogin: state.global.isLogin,
+});
 
-export default connect(null, { userLogin, userRegister })(LoginPanel);
+export default connect(mapStateToProps, { userLogin, userRegister })(LoginPanel);

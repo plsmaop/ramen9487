@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Redirect } from 'react-router';
 import './style.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import MRT from './mrtSelect';
@@ -72,7 +73,8 @@ class AddForm extends Component {
 
   render() {
     const { handleFileUpload, handleInputUpdate, state } = this;
-    const { uploadImage, isFetching, postNewRestaurant } = this.props;
+    const { uploadImage, isFetching, postNewRestaurant, isLogin } = this.props;
+    if (!isLogin) return (<Redirect to="/login" />);
     console.log(this.state);
     const menu = [];
     const mrt = [];
@@ -307,6 +309,7 @@ AddForm.propTypes = {
   uploadImage: PropTypes.func.isRequired,
   postNewRestaurant: PropTypes.func.isRequired,
   isFetching: PropTypes.bool.isRequired,
+  isLogin: PropTypes.bool.isRequired,
   // fetchedData: PropTypes.objectOf(String).isRequired,
 };
 

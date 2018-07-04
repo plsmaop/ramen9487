@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { ResponsiveHeatMap } from '@nivo/heatmap';
 import './style.css';
+import LoginPanel from '../index';
 
 let data=[
   {
@@ -41,8 +43,10 @@ let data=[
   },
 ]
 
-export default class Diary extends Component {
-  render(){
+class Diary extends Component {
+  render() {
+    const { isLogin } = this.props;
+    if (!isLogin) return (<div className="login-background"><LoginPanel/></div>)
     return(
       <div className="diary-wrapper">
 
@@ -154,3 +158,9 @@ export default class Diary extends Component {
     )
   }
 }
+
+Diary.propTypes = {
+  isLogin: PropTypes.bool.isRequired,
+};
+
+export default Diary;

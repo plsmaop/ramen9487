@@ -6,6 +6,7 @@ const mapStateToProps = state => ({
   page: state.ramen.page,
   totalNumber: state.ramen.totalNumber,
   restaurantList: state.ramen.restaurantList,
+  isFetching: state.global.isFetching,
 });
 
 const { getRestaurantList } = actions;

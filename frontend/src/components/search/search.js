@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import Select from 'react-select';
-import Pagination from './pagination';
-
-
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import Pagination from './pagination';
+import LoadingScreen from '../loadingScreen';
 import SearchListItem from './searchListItem';
 
 import './style.css';
@@ -236,16 +236,18 @@ class Search extends Component {
     const { crazyMRT, disabledMRT, stayOpenMRT, valueMRT,
       crazyRamen, disabledRamen, stayOpenRamen, valueRamen,
     } = this.state;
-    const { restaurantList, totalNumber } = this.props;
+    const { restaurantList, totalNumber, isFetching } = this.props;
     const { keyWord } = this.state;
     const { handleSearchConditionsChange, handleSearch } = this;
     console.log(this.state);
     const limit = totalNumber%5 === 0 ? totalNumber/5 : Math.floor(totalNumber/5)+1;
     return (
       <div>
-        <span class="addForm-button">
-          <i class="addForm-button-icon fa fa-plus"></i>
-        </span>
+        <Link to="/addform">
+          <span class="addForm-button">
+            <i class="addForm-button-icon fa fa-plus"></i>
+          </span>
+        </Link>
 
         <div className="search-container">
           <div id="search-box">
@@ -288,12 +290,17 @@ class Search extends Component {
           value={valueRamen}
         />
         {
-          restaurantList.map(item => <SearchListItem {...item} />)
+          isFetching ?  <LoadingScreen type="拉麵列表載入中..." color="#FF5722" /> :
+            (<div>
+              {
+                restaurantList.map(item => <SearchListItem {...item} />)
+              }
+              <div className="pagination-wrapper">
+                <Pagination totalRecords={totalNumber} pageLimit={5} pageNeighbours={1} onPageChanged={handleSearch} />
+                {/* totalRecords: 總共幾筆資料 pageLimit: 最多幾頁 改這兩個東西就好 */}
+              </div>
+            </div>) 
         }
-        <div className="pagination-wrapper">
-              <Pagination totalRecords={totalNumber} pageLimit={5} pageNeighbours={1} onPageChanged={handleSearch} />
-              {/* totalRecords: 總共幾筆資料 pageLimit: 最多幾頁 改這兩個東西就好 */}
-            </div>
       </div>
     );
   }
@@ -303,6 +310,7 @@ Search.propTypes = {
   totalNumber: PropTypes.number.isRequired,
   restaurantList: PropTypes.arrayOf(Object).isRequired,
   getRestaurantList: PropTypes.func.isRequired,
+  isFetching: PropTypes.bool.isRequired,
 };
 
 export default Search;
