@@ -48,8 +48,8 @@ class AddRecord extends Component {
   }
 
   render() {
-    const { isFetching, commitRamen, restaurantNameList, isLogin } = this.props;
-    const { handleInputChange, handleSumbit } = this;
+    const { isFetching, commitRamen, restaurantNameList, isLogin, postNewRestaurant } = this.props;
+    const { handleInputChange, handleSumbit,state } = this;
     // if (isFetching) return (<LoadingScreen type="載入拉麵店名..." color="#9C27B0" />);
     // console.log(this.state);
     if (!isLogin) return (<Redirect to="/login" />);
@@ -61,7 +61,7 @@ class AddRecord extends Component {
 
             <div className="row">
                 <h2 className="addRecord-h2">店名</h2>
-                <option>--</option>
+                {/* <option>--</option> */}
                 <select className="addRecord-select" onChange={e => handleInputChange('id', e)}>
                   {
                     restaurantNameList.map(item => (
@@ -100,8 +100,9 @@ class AddRecord extends Component {
                   </div>
                   
                 </div>
-              <div className="row">
-              <div className="submit-result addRecord-submit" onClick={handleSumbit}>
+              <div className="row" style={{ textAlign: 'center' }}>
+                {/* <ButtonProgress type="submit" color="#FF4081" isFetching={isFetching} handleClick={() => postNewRestaurant(state)} /> */}
+                <div className="submit-result addRecord-submit" onClick={handleSumbit}>
                 Submit
                 <svg className="submit-svg addRecord-submit-svg" width="130" height="65" viewBox="0 0 130 65" xmlns="http://www.w3.org/2000/svg">
                   <rect x='0' y='0' fill='none' width='130' height='65'/>
@@ -123,12 +124,15 @@ AddRecord.propTypes = {
   isFetching: PropTypes.bool.isRequired,
   reqMsg: PropTypes.string.isRequired,
   isLogin: PropTypes.bool.isRequired,
+  postNewRestaurant: PropTypes.func.isRequired,
 };
 
 export default AddRecord;
 
 
 /*
+
+
 
 <div className="submit-result addRecord-submit" onClick={handleSumbit}>
                 Submit

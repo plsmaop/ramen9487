@@ -221,7 +221,7 @@ class Search extends Component {
 
   handleSearch(i) {
     console.log(this.props.totalNumber)
-    console.log('fuckkk',i)
+    /* console.log('fuckkk',i) */
     const { getRestaurantList } = this.props;
     const { /* currentPage, */ valueMRT, valueRamen, keyWord } = this.state;
     const location = valueMRT.split(',');
