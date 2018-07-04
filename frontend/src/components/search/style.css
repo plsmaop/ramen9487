@@ -21,9 +21,10 @@
 
 
 
-.search-background{
+.search-page{
   background-color: tomato;
-  height: 1024px;
+  height: 100%;
+  overflow-x: scroll;
   
 }
 

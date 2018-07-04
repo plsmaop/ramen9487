@@ -39,126 +39,128 @@ class SearchResult extends Component {
     const review = currentRestaurantReviews.length > 0 ? currentRestaurantReviews.map(i => i.content) : [];
     
     return(
-      <div className="result-wrapper">
+      <div className="result-page">
+        <div className="result-wrapper">
 
-        <div className="result-block result-summary">
-          <div className="result-summaryCard">
-            
-            <div className="result-color-overlay">
-              <div className="movie-content">
-                <div className="movie-header">
-                  <h1 className="movie-title">{name}</h1>
+          <div className="result-block result-summary">
+            <div className="result-summaryCard">
+              
+              <div className="result-color-overlay">
+                <div className="movie-content">
+                  <div className="movie-header">
+                    <h1 className="movie-title">{name}</h1>
+                  </div>
+                  <p className="store-desc">
+                    <h5 className="search-ratings-h">Ratings: <div className="search-ratings">{(Math.floor(Number(totalScore)*100)) / 100}</div></h5>
+                    <h5 className="search-views-h">Views: <div className="search-views">{Number(popularity)}</div></h5>
+                  </p>
+
+                  <div className="summary-footer">
+                    <div ref="like-button" className={this.state.like} onClick={this.toggleHeartClass}>♥</div>
+                  </div>
+
                 </div>
-                <p className="store-desc">
-                  <h5 className="search-ratings-h">Ratings: <div className="search-ratings">{(Math.floor(Number(totalScore)*100)) / 100}</div></h5>
-                  <h5 className="search-views-h">Views: <div className="search-views">{Number(popularity)}</div></h5>
-                </p>
-
-                <div className="summary-footer">
-                  <div ref="like-button" className={this.state.like} onClick={this.toggleHeartClass}>♥</div>
-                </div>
-
               </div>
+            </div>
+            {
+              img
+            }
+          </div>
+
+          <div className="result-block result-sidebar">
+            <div className="result-basic">
+
+              <div className="icon-info-wrap">
+                <div className="result-icon location"></div>
+                <div className="result-ans">{address}</div>
+              </div>
+
+
+
+              <div className="icon-info-wrap">
+                <div className="result-icon web"></div>
+                <div className="result-ans web-ans"><a href={url}>點我</a></div>
+              </div>
+
+              <div className="icon-info-wrap wrap-menu">
+                <div className="result-icon result-menu"></div>
+                <div className="result-ans menu-ans">
+                  <article>
+                    {
+                      menu.map(item => (
+                        <div className="menu-title">
+                          <span>{item}</span>
+                        </div>
+                      ))
+                    }
+                    
+                  </article>
+                </div>
+              </div>
+
+              
+              <div className="icon-info-wrap wrap-tags">
+                <div className="result-icon near-mrt"></div>
+              
+                  <ul className="tags">
+                    {
+                      location.map(item => (
+                        <div className="tag">
+                          <span>{item}</span>
+                        </div>
+                      ))
+                    }
+
+                  </ul>
+                
+              </div>
+
+              <div className="icon-info-wrap wrap-tags">
+                <div className="result-icon category"></div>
+                
+                  <ul className="tags">
+                    {
+                      tag.map(item => (
+                        <div className="tag">
+                          <span>{item}</span>
+                        </div>
+                      ))
+                    }
+
+                  </ul>
+                
+              </div>
+
+
+
+              <div className="icon-info-wrap wrap-tags">
+                <div className="result-icon ps"></div>
+                {
+                  review.map(i => (
+                    <div className="result-ans">{i}</div>
+                  ))
+                }
+                              
+              </div>
+
+              <div className="icon-info-wrap ">
+                <div className="addComment-result">
+                  Add comment
+                  <svg className="addComment-svg" width="130" height="65" viewBox="0 0 130 65" xmlns="http://www.w3.org/2000/svg">
+                    <rect x='0' y='0' fill='none' width='130' height='65'/>
+                  </svg>
+                </div>
+              </div>
+
             </div>
           </div>
-          {
-            img
-          }
-        </div>
 
-        <div className="result-block result-sidebar">
-          <div className="result-basic">
-
-            <div className="icon-info-wrap">
-              <div className="result-icon location"></div>
-              <div className="result-ans">{address}</div>
-            </div>
-
-
-
-            <div className="icon-info-wrap">
-              <div className="result-icon web"></div>
-              <div className="result-ans web-ans"><a href={url}>點我</a></div>
-            </div>
-
-            <div className="icon-info-wrap wrap-menu">
-              <div className="result-icon result-menu"></div>
-              <div className="result-ans ">
-                <article>
-                  {
-                    menu.map(item => (
-                      <div className="menu-title">
-                        <span>{item}</span>
-                      </div>
-                    ))
-                  }
-                  
-                </article>
-              </div>
-            </div>
-
-            
-            <div className="icon-info-wrap wrap-tags">
-              <div className="result-icon near-mrt"></div>
-             
-                <ul className="tags">
-                  {
-                    location.map(item => (
-                      <div className="menu-title">
-                        <span>{item}</span>
-                      </div>
-                    ))
-                  }
-
-                </ul>
-              
-            </div>
-
-            <div className="icon-info-wrap wrap-tags">
-              <div className="result-icon category"></div>
-              
-                <ul className="tags">
-                  {
-                    tag.map(item => (
-                      <div className="menu-title">
-                        <span>{item}</span>
-                      </div>
-                    ))
-                  }
-
-                </ul>
-              
-            </div>
-
-
-
-            <div className="icon-info-wrap wrap-tags">
-              <div className="result-icon ps"></div>
-              {
-                review.map(i => (
-                  <div className="result-ans">{i}</div>
-                ))
-              }
-                            
-            </div>
-
-            <div className="icon-info-wrap ">
-              <div className="addComment-result">
-                Add comment
-                <svg className="addComment-svg" width="130" height="65" viewBox="0 0 130 65" xmlns="http://www.w3.org/2000/svg">
-                  <rect x='0' y='0' fill='none' width='130' height='65'/>
-                </svg>
-              </div>
-            </div>
-
+          <div className="result-block result-info1">
+            <Map />
           </div>
+          
+          {/* <div className="result-block result-info2"></div> */}
         </div>
-
-        <div className="result-block result-info1">
-           <Map />
-        </div>
-         
-        {/* <div className="result-block result-info2"></div> */}
       </div>
     )
   }

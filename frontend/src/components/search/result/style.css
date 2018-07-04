@@ -1,5 +1,10 @@
 
-
+.result-page{
+  background-color: tomato;
+  height: 100%;
+  overflow-x: scroll;
+  padding-left: 15%;
+}
 .result-wrapper {
   display: grid;
   grid-gap: 4%;
@@ -356,13 +361,13 @@
 .wrap-tags{
   margin-top: 3%;
   display: block;
-  height: 10%;
+  height: 8%;
 }
 
 
 .tags {
   list-style: none;
-  margin-left: 20%;
+  margin-left: 21%;
   margin-top: 1%;
   overflow: hidden; 
   padding: 0;
@@ -422,10 +427,13 @@
 
 .wrap-menu{
   display: block;
-  height: 25%;
+  height: 15%;
   width:  130%;
 }
 
+.menu-ans{
+  margin-left: 14%;
+}
 .menu-title {
   position:relative;
   padding:5%;

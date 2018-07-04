@@ -54,7 +54,7 @@ class LoginPanel extends Component {
     console.log(this.props);
     if (redirect || isLogin) return (<Redirect to="/" />); 
     return(
-      <div>
+      <div className="login-page">
         <div className="login-container">
           <div className="info">
             <h1>Login</h1>

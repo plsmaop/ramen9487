@@ -1,7 +1,7 @@
-.login-background{
+.login-page{
   background-color: rebeccapurple;
-  height: 850px;
-  
+  height: 100%;
+  overflow-x: scroll;
 }
 
 /* Form */

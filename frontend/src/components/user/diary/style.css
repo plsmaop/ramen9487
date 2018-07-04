@@ -1,8 +1,17 @@
+.diary-page{
+  background-color: rebeccapurple;
+  height: 100%;
+  padding-left: 15%;
+  overflow: scroll;
+  position: absolute;
+  overflow-x: hidden;
+}
+
 .diary-wrapper{
   display: grid;
   grid-gap: 4%;
   grid-template-columns: 26% 26% 24%;
-  grid-template-rows: 30% 75% ;
+  grid-template-rows: 30% 65% ;
   background-color: rebeccapurple;
   color: #444;
   width: 100%;
@@ -44,8 +53,8 @@
 
 .logo-block{
   position: absolute;
-  top: 1%;
-  left: 4%;
+  top: 0.1%;
+  left: 16%;
   width:12%;
   height: 20%;
   border-radius: 5px;
@@ -98,7 +107,7 @@
   z-index: 900;
   position: absolute;
   top: 4%;
-  right: 13%;
+  right: 10%;
   display: block;
   cursor: pointer;
   width: 6%;
@@ -188,8 +197,8 @@
 
 .diary-favorite-logo-block{
   position: absolute;
-  top: 100%;
-  left: 74%;
+  top: 88%;
+  left: 78%;
   width:12%;
   height: 16%;
   border-radius: 5px;

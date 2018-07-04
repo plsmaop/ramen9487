@@ -242,7 +242,7 @@ class Search extends Component {
     console.log(this.state);
     const limit = totalNumber%5 === 0 ? totalNumber/5 : Math.floor(totalNumber/5)+1;
     return (
-      <div>
+      <div className="search-page">
         <Link to="/addform">
           <span class="addForm-button">
             <i class="addForm-button-icon fa fa-plus"></i>

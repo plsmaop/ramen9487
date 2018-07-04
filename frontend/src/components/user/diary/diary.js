@@ -46,114 +46,116 @@ let data=[
 class Diary extends Component {
   render() {
     const { isLogin } = this.props;
-    if (!isLogin) return (<div className="login-background"><LoginPanel/></div>)
+    if (!isLogin) return (<div className="login-page"><LoginPanel/></div>)
     return(
-      <div className="diary-wrapper">
+      <div className="diary-page">
+        <div className="diary-wrapper">
 
-        <div className="diary-block diary-profile">
-          <div className="logo-block"><div className="diary-logo"></div></div>
-          <div className="diary-user">User</div>
-          <div className="diary-username">陳孝思</div>
+          <div className="diary-block diary-profile">
+            <div className="logo-block"><div className="diary-logo"></div></div>
+            <div className="diary-user">User</div>
+            <div className="diary-username">陳孝思</div>
+          </div>
+
+          <div className="diary-block diary-heatmap">
+            <span class="update-diary-button">
+              <i class="update-diary--button-icon fa fa-plus fa-lg"></i>
+            </span>
+
+            <ResponsiveHeatMap
+                data={data}
+                keys={[
+                  "Mon",
+                  "Tue",
+                  "Wed",
+                  "Thu",
+                  "Fri",
+                  "Sat",
+                  "Sun"
+                ]}
+                indexBy="eatTime"
+                margin={{
+                    "top": 100,
+                    "right": 60,
+                    "bottom": 60,
+                    "left": 60
+                }}
+                colors="purples"
+                axisTop={{
+                    "orient": "top",
+                    "tickSize": 5,
+                    "tickPadding": 5,
+                    "tickRotation": 0,
+                    "legend": "",
+                    "legendOffset": 36
+                }}
+                axisLeft={{
+                    "orient": "left",
+                    "tickSize": 5,
+                    "tickPadding": 5,
+                    "tickRotation": 0,
+                    "legendPosition": "center",
+                    "legendOffset": -40
+                }}
+                cellOpacity={0.75}
+                cellBorderWidth={3}
+                cellBorderColor="inherit:darker(0.4)"
+                labelTextColor="inherit:darker(1.8)"
+                defs={[
+                    {
+                        "id": "lines",
+                        "type": "patternLines",
+                        "background": "inherit",
+                        "color": "rgba(0, 0, 0, 0.1)",
+                        "rotation": -45,
+                        "lineWidth": 4,
+                        "spacing": 7
+                    }
+                ]}
+                fill={[
+                    {
+                        "id": "lines"
+                    }
+                ]}
+                animate={true}
+                motionStiffness={100}
+                motionDamping={9}
+                isInteractive={false}
+                hoverTarget="cell"
+                cellHoverOpacity={0.55}
+                cellHoverOthersOpacity={0.25}
+            />
+          </div>
+
+          <div className="diary-block diary-favorites">
+              <div className="diary-favorite-logo-block"><div className="diary-favorite-logo"></div></div>
+
+              <div className="diary-favorite-element ">
+                {/* <div className="diary-favorite-img love1"></div> */}
+                <img  src="https://2.bp.blogspot.com/-9i4Qmtjlq4c/We8IWmECzcI/AAAAAAAAbrQ/PYMDXo9loH8OOVYvpB3eTws8yXTnR8hXwCLcBGAs/s1600/IMG_3337.JPG"/>
+                <div className="diary-favorite-name">東京鷹流拉麵</div>
+              </div>
+              
+              <div className="diary-favorite-element ">
+              <img  src="https://img.tenjo.tw/uploads/20170411233851_60.jpg"/>
+                <div className="diary-favorite-name">山嵐拉麵 忠孝店</div>
+              </div>
+
+              <div className="diary-favorite-element ">
+              <img  src="http://pics13.yamedia.tw/43/userfile/s/strangerckbe/album/156bdad30e9dbd.jpg"/>
+                <div className="diary-favorite-name">鬼金棒 台北總店</div>
+              </div>
+
+              <div className="diary-favorite-element ">
+              <img  src="https://pic.pimg.tw/vilo92/1461163249-2633035104.jpg?v=1461163301"/>
+                <div className="diary-favorite-name">麵屋真燈</div>
+              </div>
+              
+              <div className="diary-favorite-title">Favorites</div>
+          </div>
+          
+
         </div>
-
-        <div className="diary-block diary-heatmap">
-          <span class="update-diary-button">
-            <i class="update-diary--button-icon fa fa-plus fa-lg"></i>
-          </span>
-
-          <ResponsiveHeatMap
-              data={data}
-              keys={[
-                "Mon",
-                "Tue",
-                "Wed",
-                "Thu",
-                "Fri",
-                "Sat",
-                "Sun"
-              ]}
-              indexBy="eatTime"
-              margin={{
-                  "top": 100,
-                  "right": 60,
-                  "bottom": 60,
-                  "left": 60
-              }}
-              colors="purples"
-              axisTop={{
-                  "orient": "top",
-                  "tickSize": 5,
-                  "tickPadding": 5,
-                  "tickRotation": 0,
-                  "legend": "",
-                  "legendOffset": 36
-              }}
-              axisLeft={{
-                  "orient": "left",
-                  "tickSize": 5,
-                  "tickPadding": 5,
-                  "tickRotation": 0,
-                  "legendPosition": "center",
-                  "legendOffset": -40
-              }}
-              cellOpacity={0.75}
-              cellBorderWidth={3}
-              cellBorderColor="inherit:darker(0.4)"
-              labelTextColor="inherit:darker(1.8)"
-              defs={[
-                  {
-                      "id": "lines",
-                      "type": "patternLines",
-                      "background": "inherit",
-                      "color": "rgba(0, 0, 0, 0.1)",
-                      "rotation": -45,
-                      "lineWidth": 4,
-                      "spacing": 7
-                  }
-              ]}
-              fill={[
-                  {
-                      "id": "lines"
-                  }
-              ]}
-              animate={true}
-              motionStiffness={100}
-              motionDamping={9}
-              isInteractive={false}
-              hoverTarget="cell"
-              cellHoverOpacity={0.55}
-              cellHoverOthersOpacity={0.25}
-          />
-        </div>
-
-        <div className="diary-block diary-favorites">
-            <div className="diary-favorite-logo-block"><div className="diary-favorite-logo"></div></div>
-
-            <div className="diary-favorite-element ">
-              {/* <div className="diary-favorite-img love1"></div> */}
-              <img  src="https://2.bp.blogspot.com/-9i4Qmtjlq4c/We8IWmECzcI/AAAAAAAAbrQ/PYMDXo9loH8OOVYvpB3eTws8yXTnR8hXwCLcBGAs/s1600/IMG_3337.JPG"/>
-              <div className="diary-favorite-name">東京鷹流拉麵</div>
-            </div>
-            
-            <div className="diary-favorite-element ">
-            <img  src="https://img.tenjo.tw/uploads/20170411233851_60.jpg"/>
-              <div className="diary-favorite-name">山嵐拉麵 忠孝店</div>
-            </div>
-
-            <div className="diary-favorite-element ">
-            <img  src="http://pics13.yamedia.tw/43/userfile/s/strangerckbe/album/156bdad30e9dbd.jpg"/>
-              <div className="diary-favorite-name">鬼金棒 台北總店</div>
-            </div>
-
-            <div className="diary-favorite-element ">
-            <img  src="https://pic.pimg.tw/vilo92/1461163249-2633035104.jpg?v=1461163301"/>
-              <div className="diary-favorite-name">麵屋真燈</div>
-            </div>
-            
-            <div className="diary-favorite-title">Favorites</div>
-        </div>
-        
-
       </div>
     )
   }
