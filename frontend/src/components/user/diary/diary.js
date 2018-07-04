@@ -156,10 +156,12 @@ class Diary extends Component {
             <div className="diary-favorite-logo-block"><div className="diary-favorite-logo"></div></div>
             {
               diary.myRamen ? diary.myRamen.map(item => (
+                <Link to={`/ramen/restaurant/${item._id}`} >
                 <div className="diary-favorite-element ">
                   <img src="https://2.bp.blogspot.com/-9i4Qmtjlq4c/We8IWmECzcI/AAAAAAAAbrQ/PYMDXo9loH8OOVYvpB3eTws8yXTnR8hXwCLcBGAs/s1600/IMG_3337.JPG"/>
                   <div className="diary-favorite-name"><p>{item.name}</p></div>
                 </div>
+                </Link>
               )) : null
             }
             <div className="diary-favorite-title">Favorites</div>
