@@ -37,7 +37,7 @@ class Menu extends Component {
         <ul id="menu">
           <Link to="/"><li className="icon" id="home"></li></Link>
           <Link to="/search"><li className="icon" id="search"></li></Link>
-          <Link to="/login"><li className="icon" id="ranking"></li></Link>
+          {/* <Link to="/login"><li className="icon" id="ranking"></li></Link> */}
           <Link to="/diary"><li className="icon" id="user"></li></Link>
         </ul>
         <Snackbar
