@@ -113,6 +113,9 @@ class SearchResult extends Component {
             <div className="result-summaryCard">
               
               <div className="result-color-overlay">
+                  {
+                  image
+                }
                 <div className="movie-content">
                   <div className="movie-header">
                     <h1 className="movie-title">{name}</h1>
@@ -129,9 +132,7 @@ class SearchResult extends Component {
                 </div>
               </div>
             </div>
-            {
-              image
-            }
+            
           </div>
 
           <div className="result-block result-sidebar">

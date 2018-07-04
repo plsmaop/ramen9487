@@ -45,11 +45,20 @@
 
 
 
-.result-summary img{
+/* .result-summary img{
   position: absolute;
   top: 7.2%;
   width: 25%;
   height:33.1%;
+} */
+
+.result-color-overlay img{
+  /* position: absolute;
+  top: 41.2%; */
+  
+  width: 50%;
+  height:100%;
+  object-fit: contain;
 }
 
 .result-color-overlay{
