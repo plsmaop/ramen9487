@@ -15,7 +15,7 @@ router.post('/newRamenRestaurant', (req, res) => {
   if (isPublish) {
     RamenModel.update({ _id: req.body.name }, { img: req.body.img })
       .then(result => response(res, 200, 0, '已收到您提供的新拉麵店資訊，我們會在審核完成後放上網站'));
-      return;
+    return;
   }
   const ramenData = {
     ...req.body, isPublish, totalScore: 0, popularity: 1, reviewNumber: 0,

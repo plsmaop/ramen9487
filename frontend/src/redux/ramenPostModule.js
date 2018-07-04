@@ -4,11 +4,11 @@ export const actionsTypes = {
 };
   
 export const actions = {
-  updateContent: (type, data) => {
+  updateContent: (type, data) => ({
     type: actionsTypes.UPDATE_CONTENT,
     contentType: type,
     data,
-  },
+  }),
 };
 
 const initialState = {

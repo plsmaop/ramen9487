@@ -8,6 +8,8 @@ import {
   fetchImage,
 } from './ramenSaga';
 
+import { addFavorite } from './diarySaga';
+
 export default function* rootSaga() {
   yield fork(loginFlow);
   yield fork(registerFlow);
@@ -20,4 +22,5 @@ export default function* rootSaga() {
   yield fork(uploadImageFlow);
   yield fork(postNewRestaurantFlow);
   yield fork(fetchImage);
+  yield fork(addFavorite);
 }

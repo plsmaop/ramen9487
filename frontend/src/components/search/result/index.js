@@ -1,10 +1,12 @@
 import { connect } from 'react-redux';
 import { actions as ramenActions } from '../../../redux/ramenModule';
 import { actions as imageActions } from '../../../redux/imageModule';
+import { actions as diaryActions } from '../../../redux/diaryModule';
 import result from './result';
 
 const { getRestaurant, getRestaurantReviews } = ramenActions;
 const { fetchImage } = imageActions;
+const { addFavorite } = diaryActions;
 
 const mapStateToProps = (state, ownProps) => ({
   isLogin: state.global.isLogin,
@@ -15,4 +17,6 @@ const mapStateToProps = (state, ownProps) => ({
   currentRestaurantReviews: state.ramen.currentRestaurantReviews,
 });
 
-export default connect(mapStateToProps, { getRestaurant, fetchImage, getRestaurantReviews })(result);
+export default connect(mapStateToProps, {
+  getRestaurant, fetchImage, getRestaurantReviews, addFavorite,
+})(result);

@@ -61,11 +61,52 @@ router.get('/:id', (req, res) => {
     response(res, 200, 1, '權限不足');
     return;
   }
-  UserModel.find({ _id: id }, 'ramenRecords myRamen').then((data) => {
-    if (data) response(res, 200, 0, '獲取拉麵紀錄成功', { ramenRecords: data.ramenRecords, myRamen: data.myRamen });
-    else response(res, 200, 2, '獲取拉麵紀錄失敗');
+  UserModel.findOne({ _id: id }, 'ramenRecords myRamen').then((data) => {
+    console.log(data);
+    if (!data) response(res, 200, 2, '獲取拉麵紀錄失敗');
+    else {
+      RamenModel.find({ _id: { $in: data.myRamen } }, 'name img').then((result) => {
+        console.log(result);
+        if (result) response(res, 200, 0, '獲取拉麵紀錄成功', { ramenRecords: data.ramenRecords, myRamen: result });
+        else response(res, 200, 2, '獲取拉麵紀錄失敗');
+      }).catch((err) => {
+        response(res, 200, 2, '獲取拉麵紀錄失敗');
+        console.log(err);
+      });
+    }
   }).catch((err) => {
     response(res, 200, 2, '獲取拉麵紀錄失敗');
+    console.log(err);
+  });
+});
+
+router.post('/:id/favorite', (req, res) => {
+  if (!req.session.userInfo) {
+    response(res, 200, 1, '登入逾期，請重新登入');
+    return;
+  }
+  const { id } = req.params;
+  if (!id) {
+    response(res, 200, 2, '帳號錯誤不存在');
+    return;
+  }
+  const { favoriteRamenId } = req.body;
+  UserModel.update(
+    {
+      _id: id,
+      myRamen: { $ne: favoriteRamenId },
+    },
+    {
+      $push: { myRamen: favoriteRamenId },
+    },
+  ).then((result) => {
+    if (result.n !== 1) {
+      response(res, 200, 2, '收藏拉麵失敗');
+      return;
+    }
+    response(res, 200, 0, '收藏拉麵成功');
+  }).catch((err) => {
+    response(res, 200, 2, '收藏麵店失敗');
     console.log(err);
   });
 });
