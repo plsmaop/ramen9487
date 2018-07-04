@@ -1,6 +1,14 @@
+.comment-page{
+  background-color: tomato;
+  height: 100%;
+  overflow-x: scroll;
+  padding-left: 15%;
+  padding-top:3%;
+}
+
 .comment-container{
   width: 60%;
-  height: 80%;
+  height: 91%;
   padding: 1em 3em 2em 3em;
   margin: 2% auto;
   background-color: #fff;

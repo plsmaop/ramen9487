@@ -130,13 +130,16 @@ class SearchResult extends Component {
 
                   </ul>           
               </div>
-              <div className="icon-info-wrap wrap-tags">
+              <div className="icon-info-wrap wrap-comment">
                 <div className="result-icon ps"></div>
+                <div className="result-ans comment-ans">
                 {
                   review.map(i => (
-                    <div className="result-ans">{i}</div>
+                    <div className="comment-element">{i}</div>
                   ))
-                }                         
+                }
+                {/* <div className="comment-element">fuck</div>   */}                    
+              </div> 
               </div>
               <div className="icon-info-wrap ">
                 <div className="addComment-result" onClick={this.handleAddReview}>

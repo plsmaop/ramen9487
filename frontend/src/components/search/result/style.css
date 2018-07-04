@@ -332,7 +332,7 @@
   margin-top: 3%;
   color: black;
   font-size: 13px;
-  position: absolute;
+  /* position: absolute; */
 }
 
 
@@ -474,6 +474,28 @@ article p {
   
 }
 
+.wrap-comment{
+  /* overflow:scroll; */
+  margin-top: 3%;
+  display: block;
+  height: 8%;
+  margin-bottom: 15%;
+}
+
+.comment-ans{
+  overflow-y: scroll;
+  
+  margin-left: 14%;
+  position: relative;
+}
+
+
+
+.comment-element{
+  padding-left: 14%;
+  margin-bottom: 6%;
+}
+
 .result-info1{
   display: block;
   height: 100%;
@@ -499,7 +521,7 @@ article p {
   text-align: center;
   position: relative;
   cursor: pointer;
-  margin-top: 1%;
+  
  
 }
 
