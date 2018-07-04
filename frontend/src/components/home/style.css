@@ -77,6 +77,63 @@
     
 }
 
+/* .home-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+    padding-left: 20%;
+    padding-top: 15%;
+    max-width: 20%;
+    margin-left: 15%;
+    margin-top: 20%;
+  background-color: transparent;
+}
+.home-title h1 {
+  color: white;
+  text-transform: capitalize;
+  font-size: 92px;
+}
+.home-title h1 {
+  display: block;
+  position: relative;
+  font-family: 'Trade Winds', cursive;
+  font-weight: bold;
+  white-space: nowrap;
+  padding: .5em 0;
+}
+.home-title h1:after {
+  content: "";
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: -25px;
+  background-color: transparent;
+  /* animation: type 4.2s steps(21) forwards infinite, blink 1s steps(2) infinite; 
+} */
+@keyframes blink {
+  from {
+    border-left: 2px solid;
+  }
+  to {
+    border-left: 0;
+  }
+}
+@keyframes type {
+  0% {
+    width: 100%;
+  }
+  50% {
+    width: 0;
+  }
+  100% {
+    width: 0;
+  }
+}
+.jhome-title {
+  text-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.3), 0 3px 5px rgba(0, 0, 0, 0.2), 0 5px 10px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.2), 0 20px 20px rgba(0, 0, 0, 0.15);
+}
 
 
 /* .btn {
