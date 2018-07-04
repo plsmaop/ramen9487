@@ -40,7 +40,7 @@ class Pagination extends Component {
   }
 
   componentDidMount() {
-    this.gotoPage(1);
+    this.gotoPage(this.props.currentPage);
   }
 
   gotoPage = page => {
@@ -55,7 +55,7 @@ class Pagination extends Component {
       totalRecords: this.totalRecords
     };
 
-    this.setState({ currentPage }, () => onPageChanged(currentPage));
+    this.setState({ currentPage }, () => onPageChanged(paginationData));
   }
 
   handleClick = page => evt => {
@@ -192,10 +192,12 @@ class Pagination extends Component {
 }
 
 Pagination.propTypes = {
+  currentPage: PropTypes.number.isRequired,
+
   totalRecords: PropTypes.number.isRequired,
-  pageLimit: PropTypes.number.isRequired,
-  pageNeighbours: PropTypes.number.isRequired,
-  onPageChanged: PropTypes.func.isRequired,
+  pageLimit: PropTypes.number,
+  pageNeighbours: PropTypes.number,
+  onPageChanged: PropTypes.func
 };
 
 export default Pagination;

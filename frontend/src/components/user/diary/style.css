@@ -1,7 +1,8 @@
 .diary-page{
   background-color: rebeccapurple;
   height: 100%;
-  padding-left: 15%;
+  width: 100%;
+  padding-left: 11%;
   overflow: scroll;
   position: absolute;
   overflow-x: hidden;
@@ -53,8 +54,8 @@
 
 .logo-block{
   position: absolute;
-  top: 0.1%;
-  left: 16%;
+  top: 0.2%;
+  left: 13%;
   width:12%;
   height: 20%;
   border-radius: 5px;

@@ -23,7 +23,7 @@ class SearchResult extends Component {
     this.props.getRestaurant(this.props.id);
     this.props.getRestaurantReviews(this.props.id);
 
-    //if (this.props.currentRestaurant.address) {
+    /*if (this.props.currentRestaurant.address) {
       const { address } = this.props.currentRestaurant;
       fetch("https://maps.googleapis.com/maps/api/geocode/json?address=台北市中山區南京東路一段29號&key=AIzaSyCT-UUYx-crn1WAFAyK9KH04ScNCH3GyFw")
         .then((response) => {
@@ -34,13 +34,13 @@ class SearchResult extends Component {
           }
         })
         .then((data) => {
-          console.log(/* data.results[0].geometry.location */data);
+          console.log(/* data.results[0].geometry.location data);
           this.setState({
             lat: data.results[0].geometry.location.lat,
             lan: data.results[0].geometry.location.lng,
           });
         });
-    //}
+    //} */
   }
 
   componentWillReceiveProps(nextProps) {
