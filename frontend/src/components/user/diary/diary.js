@@ -3,61 +3,77 @@ import PropTypes from 'prop-types';
 import { ResponsiveHeatMap } from '@nivo/heatmap';
 import './style.css';
 import LoginPanel from '../index';
+import AddRecord from '../addRecord/addRecord';
 
 let data=[
   {
     "eatTime": "lunch",
-    "Mon": 68,
+    "Mon": 0,
     /* "hot dogColor": "hsl(202, 70%, 50%)", */
-    "Tue": 89,
+    "Tue": 0,
     /* "burgerColor": "hsl(197, 70%, 50%)", */
-    "Wed": 49,
+    "Wed": 0,
     /* "sandwichColor": "hsl(53, 70%, 50%)", */
-    "Thu": 17,
+    "Thu": 0,
     /* "kebabColor": "hsl(195, 70%, 50%)", */
-    "Fri": 80,
+    "Fri": 0,
     /* "friesColor": "hsl(243, 70%, 50%)", */
-    "Sat": 30,
+    "Sat": 0,
     /* "donutColor": "hsl(88, 70%, 50%)", */
-    "Sun": 5,
+    "Sun": 0,
     /* "junkColor": "hsl(270, 70%, 50%)", */
 
   },
   {
     "eatTime": "dinner",
-    "Mon": 99,
+    "Mon": 0,
     /* "hot dogColor": "hsl(38, 70%, 50%)", */
-    "Tue": 17,
+    "Tue": 0,
     /* "burgerColor": "hsl(277, 70%, 50%)", */
-    "Wed": 73,
+    "Wed": 0,
     /* "sandwichColor": "hsl(289, 70%, 50%)", */
-    "Thu": 1,
+    "Thu": 0,
     /* "kebabColor": "hsl(226, 70%, 50%)", */
-    "Fri": 44,
+    "Fri": 0,
     /* "friesColor": "hsl(213, 70%, 50%)", */
-    "Sat": 59,
+    "Sat": 0,
     /* "donutColor": "hsl(120, 70%, 50%)", */
-    "Sun": 72,
+    "Sun": 0,
     /* "junkColor": "hsl(80, 70%, 50%)", */
 
   },
 ]
 
 class Diary extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      commitRamen: false,
+    };
+    this.handleCommitRamen = this.handleCommitRamen.bind(this);
+  }
+
+  handleCommitRamen() {
+    this.setState({ commitRamen: true });
+  }
+
   render() {
-    const { isLogin } = this.props;
-    if (!isLogin) return (<div className="login-page"><LoginPanel/></div>)
-    return(
+    const { isLogin, userInfo } = this.props;
+    if (!isLogin) return (<div className="login-page"><LoginPanel/></div>);
+    const { handleCommitRamen } = this;
+    const { commitRamen } = this.state;
+    if (commitRamen) return (<AddRecord />);
+    return (
       <div className="diary-page">
         <div className="diary-wrapper">
 
           <div className="diary-block diary-profile">
             <div className="logo-block"><div className="diary-logo"></div></div>
             <div className="diary-user">User</div>
-            <div className="diary-username">陳孝思</div>
+            <div className="diary-username">{userInfo.username}</div>
           </div>
 
-          <div className="diary-block diary-heatmap">
+          <div className="diary-block diary-heatmap" onClick={handleCommitRamen}>
             <span class="update-diary-button">
               <i class="update-diary--button-icon fa fa-plus fa-lg"></i>
             </span>
@@ -163,6 +179,7 @@ class Diary extends Component {
 
 Diary.propTypes = {
   isLogin: PropTypes.bool.isRequired,
+  userInfo: PropTypes.object.isRequired,
 };
 
 export default Diary;

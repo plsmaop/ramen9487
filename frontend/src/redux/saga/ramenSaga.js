@@ -7,13 +7,11 @@ import { actionsTypes as imageActionsTypes } from '../imageModule';
 export function* postReview(id, content) {
   yield put({ type: globalActionsTypes.FETCH_START });
   try {
-    /* const title = yield select(state => state.article.articleDraft.title);
-    const content = yield select(state => state.article.articleDraft.content);
-    const id = yield select(state => state.article.articleDraft.id);
-    const partialContent = yield select(state => state.article.articleDraft.partialContent);
-    const dateTime = Date.now();
-    const timestamp = Math.floor(dateTime / 1000); */
+    const author = yield select(state => state.global.userInfo.unsername);
+    const authorId = yield select(state => state.global.userInfo.userId);
     const data = {
+      author,
+      authorId,
       ...content,
       time: new Date(),
       timestamp: Math.floor(Date.now() / 1000),

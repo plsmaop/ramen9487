@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import LoadingScreen from '../../loadingScreen';
+import Comment from '../comment';
 import './style.css';
 import Map from './googlemap';
 
@@ -10,8 +11,9 @@ class SearchResult extends Component {
 
     this.state = {
       like: 'heart',
+      addReview: false,
     };
-
+    this.handleAddReview = this.handleAddReview.bind(this);
     this.toggleHeartClass = this.toggleHeartClass.bind(this);
   }
 
@@ -23,7 +25,11 @@ class SearchResult extends Component {
   toggleHeartClass() {
     if (this.state.like === undefined) this.setState({"like": "heart"})
     let like_button_class = (this.state.like === "heart") ? "heart-clicked":"heart";
-    this.setState({like: like_button_class})
+    this.setState( {like: like_button_class} );
+  }
+
+  handleAddReview() {
+    this.setState({ addReview: true });
   }
 
   render() {
@@ -34,6 +40,9 @@ class SearchResult extends Component {
       address, menu, tag,
       location, url,
     } = this.props.currentRestaurant;
+    const { addReview } = this.state;
+    const { id } = this.props;
+    if (addReview) return (<Comment id={id} name={name} />);
     const img = null;
     const { currentRestaurantReviews } = this.props;
     const review = currentRestaurantReviews.length > 0 ? currentRestaurantReviews.map(i => i.content) : [];
@@ -74,14 +83,10 @@ class SearchResult extends Component {
                 <div className="result-icon location"></div>
                 <div className="result-ans">{address}</div>
               </div>
-
-
-
               <div className="icon-info-wrap">
                 <div className="result-icon web"></div>
                 <div className="result-ans web-ans"><a href={url}>點我</a></div>
               </div>
-
               <div className="icon-info-wrap wrap-menu">
                 <div className="result-icon result-menu"></div>
                 <div className="result-ans menu-ans">
@@ -92,16 +97,12 @@ class SearchResult extends Component {
                           <span>{item}</span>
                         </div>
                       ))
-                    }
-                    
+                    }    
                   </article>
                 </div>
               </div>
-
-              
               <div className="icon-info-wrap wrap-tags">
                 <div className="result-icon near-mrt"></div>
-              
                   <ul className="tags">
                     {
                       location.map(item => (
@@ -127,34 +128,26 @@ class SearchResult extends Component {
                       ))
                     }
 
-                  </ul>
-                
+                  </ul>           
               </div>
-
-
-
               <div className="icon-info-wrap wrap-tags">
                 <div className="result-icon ps"></div>
                 {
                   review.map(i => (
                     <div className="result-ans">{i}</div>
                   ))
-                }
-                              
+                }                         
               </div>
-
               <div className="icon-info-wrap ">
-                <div className="addComment-result">
+                <div className="addComment-result" onClick={this.handleAddReview}>
                   Comment
                   <svg className="addComment-svg" width="130" height="65" viewBox="0 0 130 65" xmlns="http://www.w3.org/2000/svg">
                     <rect x='0' y='0' fill='none' width='130' height='65'/>
                   </svg>
                 </div>
               </div>
-
             </div>
           </div>
-
           <div className="result-block result-info1">
             <Map />
           </div>
@@ -162,7 +155,7 @@ class SearchResult extends Component {
           {/* <div className="result-block result-info2"></div> */}
         </div>
       </div>
-    )
+    );
   }
 }
 

@@ -12,6 +12,11 @@ router.post('/newRamenRestaurant', (req, res) => {
     return;
   }
   const isPublish = req.session.userInfo.userType === 'admin';
+  if (isPublish) {
+    RamenModel.update({ _id: req.body.name }, { img: req.body.img })
+      .then(result => response(res, 200, 0, '已收到您提供的新拉麵店資訊，我們會在審核完成後放上網站'));
+      return;
+  }
   const ramenData = {
     ...req.body, isPublish, totalScore: 0, popularity: 1, reviewNumber: 0,
   };
@@ -215,8 +220,8 @@ router.post('/:id/review', (req, res) => {
   });
   const tempReview = new ReviewModel({ ...req.body, authorId: userId });
   tempReview.save().then((data) => {
-    if (!data) response(res, 200, 0, '上傳麵店評論失敗');
-    else response(res, 200, 2, '上傳麵店評論成功', data);
+    if (!data) response(res, 200, 2, '上傳麵店評論失敗');
+    else response(res, 200, 0, '上傳麵店評論成功', data);
   });
 });
 
