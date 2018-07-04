@@ -61,7 +61,7 @@ router.get('/:id', (req, res) => {
     response(res, 200, 1, '權限不足');
     return;
   }
-  UserModel.find({ _id: id }, 'ramenRecords').then((data) => {
+  UserModel.find({ _id: id }, 'ramenRecords myRamen').then((data) => {
     if (data) response(res, 200, 0, '獲取拉麵紀錄成功', { ramenRecords: data.ramenRecords, myRamen: data.myRamen });
     else response(res, 200, 2, '獲取拉麵紀錄失敗');
   }).catch((err) => {
