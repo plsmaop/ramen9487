@@ -43,6 +43,9 @@ export function* loginFlow() {
         yield put({ type: actionsTypes.RECIEVE_USER_INFO, data: res.data });
         // socket.createSocket();
       }
+      else {
+        yield put({ type: actionsTypes.CLEAR_USER_INFO });
+      }
     } else {
       yield put({
         type: actionsTypes.SET_MESSAGE,
@@ -89,8 +92,10 @@ export function* userAuth() {
           yield put({ type: actionsTypes.RECIEVE_USER_INFO, data: res.data });
         } else if (res.code === 1) {
           yield put({ type: actionsTypes.CLEAR_USER_INFO });
+          console.log('asaf');
         }
       } else {
+        yield put({ type: actionsTypes.CLEAR_USER_INFO });
         yield put({
           type: actionsTypes.SET_MESSAGE,
           msgContent: '網路異常，請稍候重試',
@@ -100,6 +105,7 @@ export function* userAuth() {
       }
     } catch (err) {
       console.log(err);
+      yield put({ type: actionsTypes.CLEAR_USER_INFO });
       yield put({
         type: actionsTypes.SET_MESSAGE,
         msgContent: '網路異常，請稍候重試',

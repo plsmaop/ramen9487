@@ -26,6 +26,7 @@ export function* commitRamenFlow() {
         isReqSuccess: false,
         code: 1,
       });
+      yield put({ type: globalActionsTypes.CLEAR_USER_INFO });
       yield put({ type: globalActionsTypes.FETCH_END });
       return;
     }
@@ -96,7 +97,7 @@ export function* addFavorite() {
   while (true) {
     const req = yield take(diaryActionsTypes.ADD_FAVORITE);
     try {
-      yield put({ type: globalActionsTypes.FETCH_START });
+      // yield put({ type: globalActionsTypes.FETCH_START });
       const id = yield select(state => state.global.userInfo.userId);
       if (!id || id.length === 0) {
         yield put({
@@ -105,10 +106,12 @@ export function* addFavorite() {
           isReqSuccess: false,
           code: 1,
         });
+        yield put({ type: globalActionsTypes.CLEAR_USER_INFO });
         yield put({ type: globalActionsTypes.FETCH_END });
         return;
       }
-      const res = yield call(post, `/diary/${id}/favorite`, req.favoriteRamenId);
+      console.log(req.favoriteRamenId);
+      const res = yield call(post, `/diary/${id}/favorite`, req);
       if (res) {
         const isReqSuccess = res.code === 0;
         yield put({
@@ -128,7 +131,7 @@ export function* addFavorite() {
     } catch (err) {
       console.log(err);
     } finally {
-      yield put({ type: globalActionsTypes.FETCH_END });
+      // yield put({ type: globalActionsTypes.FETCH_END });
     }
   }
 }

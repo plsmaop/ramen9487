@@ -49,7 +49,7 @@ router.post('/:id/newImage', (req, res) => {
 });
 
 router.get('/:id', (req, res) => {
-  ImageModel.find({ _id: req.params.id }).then((result) => {
+  ImageModel.findOne({ _id: req.params.id }).then((result) => {
     if (result) response(res, 200, 0, '獲取圖片成功', result);
     else response(res, 200, 2, '獲取圖片失敗');
   }).catch((err) => {

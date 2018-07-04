@@ -299,7 +299,7 @@ class Search extends Component {
           isFetching ?  <LoadingScreen type="拉麵列表載入中..." color="#FF5722" /> :
             (<div>
               {
-                restaurantList.map(item => <SearchListItem {...item} />)
+                restaurantList.map(item => (<SearchListItem {...item} />))
               }
               <div className="pagination-wrapper">
               

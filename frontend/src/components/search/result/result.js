@@ -4,6 +4,7 @@ import LoadingScreen from '../../loadingScreen';
 import Comment from '../comment';
 import './style.css';
 import Map from './googlemap';
+import { get } from '../../../api';
 
 class SearchResult extends Component {
   constructor(props) {
@@ -14,6 +15,9 @@ class SearchResult extends Component {
       addReview: false,
       lat: '',
       lan: '',
+      isRecieved: false,
+      imgRecieved: false,
+      img: '',
     };
     this.handleAddReview = this.handleAddReview.bind(this);
     this.toggleHeartClass = this.toggleHeartClass.bind(this);
@@ -44,7 +48,8 @@ class SearchResult extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.currentRestaurant.address) {
+    const { isRecieved, imgRecieved } = this.state;
+    if (nextProps.currentRestaurant.address && !isRecieved) {
       const { address } = nextProps.currentRestaurant;
       fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=AIzaSyCT-UUYx-crn1WAFAyK9KH04ScNCH3GyFw`)
         .then((response) => {
@@ -59,8 +64,19 @@ class SearchResult extends Component {
           this.setState({
             lat: data.results[0].geometry.location.lat,
             lan: data.results[0].geometry.location.lng,
+            isRecieved: true,
           });
         });
+    }
+    if (!imgRecieved && nextProps.currentRestaurant.img) {
+      if (nextProps.currentRestaurant.img.length > 0) {
+        const url = nextProps.currentRestaurant.img[0];
+        get(`/image/${url}`).then((res) => {
+          if (res.code === 0) {
+            this.setState({ img: res.data.image.data, imgRecieved: true });
+          }
+        }).catch(err => console.log(err));
+      }
     }
   }
 
@@ -68,7 +84,7 @@ class SearchResult extends Component {
     if (this.state.like === undefined) this.setState({ like: 'heart' });
     const like_button_class = (this.state.like === "heart") ? "heart-clicked" : "heart";
     this.setState({ like: like_button_class });
-    this.props.addFavorite(this.props.id);
+    if (this.props.isLogin) this.props.addFavorite(this.props.id);
   }
 
   handleAddReview() {
@@ -83,10 +99,10 @@ class SearchResult extends Component {
       address, menu, tag,
       location, url,
     } = this.props.currentRestaurant;
-    const { addReview } = this.state;
+    const { addReview, img, imgRecieved } = this.state;
     const { id, addFavorite } = this.props;
     if (addReview) return (<Comment id={id} name={name} />);
-    const img = null;
+    const image = imgRecieved ? (<img src={img} />) : null ;
     const { currentRestaurantReviews } = this.props;
     const review = currentRestaurantReviews.length > 0 ? currentRestaurantReviews.map(i => i.content) : [];
     return (
@@ -114,7 +130,7 @@ class SearchResult extends Component {
               </div>
             </div>
             {
-              img
+              image
             }
           </div>
 

@@ -42,6 +42,7 @@ class Comment extends Component {
     
     const { handleInputChange, state } = this;
     const { redirect } = this.state;
+    console.log(this.props);
     if (redirect) window.location.reload();
     return (
       <div className="comment-page">
