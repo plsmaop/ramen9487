@@ -106,7 +106,7 @@
 .update-diary-button {
   z-index: 900;
   position: absolute;
-  top: 4%;
+  top: 3%;
   right: 10%;
   display: block;
   cursor: pointer;

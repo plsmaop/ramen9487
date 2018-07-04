@@ -94,7 +94,7 @@ class AddForm extends Component {
     // const { fetchedData } = this.props;
     // const data = fetchedData.image ? (<img src={fetchedData.image.data} />) : null;
     return (
-      <div>
+      <div className="addForm-page">
         <div className="addForm-header">
           <h1>
             新增你的推薦拉麵給我們！
