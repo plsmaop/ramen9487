@@ -2,6 +2,7 @@
   background-color: rebeccapurple;
   height: 100%;
   overflow-x: scroll;
+  padding-left: 9%;
 }
 
 /* Form */
@@ -110,7 +111,7 @@
 .login-container {
   position: relative;
   z-index: 1;
-  max-width: 60%;
+  max-width: 80%;
   margin: 0 auto;
   background-color: white;
   border-radius: 4.2px;
