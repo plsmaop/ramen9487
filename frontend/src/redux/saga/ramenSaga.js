@@ -251,6 +251,36 @@ export function* getRestaurant(id) {
   }
 }
 
+/* export function* fetchImage(url) {
+  while (true) {
+    const req = yield take(imageActionsTypes.FETCH_IMAGE);
+    try {
+      const res = yield call(get, `/image/${req.url}`);
+      if (res && res.code === 0) {
+        yield put({
+          type: globalActionsTypes.SET_MESSAGE,
+          msgContent: res.message,
+          isReqSuccess: true,
+          code: res.code,
+        });
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  }
+} */
+
+export function* fetchImage(url) {
+  yield put({ type: globalActionsTypes.FETCH_START });
+  try {
+    return yield call(get, `/image/${url}`);
+  } catch (err) {
+    return yield put({ code: 2, message: '網路異常，請稍候重試' });
+  } finally {
+    yield put({ type: globalActionsTypes.FETCH_END });
+  }
+}
+
 export function* getRestaurantFlow() {
   while (true) {
     const req = yield take(ramenActionsTypes.GET_RESTAURANT);
@@ -258,6 +288,11 @@ export function* getRestaurantFlow() {
     if (res) {
       if (res.code === 0) {
         yield put({ type: ramenActionsTypes.RECIEVE_RESTAURANT, data: res.data });
+        /* const imgUrl = res.data.currentRestaurant.img;
+        if (imgUrl.length > 0) {
+          const imgReq = yield call(fetchImage, imgUrl[0]);
+          const imgRes = 
+        } */
         yield put({
           type: globalActionsTypes.SET_MESSAGE,
           msgContent: res.message,
@@ -360,21 +395,4 @@ export function* uploadImageFlow() {
   }
 }
 
-export function* fetchImage() {
-  while (true) {
-    const req = yield take(imageActionsTypes.FETCH_IMAGE);
-    try {
-      const res = yield call(get, `/image/${req.url}`);
-      if (res && res.code === 0) {
-        yield put({
-          type: globalActionsTypes.SET_MESSAGE,
-          msgContent: res.message,
-          isReqSuccess: true,
-          code: res.code,
-        });
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  }
-}
+

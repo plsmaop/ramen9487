@@ -97,7 +97,7 @@ export function* addFavorite() {
   while (true) {
     const req = yield take(diaryActionsTypes.ADD_FAVORITE);
     try {
-      yield put({ type: globalActionsTypes.FETCH_START });
+      // yield put({ type: globalActionsTypes.FETCH_START });
       const id = yield select(state => state.global.userInfo.userId);
       if (!id || id.length === 0) {
         yield put({
@@ -131,7 +131,7 @@ export function* addFavorite() {
     } catch (err) {
       console.log(err);
     } finally {
-      yield put({ type: globalActionsTypes.FETCH_END });
+      // yield put({ type: globalActionsTypes.FETCH_END });
     }
   }
 }
