@@ -11,6 +11,7 @@ export default class HomeMain extends Component{
                     <div className="home-backimage" >
                     <div className="home-title">
                         <h1>No Ramen No life</h1>
+                        {/* <h3>紀錄你的最愛</h3> */}
                         {/* <a class="btn" href="#">Sign up</a> */}
                     </div>
                     </div>
