@@ -20,6 +20,7 @@ class Menu extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.reqMsg.content !== this.props.reqMsg.content) {
+      if (nextProps.reqMsg.content.includes('重新')) return;
       this.setState({ snackBarOpen: true });
       setTimeout(() => this.setState({ snackBarOpen: false }), 1500);
     }

@@ -94,8 +94,8 @@ class AddRecord extends Component {
                     <div className="addRecord-wrap-h5"><h3 className="addRecord-h3">時間</h3></div>
                     <select className="addRecord-select" onChange={e => handleInputChange('time', e)}>
                       <option>--</option>
-                      <option>Lunch</option>
-                      <option>Dinner</option>
+                      <option>lunch</option>
+                      <option>dinner</option>
                     </select>
                   </div>
                   

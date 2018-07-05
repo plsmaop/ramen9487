@@ -93,7 +93,7 @@ class SearchResult extends Component {
   }
 
   render() {
-    const { isFetching } = this.props;
+    const { isFetching, isLogin } = this.props;
     if (isFetching || !this.props.currentRestaurant.menu) return (<LoadingScreen color="#FF5722" type="拉麵載入中..." />);
     const {
       name, totalScore, popularity,
@@ -125,11 +125,12 @@ class SearchResult extends Component {
                     <h5 className="search-ratings-h">Ratings: <div className="search-ratings">{(Math.floor(Number(totalScore)*100)) / 100}</div></h5>
                     <h5 className="search-views-h">Views: <div className="search-views">{Number(popularity)}</div></h5>
                   </p>
-
-                  <div className="summary-footer">
-                    <div ref="like-button" className={this.state.like} onClick={this.toggleHeartClass}>♥</div>
-                  </div>
-
+                  {
+                    isLogin ? 
+                    (<div className="summary-footer">
+                      <div ref="like-button" className={this.state.like} onClick={this.toggleHeartClass}>♥</div>
+                    </div>) : null
+                  }
                 </div>
               </div>
             </div>
@@ -198,14 +199,17 @@ class SearchResult extends Component {
                 {/* <div className="comment-element">fuck</div>   */}                    
               </div> 
               </div>
-              <div className="icon-info-wrap ">
-                <div className="addComment-result" onClick={this.handleAddReview}>
-                  Comment
-                  <svg className="addComment-svg" width="130" height="65" viewBox="0 0 130 65" xmlns="http://www.w3.org/2000/svg">
-                    <rect x='0' y='0' fill='none' width='130' height='65'/>
-                  </svg>
-                </div>
-              </div>
+              {
+                isLogin ? 
+                (<div className="icon-info-wrap ">
+                  <div className="addComment-result" onClick={this.handleAddReview}>
+                    Comment
+                    <svg className="addComment-svg" width="130" height="65" viewBox="0 0 130 65" xmlns="http://www.w3.org/2000/svg">
+                      <rect x='0' y='0' fill='none' width='130' height='65'/>
+                    </svg>
+                  </div>
+                </div>) : null
+              }
             </div>
           </div>
           <div className="result-block result-info1">
