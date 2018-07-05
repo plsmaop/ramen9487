@@ -554,10 +554,10 @@ a {
 }
 
 .movie-card {
-  /* background-image: url("../image/鷹流東京豚骨.JPG");
+  /* background-image: url("../image/鷹流東京豚骨.JPG");*/
   background-size: contain;
-  background-repeat: no-repeat; */
-  width: 75%;
+  background-repeat: no-repeat; 
+  width: 100%;
   max-width: 800px;
   height: 300px;
   display: block;

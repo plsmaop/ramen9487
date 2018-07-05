@@ -9,6 +9,6 @@ const mapStateToProps = state => ({
   isFetching: state.global.isFetching,
 });
 
-const { getRestaurantList } = actions;
+const { getRestaurantList, init } = actions;
 
-export default connect(mapStateToProps, { getRestaurantList })(search);
+export default connect(mapStateToProps, { getRestaurantList, init })(search);

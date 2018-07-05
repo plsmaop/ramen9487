@@ -170,6 +170,7 @@ export function* postNewRestaurantFlow() {
 
 export function* getRestaurantList(page, number, searchConditions) {
   yield put({ type: globalActionsTypes.FETCH_START });
+  yield put({ type: 'fuck' });
   try {
     return yield call(get, '/ramen/restaurant/ramenRestaurantList', { page, number, searchConditions });
   } catch (err) {

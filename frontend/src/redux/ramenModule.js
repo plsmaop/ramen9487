@@ -39,6 +39,9 @@ export const actions = {
     type: actionsTypes.POST_NEW_RESTAURANT,
     data,
   }),
+  init: () => ({
+    type: 'fuck',
+  }),
 };
 
 const initialState = {
@@ -52,6 +55,17 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case 'fuck':
+      return {
+        ...state,
+        page: 1,
+        totalNumber: 0,
+        restaurantList: [],
+        restaurantNameList: [],
+        currentRestaurant: {},
+        currentRestaurantReviews: [],
+      };
+    
     case actionsTypes.RECIEVE_RESTAURANT_LIST:
       return {
         ...state,

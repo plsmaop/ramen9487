@@ -56,6 +56,7 @@ export function* commitRamenFlow() {
 
 export function* fetchDiary(id) {
   yield put({ type: globalActionsTypes.FETCH_START });
+  yield put({ type: 'fuck' });
   try {
     return yield call(get, `/diary/${id}`);
   } catch (error) {

@@ -219,10 +219,14 @@ class Search extends Component {
     this.setState(searchConditions);
   }
 
+  componentDidMount() {
+    this.props.init();
+  }
+
   handleSearch(i) {
     console.log(this.props.totalNumber)
     /* console.log('fuckkk',i) */
-    const { getRestaurantList } = this.props;
+    const { getRestaurantList, init } = this.props;
     const { /* currentPage, */ valueMRT, valueRamen, keyWord } = this.state;
     const location = valueMRT.split(',');
     const tag = valueRamen.split(',');
@@ -242,7 +246,7 @@ class Search extends Component {
     const { crazyMRT, disabledMRT, stayOpenMRT, valueMRT,
       crazyRamen, disabledRamen, stayOpenRamen, valueRamen,
     } = this.state;
-    const { restaurantList, totalNumber, isFetching } = this.props;
+    const { restaurantList, totalNumber, isFetching, init } = this.props;
     const { keyWord } = this.state;
     const { handleSearchConditionsChange, handleSearch } = this;
     console.log(this.state);
@@ -299,7 +303,7 @@ class Search extends Component {
           isFetching ?  <LoadingScreen type="拉麵列表載入中..." color="#FF5722" /> :
             (<div>
               {
-                restaurantList.map(item => (<SearchListItem {...item} />))
+                restaurantList.map(item => (<SearchListItem {...item} init={init} />))
               }
               <div className="pagination-wrapper">
               
@@ -321,6 +325,7 @@ Search.propTypes = {
   restaurantList: PropTypes.arrayOf(Object).isRequired,
   getRestaurantList: PropTypes.func.isRequired,
   isFetching: PropTypes.bool.isRequired,
+  init: PropTypes.func.isRequired,
 };
 
 export default Search;

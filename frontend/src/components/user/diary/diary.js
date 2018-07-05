@@ -66,7 +66,10 @@ class Diary extends Component {
   }
 
   render() {
+    
     const { isLogin, userInfo, isFetching, diary } = this.props;
+    let d = data;
+    if (typeof diary.ramenRecords !== 'undefined') d = diary.ramenRecords;
     const { image } = this.state;
     if (!isLogin) return (<Redirect to="/login" />);
     if (isFetching) return (<LoadingScreen type="載入日記..." color="#9C27B0" />);
@@ -91,7 +94,7 @@ class Diary extends Component {
             </Link>
 
             <ResponsiveHeatMap
-              data={diary.ramenRecords ? diary.ramenRecords : data}
+              data={d}
               keys={[
                 "Mon",
                 "Tue",

@@ -13,6 +13,7 @@ class SearchListItem extends React.Component {
   }
 
   componentDidMount() {
+
     if (this.props.img.length > 0) {
       const url = this.props.img[0];
       get(`/image/${url}`).then((res) => {
@@ -30,11 +31,11 @@ class SearchListItem extends React.Component {
     } = this.props;
     const { img } = this.state;
     return (
-      <div className="movie-card">
+      <div className="movie-card" style={{backgroundImage: "url(" + img + ")"}}>
 
         <div className="color-overlay">
           {
-            img.length > 0 ? (<img src={img} />) : null
+            img.length > 0 ? (<div  />) : null
           }
           <div className="movie-content">
             <div className="movie-header">
@@ -75,6 +76,7 @@ SearchListItem.propTypes = {
   popularity: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   img: PropTypes.arrayOf(String).isRequired,
+  init: PropTypes.func.isRequired,
 };
 //       <img src={data} className="ramen-img" />
 export default SearchListItem;
