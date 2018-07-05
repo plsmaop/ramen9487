@@ -31,8 +31,13 @@ Live demo:
 - Clone the repo: `git clone https://github.com/plsmaop/ramen9487.git`
 - Install: `npm install`
 - Start: 
+### Front-end
 ```
 npm start
+```
+
+### Back-end
+```
 npm run start-api
 npm run start-server
 ```
