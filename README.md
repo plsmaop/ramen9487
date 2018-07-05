@@ -1,22 +1,22 @@
-<p align="center">
-  <a href="https://github.com/plsmaop/ramen9487/">
-    <img src="https://i.pinimg.com/originals/56/47/15/5647153df9bb52f5eafb7fb37afcb857.jpg" alt="Logo" width=72 height=72>
-  </a>
+# NO RAMEN NO LIFE
 
-  <h3 align="center">NO RAMEN NO LIFE</h3>
+<img src="https://i.pinimg.com/originals/56/47/15/5647153df9bb52f5eafb7fb37afcb857.jpg" height="200" align="right">
 
-  <p align="center">
-    最詳盡的拉麵評分、分類網站
-    <br>
-  </p>
-</p>
+> 這是一個詳盡的拉麵評價網站，也可以在這裡分享、收藏其他你喜歡的拉麵店。
 
-<br>
+###### What can I do?
+
+Most things that you can do manually in the browser can be done using Puppeteer! Here are a few examples to get you started:
+
+* 依照店名/鄰近捷運站/分類來搜尋相符的拉麵店
+* 分享你喜歡的拉麵店給我們
+* 新增一家拉麵店的相關評論
+* 收藏一家拉麵店
+* 記錄自己吃拉麵的習慣與偏好
 
 ## Table of contents
 - [Demo & examples](#demo-&-examples)
 - [Quick start](#quick-start)
-
 
 ## Demo & Examples
 
