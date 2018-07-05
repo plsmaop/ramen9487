@@ -16,7 +16,7 @@
 
 * RWD 
 * 新增分類排名
-
+* fix bugs...
 
 ## Table of contents
 - [Demo & examples](#demo-&-examples)
