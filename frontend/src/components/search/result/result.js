@@ -24,6 +24,7 @@ class SearchResult extends Component {
   }
 
   componentDidMount() {
+    this.props.init();
     this.props.getRestaurant(this.props.id);
     this.props.getRestaurantReviews(this.props.id);
 
@@ -233,6 +234,7 @@ SearchResult.propTypes = {
   addFavorite: PropTypes.func.isRequired,
   getRestaurantReviews: PropTypes.func.isRequired,
   currentRestaurantReviews: PropTypes.arrayOf(Object).isRequired,
+  init: PropTypes.func.isRequired,
 };
 
 export default SearchResult;
