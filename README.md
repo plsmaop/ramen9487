@@ -6,11 +6,17 @@
 
 ### What can I do?
 
-* 依照店名/鄰近捷運站/分類來搜尋相符的拉麵店
+* 依照店名 / 鄰近捷運站 / 分類來搜尋相符的拉麵店
 * 分享你喜歡的拉麵店給我們
 * 新增一家拉麵店的相關評論
 * 收藏一家拉麵店
 * 記錄自己吃拉麵的習慣與偏好
+
+#### Lots more coming soon
+
+* RWD 
+* 新增分類排名
+
 
 ## Table of contents
 - [Demo & examples](#demo-&-examples)
@@ -24,7 +30,11 @@ Live demo:
 
 - Clone the repo: `git clone https://github.com/plsmaop/ramen9487.git`
 - Install: `npm install`
-- Start: `npm start`
-
+- Start: 
+```
+npm start
+npm run start-api
+npm run start-server
+```
 
 
