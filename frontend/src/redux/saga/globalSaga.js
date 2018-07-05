@@ -47,6 +47,7 @@ export function* loginFlow() {
         yield put({ type: actionsTypes.CLEAR_USER_INFO });
       }
     } else {
+      yield put({ type: actionsTypes.CLEAR_USER_INFO });
       yield put({
         type: actionsTypes.SET_MESSAGE,
         msgContent: '網路異常，請稍候重試',
@@ -90,7 +91,7 @@ export function* userAuth() {
       if (res) {
         if (res.code === 0) {
           yield put({ type: actionsTypes.RECIEVE_USER_INFO, data: res.data });
-        } else if (res.code === 1) {
+        } else {
           yield put({ type: actionsTypes.CLEAR_USER_INFO });
           console.log('asaf');
         }
