@@ -4,9 +4,7 @@
 
 > 這是一個詳盡的拉麵評價網站，也可以在這裡分享、收藏其他你喜歡的拉麵店。
 
-###### What can I do?
-
-Most things that you can do manually in the browser can be done using Puppeteer! Here are a few examples to get you started:
+### What can I do?
 
 * 依照店名/鄰近捷運站/分類來搜尋相符的拉麵店
 * 分享你喜歡的拉麵店給我們
