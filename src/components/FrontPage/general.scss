@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css?family=Coming+Soon|Freckle+Face|Kelly+Slab|Love+Ya+Like+A+Sister|Major+Mono+Display|Nanum+Pen+Script|Quantico|Rock+Salt');
+
+/* flex */
+
+.flex__container--col{
+  display: flex;
+  flex-direction: column;
+}
+
+.flex__container--row{
+  display: flex;
+}
+
+.justifycontent--center{
+  justify-content: center;
+}
+
+.justifycontent--fs{
+  justify-content: flex-start;
+}
+
+.justifycontent--fe{
+  justify-content: flex-end;
+}
+
+.justifycontent--sb{
+  justify-content: space-between;
+}
+
+.justifycontent--sa{
+  justify-content: space-around;
+}
+
+.alignitems--center{
+  align-items: center;
+}
+
+.alignitems--fs{
+  align-items: flex-start;
+}
+
+.alignitems--fe{
+  align-items: flex-end;
+}
+
+
+/* cursor */
+.cursor--pt{
+  cursor: pointer;
+}
+
+
+/*  font  */
+.fontsize--22{
+  font-size: 22px;
+}
+
+.fontfamily--mono{
+  font-family: 'Love Ya Like A Sister', cursive;
+}
+
+.fontcolor--tomato{
+  color: tomato;
+}
+
+/* display */
+
+.display--none{
+  display: none;
+}
+
+.display--block{
+  display: block;
+  
+}
+
+/* border */
+
+.border--none{
+  border: none;
+}
+
+.border--tomato{
+  border: 1px solid tomato;
+}
+
+.span--blue{
+  border-bottom: 3px solid rgb(24, 50, 163);
+}
+
+.span--red{
+  border-bottom: 3px solid rgb(255, 0, 0);
+}
+
+.span--yellow{
+  border-bottom: 3px solid rgb(255, 166, 0);
+}
+
+.span--green{
+  border-bottom: 3px solid rgb(0, 124, 37);
+}
+
+.span--brown{
+  border-bottom: 3px solid rgb(124, 80, 40);
+}
+
+/* arrow */
+
+.down{
+  transform: rotate(45deg);
+}
+
+.up{
+  transform: rotate(-135deg);
+}
+
+@keyframes slide-out {
+  0% { transform: translateX(-100%); }   
+100% { transform: translateX(0%); }
+}
