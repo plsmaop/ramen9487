@@ -51,18 +51,18 @@ input:focus{
   width: 100%;
   min-width: 1500px;
   position: relative;
-  background-image: url('../img/background3.jpg');
+  background-image: url('../img/front_background.jpeg');
   background-size: cover;
   background-position: left ; 
   background-blend-mode:  color-burn;
-  background-color: linear-gradient(0 deg,#555,#cacaca);
-  mask-image: linear-gradient(rgba(0,0,0,2) 93%, rgba(0,0,0,0));
-  display: grid;
-  grid-template-rows: 50px 400px 50px;/* 1fr 5fr 1fr; */
+  background-color: #cacaca;
+  -webkit-mask-image: linear-gradient(rgba(0,0,0,2) 93%, rgba(0,0,0,0));
+  /* display: grid;
+  grid-template-rows: 50px 400px 50px; 1fr 5fr 1fr; 
   grid-template-columns: 1fr 4fr 3fr 8fr;
   grid-template-areas: "no1 no1 no1 no1"
                        "lspace search mselect rspace"
-                       "no no no no";
+                       "no no no no"; */
   
 }
 
@@ -90,6 +90,7 @@ input:focus{
   input{
     flex: 1;
     padding: 2%;   
+    padding-left: 4%;
     width: 80%;
     margin: auto 8%; 
     font-size: 1em;
