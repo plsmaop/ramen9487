@@ -122,7 +122,7 @@ class Home extends React.Component {
                     </div>
                     
                     
-                    <div className= {["frontpage__multiselect--mrt","flex-container--col", this.state.showMRTSelect ? "display--block" : "display--none"].join(' ')}>
+                    <div className= {["frontpage__multiselect--mrt","flex__container--col", this.state.showMRTSelect ? "display--block" : "display--none"].join(' ')}>
                         <div className="frontpage__multiselect--title ">捷運站</div>
                         <div className="frontpage__multiselect--wrap flex__container--col justifycontent--fs">
                             <MRTLine
@@ -164,7 +164,7 @@ class Home extends React.Component {
                         </div>
                     </div>
 
-                    <div className= {["frontpage__multiselect--mrt","flex-container--col", this.state.showCategorySelect ? "display--block" : "display--none"].join(' ')}>
+                    <div className= {["frontpage__multiselect--mrt","flex__container--col", this.state.showCategorySelect ? "display--block" : "display--none"].join(' ')}>
                         <div className="frontpage__multiselect--title">拉麵分類</div>
                         <div className="frontpage__multiselect--wrap flex__container--col justifycontent--fs">
                             <Categories
@@ -175,7 +175,51 @@ class Home extends React.Component {
                     </div>
                     
                 </div>
-                <div className="frontpage__content">
+                <div className="frontpage__content flex__container--col justifycontent--sb alignitems--center">
+                    <div className="frontpage__content--wrap flex__container--col justifycontent--fs alignitems--center">
+                        <div className="frontpage__content--titleWrap flex__container--col justifycontent--fs alignitems--center">
+                            <div className="frontpage__content--title">如何使用</div>
+                            <span></span>
+                        </div>
+                        
+                        <div className="frontpage__content--gallery flex__container--row justifycontent--sa alignitems--fs">
+                            <div className="frontpage__content--block flex__container--col justifycontent--sb alignitems--center  ">
+                                <FontAwesomeIcon icon="search" size="5x" style={{flex:'4',color:'tomato',height:'70%'}}/>
+                                <div>搜尋台北市好吃的拉麵，可以依店名、捷運站、分類做篩選。</div>
+                            </div>
+                            <div className="frontpage__content--block flex__container--col justifycontent--sb alignitems--center ">
+                                <FontAwesomeIcon icon="address-book" size="5x" style={{flex:'4',color:'tomato',height:'70%'}}/>
+                                <div>擁有自己的拉麵日記，紀錄吃拉麵的習慣以及收藏喜愛的店家。</div>
+                            </div>
+                            <div className="frontpage__content--block flex__container--col justifycontent--sb alignitems--center ">
+                                <FontAwesomeIcon icon="database" size="5x" style={{flex:'4',color:'tomato',height:'70%'}}/>
+                                <div>使用 API 以取得資料。</div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div className="frontpage__content--wrap flex__container--col justifycontent--fs alignitems--center">
+                        <div className="frontpage__content--titleWrap flex__container--col justifycontent--fs alignitems--center">
+                            <div className="frontpage__content--title">探索捷運商圈</div>
+                            <span></span>
+                        </div>
+                        
+                        <div className="frontpage__content--gallery flex__container--row justifycontent--sb alignitems--fs">
+                            <div className="frontpage__content--image  cursor--pt gallery_1">
+                                <div className="frontpage__content--stationName flex__container--row justifycontent--center alignitems--center">忠孝復興</div>
+                            </div>
+                            <div className="frontpage__content--image cursor--pt gallery_2">
+                                <div className="frontpage__content--stationName flex__container--row justifycontent--center alignitems--center">市政府</div>
+                            </div>
+                            <div className="frontpage__content--image cursor--pt gallery_3">
+                                <div className="frontpage__content--stationName flex__container--row justifycontent--center alignitems--center">公館</div>
+                            </div>
+                            <div className="frontpage__content--image cursor--pt gallery_4">
+                                <div className="frontpage__content--stationName flex__container--row justifycontent--center alignitems--center">台北小巨蛋</div>
+                            </div>
+                        </div>
+                    </div>
+                
                 </div>
               </div>
             )
