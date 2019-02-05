@@ -123,7 +123,7 @@ class Home extends React.Component {
                     
                     
                     <div className= {["frontpage__multiselect--mrt","flex-container--col", this.state.showMRTSelect ? "display--block" : "display--none"].join(' ')}>
-                        <div className="frontpage__multiselect--title fontsize--22">捷運站</div>
+                        <div className="frontpage__multiselect--title ">捷運站</div>
                         <div className="frontpage__multiselect--wrap flex__container--col justifycontent--fs">
                             <MRTLine
                                 line="blue"
@@ -165,7 +165,7 @@ class Home extends React.Component {
                     </div>
 
                     <div className= {["frontpage__multiselect--mrt","flex-container--col", this.state.showCategorySelect ? "display--block" : "display--none"].join(' ')}>
-                        <div className="frontpage__multiselect--title fontsize--22">拉麵分類</div>
+                        <div className="frontpage__multiselect--title">拉麵分類</div>
                         <div className="frontpage__multiselect--wrap flex__container--col justifycontent--fs">
                             <Categories
                                 selectedCategories={this.state.selectedCategories}
