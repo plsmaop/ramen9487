@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Home from './FrontPage';
+import Search from './SearchPage';
 /* import LoginPanel from './user';
 import Search from './search';
 import AddForm from './search/addForm';
@@ -13,7 +14,7 @@ import Comment from './search/comment'; */
 const Router = () => (
   //<div className="all-wrapper">
     <Switch>
-      <Route path="/" exact component={Home} refresh="true" />
+      <Route path="/" exact component={Search} refresh="true" />
 {/*       <Route path="/search" exact component={Search} refresh="true" />
       <Route path="/diary" exact component={Diary} refresh="true" />
       <Route path="/login" exact component={LoginPanel} refresh="true" />

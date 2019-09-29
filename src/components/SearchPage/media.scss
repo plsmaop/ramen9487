@@ -1,0 +1,123 @@
+/* hide filter and put in inside a button instead */
+@media only screen and (max-width:876px){
+  .frontpage__nav--slogan{
+    font-size: 1.6em;
+  }
+  .frontpage__nav--slogan{
+    flex: 0.9;
+  }
+  .frontpage__nav--firstPart{
+    flex: 1;
+  }
+  .frontpage__nav--narrow{
+    flex: 0.3;
+    display: flex;
+  }
+  .frontpage__nav--wrap,.frontpage__nav--searchContainer{
+    display: none;
+  }
+  .searchPage__engine--filters{
+    display: none;
+  
+    
+  }
+  .searchPage__engine--results{
+    flex: 1!important;
+  }
+  .searchPage__engine--hideButton{
+    display: flex;
+  }
+}
+
+@media(max-width:876px) and (min-width:577px){
+  .searchPage__engine--infoWrap{
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+@media(max-width:576px){
+  .searchPage__engine--results{
+    flex: 1;
+  }
+  .searchPage__engine--resultCard{
+    flex-direction: column;
+    height: 50%!important;
+  }
+  .searchPage__engine--img{
+    width: 100%!important;
+    border-radius: 10px 10px 0 0!important;
+    flex: 0.65;
+  }
+  .searchPage__engine--info{
+    width: 100%!important;
+    flex: 0.35;
+  }
+  .searchPage__engine--infoTitle{
+    font-size: 16px!important;
+  }
+  .searchPage__engine--infoRatingNumber{
+    font-size: 36px!important;
+  }
+}
+/* font size issue when zoom out */
+@media only screen and (max-width:269px){
+  .frontpage__nav--slogan, .searchIcon, .barsIcon{
+    font-size: 1.2rem!important;
+  }
+  .searchPage__engine--formTarget{
+    font-size: 1.2rem!important;
+  }
+  .searchPage__engine--formTextWrap{
+    font-size: 0.9rem!important;
+  }
+  .searchPage__engine--hideButton button{
+    font-size: 1rem!important;
+  }
+}
+@media only screen and (max-width:231px) {
+  .frontpage__nav--slogan, .searchIcon, .barsIcon{
+    font-size: 0.8rem!important;
+  }
+  .searchPage__engine--hideButton button{
+    font-size: 0.8rem!important;
+  }
+}
+@media only screen and (max-width:162px) {
+  .frontpage__nav--slogan, .searchIcon, .barsIcon{
+    font-size: 0.8rem!important;
+  }
+  .searchPage__engine--formTarget{
+    font-size: 0.8rem!important;
+  }
+  .searchPage__engine--formTextWrap{
+    font-size: 0.6rem!important;
+  }
+  .searchIcon, .barsIcon{
+    margin-right: 0.3rem!important;
+  }
+  .searchPage__engine--hideButton button{
+    font-size: 0.6rem!important;
+  }
+}
+@media only screen and (max-width:138px) {
+  .frontpage__nav--slogan, .searchIcon, .barsIcon{
+    font-size: 0.6rem!important;
+  }
+  .searchPage__engine--hideButton button{
+    font-size: 0.4rem!important;
+  }
+}
+@media only screen and (max-width:101px) {
+  .searchPage__engine--formTarget{
+    font-size: 0.4rem!important;
+  }
+  .searchPage__engine--formTextWrap{
+    font-size: 0.3rem!important;
+  }
+  .frontpage__nav--slogan, .searchIcon, .barsIcon{
+    font-size: 0.4rem!important;
+  }
+  .searchPage__engine--hideButton button{
+    font-size: 0.2rem!important;
+  }
+}
