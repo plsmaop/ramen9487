@@ -1,25 +1,33 @@
 {
-  "name": "ramen1.0",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "react": "^16.6.0",
-    "react-dom": "^16.6.0",
-    "react-scripts": "2.1.1"
-  },
+  "name": "ramen9487",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "eslintConfig": {
-    "extends": "react-app"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/plsmaop/ramen9487.git"
   },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ]
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/plsmaop/ramen9487/issues"
+  },
+  "homepage": "https://github.com/plsmaop/ramen9487#readme",
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.0-14",
+    "@fortawesome/free-solid-svg-icons": "^5.1.0-11",
+    "@fortawesome/react-fontawesome": "0.1.0-11",
+    "create-react-class": "^15.6.3",
+    "font-awesome": "^4.7.0",
+    "i": "^0.3.6",
+    "jquery": "^3.3.1",
+    "npm": "^6.1.0",
+    "react-bootstrap": "^0.32.1",
+    "react-bootstrap-multiselect": "^2.4.1",
+    "react-select": "^1.2.1",
+    "react-select-box": "^3.0.1"
+  }
 }
