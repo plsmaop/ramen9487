@@ -2,21 +2,15 @@
 
 <img src="https://i.pinimg.com/originals/56/47/15/5647153df9bb52f5eafb7fb37afcb857.jpg" height="200" align="right">
 
-> 這是一個詳盡的拉麵評價網站，也可以在這裡分享、收藏其他你喜歡的拉麵店。
+> User Reviews and Recommendations of Best Ramen Restaurants in Taiwan
 
 ### What can I do?
 
-* 依照店名 / 鄰近捷運站 / 分類來搜尋相符的拉麵店
-* 分享你喜歡的拉麵店給我們
-* 新增一家拉麵店的相關評論
-* 收藏一家拉麵店
-* 記錄自己吃拉麵的習慣與偏好
+* Look for the best ramen restaurant filtered by MRT stations and flavors
+* Share ramen restaurants you enjoyed
+* Add reviews and recommendations to ramen restaurants
+* Keep your "Ramen Diary"
 
-#### Lots more coming soon
-
-* RWD 
-* 新增分類排名
-* fix bugs...
 
 ## Table of contents
 - [Demo & examples](#demo-&-examples)
