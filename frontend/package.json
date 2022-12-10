@@ -15,7 +15,7 @@
     "font-awesome": "^4.7.0",
     "jquery": "^3.4.0",
     "prop-types": "^15.6.2",
-    "qs": "^6.5.2",
+    "qs": "^6.5.3",
     "react": "^16.4.1",
     "react-dom": "^16.4.2",
     "react-google-maps": "^9.4.5",
